@@ -1,0 +1,23 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      contact: {
+        url: "https://github.com/tbdavid2019/answerbook-api"
+      }
+      description: "The Answerbook API provides access to a collection of random answers and features, such as a random password generator and Tang poetry retrieval. It can be deployed on Cloudflare Workers, making it adaptable for various applications."
+      servers: [
+        {
+          description: "Production server"
+          url: "https://answerbook.david888.com"
+        }
+      ]
+      title: "Answerbook API"
+      version: "1.0.1"
+    }
+  }
+}
+
+}

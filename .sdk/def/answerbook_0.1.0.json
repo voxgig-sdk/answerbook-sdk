@@ -1,0 +1,654 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Answerbook API",
+    "description": "The Answerbook API provides access to a collection of random answers and features, such as a random password generator and Tang poetry retrieval. It can be deployed on Cloudflare Workers, making it adaptable for various applications.",
+    "version": "1.0.1",
+    "contact": {
+      "url": "https://github.com/tbdavid2019/answerbook-api"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://answerbook.david888.com",
+      "description": "Production server"
+    }
+  ],
+  "paths": {
+    "/": {
+      "get": {
+        "summary": "API Documentation",
+        "description": "Returns Swagger UI documentation for the API",
+        "operationId": "getApiDocs",
+        "tags": [
+          "Documentation"
+        ],
+        "responses": {
+          "200": {
+            "description": "Swagger UI HTML page",
+            "content": {
+              "text/html": {
+                "schema": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/answers": {
+      "get": {
+        "summary": "Get Random Answer",
+        "description": "Returns a random answer from the Book of Answers. Default is bilingual (Chinese and English). Previously located at root path '/'.",
+        "operationId": "getAnswer",
+        "tags": [
+          "Book of Answers"
+        ],
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "Language preference for the answer",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "zh-TW"
+              ],
+              "default": "bilingual"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A random answer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "description": "The answer text (bilingual or single language)",
+                      "example": "中文答案\\nEnglish answer"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/answersOriginal": {
+      "get": {
+        "summary": "Get Original Random Answer",
+        "description": "Returns a random answer from the original 350 answers collection",
+        "operationId": "getOriginalAnswer",
+        "tags": [
+          "Book of Answers"
+        ],
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "Language preference for the answer",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "zh-TW"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A random original answer",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "answer": {
+                      "type": "string",
+                      "description": "The answer text",
+                      "example": "單一語言答案"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/answersWithMeta": {
+      "get": {
+        "summary": "Get Answer with Metadata",
+        "description": "Returns a random answer with metadata attributes, supports filtering by tone, mood, style, length, and themes",
+        "operationId": "getAnswerWithMeta",
+        "tags": [
+          "Book of Answers"
+        ],
+        "parameters": [
+          {
+            "name": "lang",
+            "in": "query",
+            "description": "Language preference",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "en",
+                "zh-TW"
+              ]
+            }
+          },
+          {
+            "name": "tone",
+            "in": "query",
+            "description": "Filter by tone",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "mood",
+            "in": "query",
+            "description": "Filter by mood",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "style",
+            "in": "query",
+            "description": "Filter by style",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "length",
+            "in": "query",
+            "description": "Filter by answer length",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "themes",
+            "in": "query",
+            "description": "Filter by themes",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "An answer with metadata",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "id": {
+                      "type": "string",
+                      "example": "344"
+                    },
+                    "answer": {
+                      "type": "string",
+                      "example": "Let dice decide the order"
+                    },
+                    "answer_i18n": {
+                      "type": "object",
+                      "properties": {
+                        "zh-TW": {
+                          "type": "string",
+                          "example": "用骰子決定順序"
+                        },
+                        "en": {
+                          "type": "string",
+                          "example": "Let dice decide the order"
+                        }
+                      }
+                    },
+                    "meta": {
+                      "type": "object",
+                      "properties": {
+                        "tone": {
+                          "type": "string",
+                          "example": "playful"
+                        },
+                        "themes": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "example": [
+                            "decision"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/words/categories": {
+      "get": {
+        "summary": "Get Word Categories",
+        "description": "Returns a list of available word learning categories (GRE, GMAT, IELTS, TOEFL, SAT)",
+        "operationId": "getWordCategories",
+        "tags": [
+          "Words Learning"
+        ],
+        "responses": {
+          "200": {
+            "description": "List of word categories",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "categories": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      },
+                      "example": [
+                        "gre",
+                        "gmat",
+                        "ielts",
+                        "toefl",
+                        "sat"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/words/{category}": {
+      "get": {
+        "summary": "Get Random Word from Category",
+        "description": "Returns a random word from the specified category",
+        "operationId": "getRandomWord",
+        "tags": [
+          "Words Learning"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "Word category",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "gre",
+                "gmat",
+                "ielts",
+                "toefl",
+                "sat"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "A random word with definition",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "word": {
+                      "type": "string"
+                    },
+                    "definition": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/words/{category}/{word}": {
+      "get": {
+        "summary": "Get Specific Word",
+        "description": "Returns a specific word from the specified category",
+        "operationId": "getSpecificWord",
+        "tags": [
+          "Words Learning"
+        ],
+        "parameters": [
+          {
+            "name": "category",
+            "in": "path",
+            "description": "Word category",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "gre",
+                "gmat",
+                "ielts",
+                "toefl",
+                "sat"
+              ]
+            }
+          },
+          {
+            "name": "word",
+            "in": "path",
+            "description": "The word to look up",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Word details",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "word": {
+                      "type": "string"
+                    },
+                    "definition": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "404": {
+            "description": "Word not found"
+          }
+        }
+      }
+    },
+    "/RandomPassword": {
+      "get": {
+        "summary": "Generate Random Password",
+        "description": "Returns a randomly generated password",
+        "operationId": "getRandomPassword",
+        "tags": [
+          "Tools"
+        ],
+        "responses": {
+          "200": {
+            "description": "A random password",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "RandomPassword": {
+                      "type": "string",
+                      "example": "xyz123ABC!@#"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TangPoetry": {
+      "get": {
+        "summary": "Get Tang Poetry",
+        "description": "Returns a random Tang Dynasty poem",
+        "operationId": "getTangPoetry",
+        "tags": [
+          "Poetry & Oracle"
+        ],
+        "responses": {
+          "200": {
+            "description": "A Tang Dynasty poem",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "poem": {
+                      "type": "object",
+                      "properties": {
+                        "title": {
+                          "type": "string"
+                        },
+                        "author": {
+                          "type": "string"
+                        },
+                        "content": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TempleOracleJP": {
+      "get": {
+        "summary": "Get Japanese Temple Oracle",
+        "description": "Returns a random Japanese Asakusa temple fortune (omikuji)",
+        "operationId": "getTempleOracleJP",
+        "tags": [
+          "Poetry & Oracle"
+        ],
+        "responses": {
+          "200": {
+            "description": "A Japanese temple oracle",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "oracle": {
+                      "type": "object",
+                      "properties": {
+                        "type": {
+                          "type": "string",
+                          "example": "大吉",
+                          "description": "Fortune type (Great Fortune, etc.)"
+                        },
+                        "poem": {
+                          "type": "string"
+                        },
+                        "interpretation": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/SP500": {
+      "get": {
+        "summary": "Get S&P 500 Data",
+        "description": "Returns S&P 500 market data",
+        "operationId": "getSP500",
+        "tags": [
+          "Market Data"
+        ],
+        "responses": {
+          "200": {
+            "description": "S&P 500 market data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "SP500": {
+                      "type": "object",
+                      "properties": {
+                        "price": {
+                          "type": "string"
+                        },
+                        "change": {
+                          "type": "string"
+                        },
+                        "percentChange": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/nasdaq100": {
+      "get": {
+        "summary": "Get NASDAQ 100 Data",
+        "description": "Returns NASDAQ 100 market data",
+        "operationId": "getNasdaq100",
+        "tags": [
+          "Market Data"
+        ],
+        "responses": {
+          "200": {
+            "description": "NASDAQ 100 market data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "nasdaq100": {
+                      "type": "object",
+                      "properties": {
+                        "price": {
+                          "type": "string"
+                        },
+                        "change": {
+                          "type": "string"
+                        },
+                        "percentChange": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/TW0050": {
+      "get": {
+        "summary": "Get Taiwan 0050 ETF Data",
+        "description": "Returns Taiwan 0050 ETF market data",
+        "operationId": "getTW0050",
+        "tags": [
+          "Market Data"
+        ],
+        "responses": {
+          "200": {
+            "description": "Taiwan 0050 ETF market data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "TW0050": {
+                      "type": "object",
+                      "properties": {
+                        "price": {
+                          "type": "string"
+                        },
+                        "change": {
+                          "type": "string"
+                        },
+                        "percentChange": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Documentation",
+      "description": "API documentation and Swagger UI"
+    },
+    {
+      "name": "Book of Answers",
+      "description": "Random answer generation with multiple options and metadata"
+    },
+    {
+      "name": "Words Learning",
+      "description": "GRE, GMAT, IELTS, TOEFL, and SAT vocabulary API"
+    },
+    {
+      "name": "Tools",
+      "description": "Utility tools like random password generator"
+    },
+    {
+      "name": "Poetry & Oracle",
+      "description": "Tang poetry and Japanese temple fortune slips"
+    },
+    {
+      "name": "Market Data",
+      "description": "Stock market data for S&P 500, NASDAQ, and Taiwan stocks"
+    }
+  ],
+  "externalDocs": {
+    "description": "GitHub Repository",
+    "url": "https://github.com/tbdavid2019/answerbook-api"
+  }
+}

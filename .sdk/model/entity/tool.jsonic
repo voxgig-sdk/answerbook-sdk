@@ -1,0 +1,37 @@
+# Entity: tool
+
+main: kit: entity: tool: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "random_password"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "tool"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/RandomPassword"
+          parts: [
+            "RandomPassword"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,53 @@
+# Entity: poetry__oracle
+
+main: kit: entity: poetry__oracle: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "oracle"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "poem"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "poetry__oracle"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/TangPoetry"
+          parts: [
+            "TangPoetry"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/TempleOracleJP"
+          parts: [
+            "TempleOracleJP"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

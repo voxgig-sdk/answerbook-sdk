@@ -1,0 +1,9 @@
+# Entity Models
+
+@"book_of_answer.jsonic"
+@"get_api_doc.jsonic"
+@"market_data.jsonic"
+@"poetry__oracle.jsonic"
+@"tool.jsonic"
+@"word.jsonic"
+@"words_learning.jsonic"

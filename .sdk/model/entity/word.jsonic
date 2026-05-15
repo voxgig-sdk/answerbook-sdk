@@ -1,0 +1,114 @@
+# Entity: word
+
+main: kit: entity: word: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "category"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "definition"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "word"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "word"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "category"
+                orig: "category"
+                reqd: true
+                type: "`$STRING`"
+              }
+              {
+                kind: "param"
+                name: "word"
+                orig: "word"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/words/{category}/{word}"
+          parts: [
+            "words"
+            "{category}"
+            "{word}"
+          ]
+          select: {
+            exist: [
+              "category"
+              "word"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          args: {
+            params: [
+              {
+                kind: "param"
+                name: "id"
+                orig: "category"
+                reqd: true
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/words/{category}"
+          parts: [
+            "words"
+            "{id}"
+          ]
+          rename: {
+            param: {
+              category: "id"
+            }
+          }
+          select: {
+            exist: [
+              "id"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+  relations: {
+    ancestors: [
+      [
+        "word"
+      ]
+    ]
+  }
+
+
+
+}

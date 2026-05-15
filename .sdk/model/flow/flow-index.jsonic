@@ -1,0 +1,9 @@
+# Flows
+
+@"BasicBookOfAnswerFlow.jsonic"
+@"BasicGetApiDocFlow.jsonic"
+@"BasicMarketDataFlow.jsonic"
+@"BasicPoetryOracleFlow.jsonic"
+@"BasicToolFlow.jsonic"
+@"BasicWordFlow.jsonic"
+@"BasicWordsLearningFlow.jsonic"

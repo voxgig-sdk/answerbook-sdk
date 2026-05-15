@@ -1,0 +1,22 @@
+{
+  "existing": {
+    "words_learning": {
+      "WORDS_LEARNING00": {
+        "category": []
+      },
+      "WORDS_LEARNING01": {
+        "category": []
+      },
+      "WORDS_LEARNING02": {
+        "category": []
+      }
+    }
+  },
+  "new": {
+    "words_learning": {
+      "words_learning_ref01": {
+        "category": []
+      }
+    }
+  }
+}

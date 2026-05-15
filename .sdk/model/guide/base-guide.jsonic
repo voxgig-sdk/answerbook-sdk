@@ -1,0 +1,71 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 7
+  metrics: count: path: 13
+  metrics: count: method: 13
+
+  entity: book_of_answer: {
+    path: "/answers": {
+      op: load: method: *GET
+    }
+    path: "/answersOriginal": {
+      op: load: method: *GET
+    }
+    path: "/answersWithMeta": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: get_api_doc: {
+    path: "/": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: market_data: {
+    path: "/SP500": {
+      op: load: method: *GET
+    }
+    path: "/TW0050": {
+      op: load: method: *GET
+    }
+    path: "/nasdaq100": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: poetry__oracle: {
+    path: "/TangPoetry": {
+      op: load: method: *GET
+    }
+    path: "/TempleOracleJP": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: tool: {
+    path: "/RandomPassword": {
+      op: load: method: *GET
+    }
+  }
+
+  entity: word: {
+    path: "/words/{category}": {
+      rename: param: "category": *"id"
+      op: load: method: *GET
+      op: load: transform: res: *("`body.word`")|top
+    }
+    path: "/words/{category}/{word}": {
+      op: load: method: *GET
+      op: load: transform: res: *("`body.word`")|top
+    }
+  }
+
+  entity: words_learning: {
+    path: "/words/categories": {
+      op: list: method: *GET
+    }
+  }
+
+}

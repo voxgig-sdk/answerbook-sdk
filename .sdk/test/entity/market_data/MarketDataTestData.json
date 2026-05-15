@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "market_data": {
+      "MARKET_DATA00": {
+        "nasdaq100": {},
+        "sp500": {},
+        "tw0050": {}
+      },
+      "MARKET_DATA01": {
+        "nasdaq100": {},
+        "sp500": {},
+        "tw0050": {}
+      },
+      "MARKET_DATA02": {
+        "nasdaq100": {},
+        "sp500": {},
+        "tw0050": {}
+      }
+    }
+  },
+  "new": {
+    "market_data": {
+      "market_data_ref01": {
+        "nasdaq100": {},
+        "sp500": {},
+        "tw0050": {}
+      }
+    }
+  }
+}

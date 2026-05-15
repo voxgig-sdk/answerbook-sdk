@@ -1,0 +1,22 @@
+# BasicWordsLearningFlow
+
+main: kit: flow: BasicWordsLearningFlow:
+{
+  entity: "words_learning",
+  kind: "basic",
+  name: "BasicWordsLearningFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "words_learning_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicWordsLearningFlow"
+}

@@ -1,0 +1,28 @@
+# BasicBookOfAnswerFlow
+
+main: kit: flow: BasicBookOfAnswerFlow:
+{
+  entity: "book_of_answer",
+  kind: "basic",
+  name: "BasicBookOfAnswerFlow",
+  step: [
+    {
+      input: {
+        ref: "book_of_answer_ref01",
+        srcdatavar: "book_of_answer_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-book_of_answer_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicBookOfAnswerFlow"
+}

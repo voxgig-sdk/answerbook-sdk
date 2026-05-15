@@ -1,0 +1,22 @@
+{
+  "existing": {
+    "tool": {
+      "TOOL00": {
+        "random_password": "sa"
+      },
+      "TOOL01": {
+        "random_password": "s14"
+      },
+      "TOOL02": {
+        "random_password": "s1e"
+      }
+    }
+  },
+  "new": {
+    "tool": {
+      "tool_ref01": {
+        "random_password": "s28"
+      }
+    }
+  }
+}

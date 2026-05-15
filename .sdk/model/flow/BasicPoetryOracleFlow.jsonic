@@ -1,0 +1,28 @@
+# BasicPoetryOracleFlow
+
+main: kit: flow: BasicPoetryOracleFlow:
+{
+  entity: "poetry__oracle",
+  kind: "basic",
+  name: "BasicPoetryOracleFlow",
+  step: [
+    {
+      input: {
+        ref: "poetry__oracle_ref01",
+        srcdatavar: "poetry__oracle_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-poetry__oracle_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicPoetryOracleFlow"
+}

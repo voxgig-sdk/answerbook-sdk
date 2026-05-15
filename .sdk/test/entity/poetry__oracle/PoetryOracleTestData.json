@@ -1,0 +1,26 @@
+{
+  "existing": {
+    "poetry__oracle": {
+      "POETRY__ORACLE00": {
+        "oracle": {},
+        "poem": {}
+      },
+      "POETRY__ORACLE01": {
+        "oracle": {},
+        "poem": {}
+      },
+      "POETRY__ORACLE02": {
+        "oracle": {},
+        "poem": {}
+      }
+    }
+  },
+  "new": {
+    "poetry__oracle": {
+      "poetry__oracle_ref01": {
+        "oracle": {},
+        "poem": {}
+      }
+    }
+  }
+}

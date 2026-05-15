@@ -1,0 +1,26 @@
+# Entity: get_api_doc
+
+main: kit: entity: get_api_doc: {
+
+  alias: field: {}
+
+  name: "get_api_doc"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/"
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

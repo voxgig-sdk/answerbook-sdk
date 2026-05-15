@@ -1,0 +1,38 @@
+# Entity: words_learning
+
+main: kit: entity: words_learning: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "category"
+      req: false
+      type: "`$ARRAY`"
+    }
+  ]
+
+  name: "words_learning"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/words/categories"
+          parts: [
+            "words"
+            "categories"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

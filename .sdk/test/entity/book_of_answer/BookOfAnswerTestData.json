@@ -1,0 +1,33 @@
+{
+  "existing": {
+    "book_of_answer": {
+      "BOOK_OF_ANSWER00": {
+        "answer": "s28",
+        "answer_i18n": {},
+        "id": "BOOK_OF_ANSWER00",
+        "meta": {}
+      },
+      "BOOK_OF_ANSWER01": {
+        "answer": "s50",
+        "answer_i18n": {},
+        "id": "BOOK_OF_ANSWER01",
+        "meta": {}
+      },
+      "BOOK_OF_ANSWER02": {
+        "answer": "s78",
+        "answer_i18n": {},
+        "id": "BOOK_OF_ANSWER02",
+        "meta": {}
+      }
+    }
+  },
+  "new": {
+    "book_of_answer": {
+      "book_of_answer_ref01": {
+        "answer": "sa0",
+        "answer_i18n": {},
+        "meta": {}
+      }
+    }
+  }
+}

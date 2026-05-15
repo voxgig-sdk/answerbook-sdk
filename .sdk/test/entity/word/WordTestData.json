@@ -1,0 +1,30 @@
+{
+  "existing": {
+    "word": {
+      "WORD00": {
+        "category": "s1e",
+        "definition": "s1f",
+        "word": "s20"
+      },
+      "WORD01": {
+        "category": "s3c",
+        "definition": "s3d",
+        "word": "s3e"
+      },
+      "WORD02": {
+        "category": "s5a",
+        "definition": "s5b",
+        "word": "s5c"
+      }
+    }
+  },
+  "new": {
+    "word": {
+      "word_ref01": {
+        "category": "s78",
+        "definition": "s79",
+        "word": "s7a"
+      }
+    }
+  }
+}

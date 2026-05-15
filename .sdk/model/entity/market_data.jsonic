@@ -1,0 +1,69 @@
+# Entity: market_data
+
+main: kit: entity: market_data: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "nasdaq100"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "sp500"
+      req: false
+      type: "`$OBJECT`"
+    }
+    {
+      name: "tw0050"
+      req: false
+      type: "`$OBJECT`"
+    }
+  ]
+
+  name: "market_data"
+  op: {
+    load: {
+      name: "load"
+      points: [
+        {
+          method: "GET"
+          orig: "/SP500"
+          parts: [
+            "SP500"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/TW0050"
+          parts: [
+            "TW0050"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+        {
+          method: "GET"
+          orig: "/nasdaq100"
+          parts: [
+            "nasdaq100"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

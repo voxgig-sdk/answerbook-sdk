@@ -1,0 +1,28 @@
+# BasicToolFlow
+
+main: kit: flow: BasicToolFlow:
+{
+  entity: "tool",
+  kind: "basic",
+  name: "BasicToolFlow",
+  step: [
+    {
+      input: {
+        ref: "tool_ref01",
+        srcdatavar: "tool_ref01_data",
+        suffix: "_dt0"
+      }
+
+      op: "load",
+      valid: [
+        {
+          apply: "TextFieldMark",
+          def: {
+            mark: "Mark01-tool_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicToolFlow"
+}
