@@ -4,17 +4,20 @@
       "MARKET_DATA00": {
         "nasdaq100": {},
         "sp500": {},
-        "tw0050": {}
+        "tw0050": {},
+        "id": "MARKET_DATA00"
       },
       "MARKET_DATA01": {
         "nasdaq100": {},
         "sp500": {},
-        "tw0050": {}
+        "tw0050": {},
+        "id": "MARKET_DATA01"
       },
       "MARKET_DATA02": {
         "nasdaq100": {},
         "sp500": {},
-        "tw0050": {}
+        "tw0050": {},
+        "id": "MARKET_DATA02"
       }
     }
   },

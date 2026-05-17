@@ -1,9 +1,9 @@
 package utility
 
 import (
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/answerbook-sdk/go/utility/struct"
 
-	"github.com/voxgig-sdk/answerbook-sdk/core"
+	"github.com/voxgig-sdk/answerbook-sdk/go/core"
 )
 
 func makeFetchDefUtil(ctx *core.Context) (map[string]any, error) {

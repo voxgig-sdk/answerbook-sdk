@@ -1,10 +1,10 @@
 package voxgiganswerbooksdk
 
 import (
-	"github.com/voxgig-sdk/answerbook-sdk/core"
-	"github.com/voxgig-sdk/answerbook-sdk/entity"
-	"github.com/voxgig-sdk/answerbook-sdk/feature"
-	_ "github.com/voxgig-sdk/answerbook-sdk/utility"
+	"github.com/voxgig-sdk/answerbook-sdk/go/core"
+	"github.com/voxgig-sdk/answerbook-sdk/go/entity"
+	"github.com/voxgig-sdk/answerbook-sdk/go/feature"
+	_ "github.com/voxgig-sdk/answerbook-sdk/go/utility"
 )
 
 // Type aliases preserve external API.

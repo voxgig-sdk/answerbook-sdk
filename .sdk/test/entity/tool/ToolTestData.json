@@ -2,13 +2,16 @@
   "existing": {
     "tool": {
       "TOOL00": {
-        "random_password": "sa"
+        "random_password": "sa",
+        "id": "TOOL00"
       },
       "TOOL01": {
-        "random_password": "s14"
+        "random_password": "s14",
+        "id": "TOOL01"
       },
       "TOOL02": {
-        "random_password": "s1e"
+        "random_password": "s1e",
+        "id": "TOOL02"
       }
     }
   },

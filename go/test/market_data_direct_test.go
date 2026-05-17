@@ -6,8 +6,8 @@ import (
 	"strings"
 	"testing"
 
-	sdk "github.com/voxgig-sdk/answerbook-sdk"
-	"github.com/voxgig-sdk/answerbook-sdk/core"
+	sdk "github.com/voxgig-sdk/answerbook-sdk/go"
+	"github.com/voxgig-sdk/answerbook-sdk/go/core"
 )
 
 func TestMarketDataDirect(t *testing.T) {

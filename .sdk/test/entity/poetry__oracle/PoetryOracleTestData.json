@@ -3,15 +3,18 @@
     "poetry__oracle": {
       "POETRY__ORACLE00": {
         "oracle": {},
-        "poem": {}
+        "poem": {},
+        "id": "POETRY__ORACLE00"
       },
       "POETRY__ORACLE01": {
         "oracle": {},
-        "poem": {}
+        "poem": {},
+        "id": "POETRY__ORACLE01"
       },
       "POETRY__ORACLE02": {
         "oracle": {},
-        "poem": {}
+        "poem": {},
+        "id": "POETRY__ORACLE02"
       }
     }
   },

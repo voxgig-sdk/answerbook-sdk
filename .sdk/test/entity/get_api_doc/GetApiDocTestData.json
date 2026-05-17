@@ -1,9 +1,15 @@
 {
   "existing": {
     "get_api_doc": {
-      "GET_API_DOC00": {},
-      "GET_API_DOC01": {},
-      "GET_API_DOC02": {}
+      "GET_API_DOC00": {
+        "id": "GET_API_DOC00"
+      },
+      "GET_API_DOC01": {
+        "id": "GET_API_DOC01"
+      },
+      "GET_API_DOC02": {
+        "id": "GET_API_DOC02"
+      }
     }
   },
   "new": {

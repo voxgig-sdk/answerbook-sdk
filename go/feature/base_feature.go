@@ -1,7 +1,7 @@
 package feature
 
 import (
-	"github.com/voxgig-sdk/answerbook-sdk/core"
+	"github.com/voxgig-sdk/answerbook-sdk/go/core"
 )
 
 type BaseFeature struct {

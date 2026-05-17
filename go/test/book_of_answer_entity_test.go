@@ -9,10 +9,10 @@ import (
 	"testing"
 	"time"
 
-	sdk "github.com/voxgig-sdk/answerbook-sdk"
-	"github.com/voxgig-sdk/answerbook-sdk/core"
+	sdk "github.com/voxgig-sdk/answerbook-sdk/go"
+	"github.com/voxgig-sdk/answerbook-sdk/go/core"
 
-	vs "github.com/voxgig/struct"
+	vs "github.com/voxgig-sdk/answerbook-sdk/go/utility/struct"
 )
 
 func TestBookOfAnswerEntity(t *testing.T) {

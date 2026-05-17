@@ -4,17 +4,20 @@
       "WORD00": {
         "category": "s1e",
         "definition": "s1f",
-        "word": "s20"
+        "word": "s20",
+        "id": "WORD00"
       },
       "WORD01": {
         "category": "s3c",
         "definition": "s3d",
-        "word": "s3e"
+        "word": "s3e",
+        "id": "WORD01"
       },
       "WORD02": {
         "category": "s5a",
         "definition": "s5b",
-        "word": "s5c"
+        "word": "s5c",
+        "id": "WORD02"
       }
     }
   },
