@@ -20,9 +20,6 @@ class AnswerbookConfig
             ],
             "options" => [
                 "base" => "https://answerbook.david888.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],

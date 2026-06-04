@@ -16,8 +16,33 @@ main: {
       ]
       title: "Answerbook API"
       version: "1.0.1"
+      tagline: "Random answers, classical poetry, vocabulary lists, and market snapshots from a Cloudflare Workers API"
+      homepage: "https://answerbook.david888.com"
+      docs_url: "https://answerbook.david888.com"
+      license_short: "No license declared by the upstream project"
+      license_md: `- The upstream repository [tbdavid2019/answerbook-api](https://github.com/tbdavid2019/answerbook-api) does not declare a license.
+- Treat responses as informational; check with the operator before redistributing data.
+- Tang poetry and oracle texts are public-domain classical works, but the curated collections may carry their own terms.`
+      about_md: `The Answerbook API is a small multi-purpose service maintained by [tbdavid2019](https://github.com/tbdavid2019) and hosted at [answerbook.david888.com](https://answerbook.david888.com). It is deployed on Cloudflare Workers using the Hono framework, with data backed by Workers KV and interactive documentation served through Swagger UI.
+
+What you get from the API:
+- Random "book of answers" responses with bilingual variants (\`/answers\`, \`/answersOriginal\`, \`/answersWithMeta\`)
+- Random password generation (\`/RandomPassword\`)
+- Classical Chinese Tang poetry (\`/TangPoetry\`) and Japanese temple oracle draws (\`/TempleOracleJP\`)
+- Vocabulary lists organised by exam category — GRE, TOEFL, IELTS, GMAT, SAT (\`/words/categories\`, \`/words/{category}\`, \`/words/{category}/{word}\`)
+- Market snapshots for \`/SP500\`, \`/nasdaq100\`, and \`/TW0050\`
+
+The service advertises CORS support and exposes a Model Context Protocol endpoint at \`/mcp\` for LLM tool use. No authentication or documented rate limits are required for the public endpoints.`
+      entity_desc: {
+        book_of_answer: "Random divination-style answers from the \"book of answers\" collection, served via `/answers`, `/answersOriginal`, and `/answersWithMeta`."
+        get_api_doc: "Self-describing endpoints that return the API's own documentation / Swagger metadata."
+        market_data: "Snapshot market data for major indices, exposed at `/SP500`, `/nasdaq100`, and `/TW0050`."
+        poetry__oracle: "Classical text draws: Tang dynasty Chinese poems (`/TangPoetry`) and Japanese temple oracle slips (`/TempleOracleJP`)."
+        tool: "Utility helpers such as the random password generator at `/RandomPassword`."
+        word: "Individual vocabulary entries looked up by category and word, via `/words/{category}/{word}`."
+        words_learning: "Exam-prep vocabulary collections (GRE, TOEFL, IELTS, GMAT, SAT) listed via `/words/categories` and `/words/{category}`."
+      }
+      auth: false
     }
   }
-}
-
 }

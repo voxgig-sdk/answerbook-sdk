@@ -70,14 +70,12 @@ def _word_direct_setup(mockres):
     env = runner.env_override({
         "ANSWERBOOK_TEST_WORD_ENTID": {},
         "ANSWERBOOK_TEST_LIVE": "FALSE",
-        "ANSWERBOOK_APIKEY": "NONE",
     })
 
     live = env.get("ANSWERBOOK_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {
-            "apikey": env.get("ANSWERBOOK_APIKEY"),
         }
         client = AnswerbookSDK(merged_opts)
         return {

@@ -67,14 +67,12 @@ function book_of_answer_direct_setup($mockres)
     $env = Runner::env_override([
         "ANSWERBOOK_TEST_BOOK_OF_ANSWER_ENTID" => [],
         "ANSWERBOOK_TEST_LIVE" => "FALSE",
-        "ANSWERBOOK_APIKEY" => "NONE",
     ]);
 
     $live = $env["ANSWERBOOK_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [
-            "apikey" => $env["ANSWERBOOK_APIKEY"],
         ];
         $client = new AnswerbookSDK($merged_opts);
         return [

@@ -85,7 +85,6 @@ function market_data_basic_setup($extra)
         "ANSWERBOOK_TEST_MARKET_DATA_ENTID" => $idmap,
         "ANSWERBOOK_TEST_LIVE" => "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN" => "FALSE",
-        "ANSWERBOOK_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +96,6 @@ function market_data_basic_setup($extra)
     if ($env["ANSWERBOOK_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ANSWERBOOK_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -62,14 +62,12 @@ function poetry__oracle_direct_setup(mockres)
   local env = runner.env_override({
     ["ANSWERBOOK_TEST_POETRY_ORACLE_ENTID"] = {},
     ["ANSWERBOOK_TEST_LIVE"] = "FALSE",
-    ["ANSWERBOOK_APIKEY"] = "NONE",
   })
 
   local live = env["ANSWERBOOK_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
-      apikey = env["ANSWERBOOK_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {
