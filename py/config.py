@@ -15,6 +15,9 @@ def make_config():
         },
         "options": {
             "base": "https://answerbook.david888.com",
+            "auth": {
+                "prefix": "Bearer",
+            },
             "headers": {
         "content-type": "application/json",
       },
@@ -32,89 +35,91 @@ def make_config():
       "book_of_answer": {
         "fields": [
           {
+            "active": True,
             "name": "answer",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "answer_i18n",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "id",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 2,
           },
           {
+            "active": True,
             "name": "meta",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 3,
           },
         ],
         "name": "book_of_answer",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "lang",
                       "orig": "lang",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "length",
                       "orig": "length",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "mood",
                       "orig": "mood",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "style",
                       "orig": "style",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "theme",
                       "orig": "theme",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "tone",
                       "orig": "tone",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -137,20 +142,20 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 0,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "example": "bilingual",
                       "kind": "query",
                       "name": "lang",
                       "orig": "lang",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -168,19 +173,19 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 1,
               },
               {
+                "active": True,
                 "args": {
                   "query": [
                     {
+                      "active": True,
                       "kind": "query",
                       "name": "lang",
                       "orig": "lang",
                       "reqd": False,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -198,11 +203,9 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
                 "index$": 2,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
@@ -215,23 +218,23 @@ def make_config():
         "name": "get_api_doc",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
+                "args": {},
                 "method": "GET",
                 "orig": "/",
+                "parts": [],
+                "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "parts": [],
-                "args": {},
-                "select": {},
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
@@ -242,79 +245,79 @@ def make_config():
       "market_data": {
         "fields": [
           {
+            "active": True,
             "name": "nasdaq100",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "sp500",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "tw0050",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 2,
           },
         ],
         "name": "market_data",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
+                "args": {},
                 "method": "GET",
                 "orig": "/SP500",
                 "parts": [
                   "SP500",
                 ],
+                "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "args": {},
-                "select": {},
                 "index$": 0,
               },
               {
+                "active": True,
+                "args": {},
                 "method": "GET",
                 "orig": "/TW0050",
                 "parts": [
                   "TW0050",
                 ],
+                "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "args": {},
-                "select": {},
                 "index$": 1,
               },
               {
+                "active": True,
+                "args": {},
                 "method": "GET",
                 "orig": "/nasdaq100",
                 "parts": [
                   "nasdaq100",
                 ],
+                "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "args": {},
-                "select": {},
                 "index$": 2,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
@@ -325,57 +328,57 @@ def make_config():
       "poetry__oracle": {
         "fields": [
           {
+            "active": True,
             "name": "oracle",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "poem",
             "req": False,
             "type": "`$OBJECT`",
-            "active": True,
             "index$": 1,
           },
         ],
         "name": "poetry__oracle",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
+                "args": {},
                 "method": "GET",
                 "orig": "/TangPoetry",
                 "parts": [
                   "TangPoetry",
                 ],
+                "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "args": {},
-                "select": {},
                 "index$": 0,
               },
               {
+                "active": True,
+                "args": {},
                 "method": "GET",
                 "orig": "/TempleOracleJP",
                 "parts": [
                   "TempleOracleJP",
                 ],
+                "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "args": {},
-                "select": {},
                 "index$": 1,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
@@ -386,35 +389,35 @@ def make_config():
       "tool": {
         "fields": [
           {
+            "active": True,
             "name": "random_password",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
         ],
         "name": "tool",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
+                "args": {},
                 "method": "GET",
                 "orig": "/RandomPassword",
                 "parts": [
                   "RandomPassword",
                 ],
+                "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "args": {},
-                "select": {},
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
@@ -425,50 +428,52 @@ def make_config():
       "word": {
         "fields": [
           {
+            "active": True,
             "name": "category",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 0,
           },
           {
+            "active": True,
             "name": "definition",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 1,
           },
           {
+            "active": True,
             "name": "word",
             "req": False,
             "type": "`$STRING`",
-            "active": True,
             "index$": 2,
           },
         ],
         "name": "word",
         "op": {
           "load": {
+            "input": "data",
             "name": "load",
             "points": [
               {
+                "active": True,
                 "args": {
                   "params": [
                     {
+                      "active": True,
                       "kind": "param",
                       "name": "category",
                       "orig": "category",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                     {
+                      "active": True,
                       "kind": "param",
                       "name": "word",
                       "orig": "word",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -487,21 +492,21 @@ def make_config():
                 },
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.word`",
                 },
-                "active": True,
                 "index$": 0,
               },
               {
+                "active": True,
                 "args": {
                   "params": [
                     {
+                      "active": True,
                       "kind": "param",
                       "name": "id",
                       "orig": "category",
                       "reqd": True,
                       "type": "`$STRING`",
-                      "active": True,
                     },
                   ],
                 },
@@ -523,13 +528,11 @@ def make_config():
                 },
                 "transform": {
                   "req": "`reqdata`",
-                  "res": "`body`",
+                  "res": "`body.word`",
                 },
-                "active": True,
                 "index$": 1,
               },
             ],
-            "input": "data",
             "key$": "load",
           },
         },
@@ -544,36 +547,36 @@ def make_config():
       "words_learning": {
         "fields": [
           {
+            "active": True,
             "name": "category",
             "req": False,
             "type": "`$ARRAY`",
-            "active": True,
             "index$": 0,
           },
         ],
         "name": "words_learning",
         "op": {
           "list": {
+            "input": "data",
             "name": "list",
             "points": [
               {
+                "active": True,
+                "args": {},
                 "method": "GET",
                 "orig": "/words/categories",
                 "parts": [
                   "words",
                   "categories",
                 ],
+                "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
-                "active": True,
-                "args": {},
-                "select": {},
                 "index$": 0,
               },
             ],
-            "input": "data",
             "key$": "list",
           },
         },

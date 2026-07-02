@@ -61,7 +61,7 @@ main: kit: entity: word: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.word`"
           }
         }
         {
@@ -94,7 +94,7 @@ main: kit: entity: word: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.word`"
           }
         }
       ]

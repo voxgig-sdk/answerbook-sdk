@@ -74,12 +74,14 @@ function directSetup(mockres?: any) {
   const env = envOverride({
     'ANSWERBOOK_TEST_MARKET_DATA_ENTID': {},
     'ANSWERBOOK_TEST_LIVE': 'FALSE',
+    'ANSWERBOOK_APIKEY': 'NONE',
   })
 
   const live = 'TRUE' === env.ANSWERBOOK_TEST_LIVE
 
   if (live) {
     const client = new AnswerbookSDK({
+      apikey: env.ANSWERBOOK_APIKEY,
     })
 
     let idmap: any = env['ANSWERBOOK_TEST_MARKET_DATA_ENTID']

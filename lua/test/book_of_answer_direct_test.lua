@@ -62,12 +62,14 @@ function book_of_answer_direct_setup(mockres)
   local env = runner.env_override({
     ["ANSWERBOOK_TEST_BOOK_OF_ANSWER_ENTID"] = {},
     ["ANSWERBOOK_TEST_LIVE"] = "FALSE",
+    ["ANSWERBOOK_APIKEY"] = "NONE",
   })
 
   local live = env["ANSWERBOOK_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {
+      apikey = env["ANSWERBOOK_APIKEY"],
     }
     local client = sdk.new(merged_opts)
     return {

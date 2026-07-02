@@ -92,6 +92,7 @@ def _words_learning_basic_setup(extra):
         "ANSWERBOOK_TEST_WORDS_LEARNING_ENTID": idmap,
         "ANSWERBOOK_TEST_LIVE": "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN": "FALSE",
+        "ANSWERBOOK_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ def _words_learning_basic_setup(extra):
     if env.get("ANSWERBOOK_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("ANSWERBOOK_APIKEY"),
             },
             extra or {},
         ])

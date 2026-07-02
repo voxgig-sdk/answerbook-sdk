@@ -14,6 +14,9 @@ func MakeConfig() map[string]any {
 		},
 		"options": map[string]any{
 			"base": "https://answerbook.david888.com",
+			"auth": map[string]any{
+				"prefix": "Bearer",
+			},
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -31,89 +34,91 @@ func MakeConfig() map[string]any {
 			"book_of_answer": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "answer",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 0,
 					},
 					map[string]any{
+						"active": true,
 						"name": "answer_i18n",
 						"req": false,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 1,
 					},
 					map[string]any{
+						"active": true,
 						"name": "id",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 2,
 					},
 					map[string]any{
+						"active": true,
 						"name": "meta",
 						"req": false,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 3,
 					},
 				},
 				"name": "book_of_answer",
 				"op": map[string]any{
 					"load": map[string]any{
+						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "lang",
 											"orig": "lang",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "length",
 											"orig": "length",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "mood",
 											"orig": "mood",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "style",
 											"orig": "style",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "theme",
 											"orig": "theme",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "tone",
 											"orig": "tone",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 								},
@@ -136,20 +141,20 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
 								"index$": 0,
 							},
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
+											"active": true,
 											"example": "bilingual",
 											"kind": "query",
 											"name": "lang",
 											"orig": "lang",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 								},
@@ -167,19 +172,19 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
 								"index$": 1,
 							},
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"query": []any{
 										map[string]any{
+											"active": true,
 											"kind": "query",
 											"name": "lang",
 											"orig": "lang",
 											"reqd": false,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 								},
@@ -197,11 +202,9 @@ func MakeConfig() map[string]any {
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
 								"index$": 2,
 							},
 						},
-						"input": "data",
 						"key$": "load",
 					},
 				},
@@ -214,23 +217,23 @@ func MakeConfig() map[string]any {
 				"name": "get_api_doc",
 				"op": map[string]any{
 					"load": map[string]any{
+						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
+								"active": true,
+								"args": map[string]any{},
 								"method": "GET",
 								"orig": "/",
+								"parts": []any{},
+								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
-								"parts": []any{},
-								"args": map[string]any{},
-								"select": map[string]any{},
 								"index$": 0,
 							},
 						},
-						"input": "data",
 						"key$": "load",
 					},
 				},
@@ -241,79 +244,79 @@ func MakeConfig() map[string]any {
 			"market_data": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "nasdaq100",
 						"req": false,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 0,
 					},
 					map[string]any{
+						"active": true,
 						"name": "sp500",
 						"req": false,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 1,
 					},
 					map[string]any{
+						"active": true,
 						"name": "tw0050",
 						"req": false,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 2,
 					},
 				},
 				"name": "market_data",
 				"op": map[string]any{
 					"load": map[string]any{
+						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
+								"active": true,
+								"args": map[string]any{},
 								"method": "GET",
 								"orig": "/SP500",
 								"parts": []any{
 									"SP500",
 								},
+								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
-								"args": map[string]any{},
-								"select": map[string]any{},
 								"index$": 0,
 							},
 							map[string]any{
+								"active": true,
+								"args": map[string]any{},
 								"method": "GET",
 								"orig": "/TW0050",
 								"parts": []any{
 									"TW0050",
 								},
+								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
-								"args": map[string]any{},
-								"select": map[string]any{},
 								"index$": 1,
 							},
 							map[string]any{
+								"active": true,
+								"args": map[string]any{},
 								"method": "GET",
 								"orig": "/nasdaq100",
 								"parts": []any{
 									"nasdaq100",
 								},
+								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
-								"args": map[string]any{},
-								"select": map[string]any{},
 								"index$": 2,
 							},
 						},
-						"input": "data",
 						"key$": "load",
 					},
 				},
@@ -324,57 +327,57 @@ func MakeConfig() map[string]any {
 			"poetry__oracle": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "oracle",
 						"req": false,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 0,
 					},
 					map[string]any{
+						"active": true,
 						"name": "poem",
 						"req": false,
 						"type": "`$OBJECT`",
-						"active": true,
 						"index$": 1,
 					},
 				},
 				"name": "poetry__oracle",
 				"op": map[string]any{
 					"load": map[string]any{
+						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
+								"active": true,
+								"args": map[string]any{},
 								"method": "GET",
 								"orig": "/TangPoetry",
 								"parts": []any{
 									"TangPoetry",
 								},
+								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
-								"args": map[string]any{},
-								"select": map[string]any{},
 								"index$": 0,
 							},
 							map[string]any{
+								"active": true,
+								"args": map[string]any{},
 								"method": "GET",
 								"orig": "/TempleOracleJP",
 								"parts": []any{
 									"TempleOracleJP",
 								},
+								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
-								"args": map[string]any{},
-								"select": map[string]any{},
 								"index$": 1,
 							},
 						},
-						"input": "data",
 						"key$": "load",
 					},
 				},
@@ -385,35 +388,35 @@ func MakeConfig() map[string]any {
 			"tool": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "random_password",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 0,
 					},
 				},
 				"name": "tool",
 				"op": map[string]any{
 					"load": map[string]any{
+						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
+								"active": true,
+								"args": map[string]any{},
 								"method": "GET",
 								"orig": "/RandomPassword",
 								"parts": []any{
 									"RandomPassword",
 								},
+								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
-								"args": map[string]any{},
-								"select": map[string]any{},
 								"index$": 0,
 							},
 						},
-						"input": "data",
 						"key$": "load",
 					},
 				},
@@ -424,50 +427,52 @@ func MakeConfig() map[string]any {
 			"word": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "category",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 0,
 					},
 					map[string]any{
+						"active": true,
 						"name": "definition",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 1,
 					},
 					map[string]any{
+						"active": true,
 						"name": "word",
 						"req": false,
 						"type": "`$STRING`",
-						"active": true,
 						"index$": 2,
 					},
 				},
 				"name": "word",
 				"op": map[string]any{
 					"load": map[string]any{
+						"input": "data",
 						"name": "load",
 						"points": []any{
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
+											"active": true,
 											"kind": "param",
 											"name": "category",
 											"orig": "category",
 											"reqd": true,
 											"type": "`$STRING`",
-											"active": true,
 										},
 										map[string]any{
+											"active": true,
 											"kind": "param",
 											"name": "word",
 											"orig": "word",
 											"reqd": true,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 								},
@@ -486,21 +491,21 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.word`",
 								},
-								"active": true,
 								"index$": 0,
 							},
 							map[string]any{
+								"active": true,
 								"args": map[string]any{
 									"params": []any{
 										map[string]any{
+											"active": true,
 											"kind": "param",
 											"name": "id",
 											"orig": "category",
 											"reqd": true,
 											"type": "`$STRING`",
-											"active": true,
 										},
 									},
 								},
@@ -522,13 +527,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.word`",
 								},
-								"active": true,
 								"index$": 1,
 							},
 						},
-						"input": "data",
 						"key$": "load",
 					},
 				},
@@ -543,36 +546,36 @@ func MakeConfig() map[string]any {
 			"words_learning": map[string]any{
 				"fields": []any{
 					map[string]any{
+						"active": true,
 						"name": "category",
 						"req": false,
 						"type": "`$ARRAY`",
-						"active": true,
 						"index$": 0,
 					},
 				},
 				"name": "words_learning",
 				"op": map[string]any{
 					"list": map[string]any{
+						"input": "data",
 						"name": "list",
 						"points": []any{
 							map[string]any{
+								"active": true,
+								"args": map[string]any{},
 								"method": "GET",
 								"orig": "/words/categories",
 								"parts": []any{
 									"words",
 									"categories",
 								},
+								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
 								},
-								"active": true,
-								"args": map[string]any{},
-								"select": map[string]any{},
 								"index$": 0,
 							},
 						},
-						"input": "data",
 						"key$": "list",
 					},
 				},

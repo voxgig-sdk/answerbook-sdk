@@ -61,12 +61,14 @@ def tool_direct_setup(mockres)
   env = Runner.env_override({
     "ANSWERBOOK_TEST_TOOL_ENTID" => {},
     "ANSWERBOOK_TEST_LIVE" => "FALSE",
+    "ANSWERBOOK_APIKEY" => "NONE",
   })
 
   live = env["ANSWERBOOK_TEST_LIVE"] == "TRUE"
 
   if live
     merged_opts = {
+      "apikey" => env["ANSWERBOOK_APIKEY"],
     }
     client = AnswerbookSDK.new(merged_opts)
     return {

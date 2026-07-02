@@ -91,6 +91,7 @@ def _get_api_doc_basic_setup(extra):
         "ANSWERBOOK_TEST_GET_API_DOC_ENTID": idmap,
         "ANSWERBOOK_TEST_LIVE": "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN": "FALSE",
+        "ANSWERBOOK_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -101,6 +102,7 @@ def _get_api_doc_basic_setup(extra):
     if env.get("ANSWERBOOK_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
+                "apikey": env.get("ANSWERBOOK_APIKEY"),
             },
             extra or {},
         ])

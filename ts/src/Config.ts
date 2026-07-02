@@ -38,6 +38,10 @@ class Config {
   options = {
     base: 'https://answerbook.david888.com',
 
+    auth: {
+      prefix: 'Bearer',
+    },
+
     headers: {
       "content-type": "application/json"
     },
@@ -73,89 +77,91 @@ class Config {
     "book_of_answer": {
       "fields": [
         {
+          "active": true,
           "name": "answer",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "answer_i18n",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "id",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 2
         },
         {
+          "active": true,
           "name": "meta",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 3
         }
       ],
       "name": "book_of_answer",
       "op": {
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "lang",
                     "orig": "lang",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "length",
                     "orig": "length",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "mood",
                     "orig": "mood",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "style",
                     "orig": "style",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "theme",
                     "orig": "theme",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "tone",
                     "orig": "tone",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -178,20 +184,20 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 0
             },
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "example": "bilingual",
                     "kind": "query",
                     "name": "lang",
                     "orig": "lang",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -209,19 +215,19 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 1
             },
             {
+              "active": true,
               "args": {
                 "query": [
                   {
+                    "active": true,
                     "kind": "query",
                     "name": "lang",
                     "orig": "lang",
                     "reqd": false,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -239,11 +245,9 @@ class Config {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
               "index$": 2
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },
@@ -256,23 +260,23 @@ class Config {
       "name": "get_api_doc",
       "op": {
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "GET",
               "orig": "/",
+              "parts": [],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "parts": [],
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },
@@ -283,79 +287,79 @@ class Config {
     "market_data": {
       "fields": [
         {
+          "active": true,
           "name": "nasdaq100",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "sp500",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "tw0050",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 2
         }
       ],
       "name": "market_data",
       "op": {
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "GET",
               "orig": "/SP500",
               "parts": [
                 "SP500"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             },
             {
+              "active": true,
+              "args": {},
               "method": "GET",
               "orig": "/TW0050",
               "parts": [
                 "TW0050"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 1
             },
             {
+              "active": true,
+              "args": {},
               "method": "GET",
               "orig": "/nasdaq100",
               "parts": [
                 "nasdaq100"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 2
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },
@@ -366,57 +370,57 @@ class Config {
     "poetry__oracle": {
       "fields": [
         {
+          "active": true,
           "name": "oracle",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "poem",
           "req": false,
           "type": "`$OBJECT`",
-          "active": true,
           "index$": 1
         }
       ],
       "name": "poetry__oracle",
       "op": {
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "GET",
               "orig": "/TangPoetry",
               "parts": [
                 "TangPoetry"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             },
             {
+              "active": true,
+              "args": {},
               "method": "GET",
               "orig": "/TempleOracleJP",
               "parts": [
                 "TempleOracleJP"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 1
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },
@@ -427,35 +431,35 @@ class Config {
     "tool": {
       "fields": [
         {
+          "active": true,
           "name": "random_password",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         }
       ],
       "name": "tool",
       "op": {
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "GET",
               "orig": "/RandomPassword",
               "parts": [
                 "RandomPassword"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },
@@ -466,50 +470,52 @@ class Config {
     "word": {
       "fields": [
         {
+          "active": true,
           "name": "category",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 0
         },
         {
+          "active": true,
           "name": "definition",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 1
         },
         {
+          "active": true,
           "name": "word",
           "req": false,
           "type": "`$STRING`",
-          "active": true,
           "index$": 2
         }
       ],
       "name": "word",
       "op": {
         "load": {
+          "input": "data",
           "name": "load",
           "points": [
             {
+              "active": true,
               "args": {
                 "params": [
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "category",
                     "orig": "category",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   },
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "word",
                     "orig": "word",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -528,21 +534,21 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.word`"
               },
-              "active": true,
               "index$": 0
             },
             {
+              "active": true,
               "args": {
                 "params": [
                   {
+                    "active": true,
                     "kind": "param",
                     "name": "id",
                     "orig": "category",
                     "reqd": true,
-                    "type": "`$STRING`",
-                    "active": true
+                    "type": "`$STRING`"
                   }
                 ]
               },
@@ -564,13 +570,11 @@ class Config {
               },
               "transform": {
                 "req": "`reqdata`",
-                "res": "`body`"
+                "res": "`body.word`"
               },
-              "active": true,
               "index$": 1
             }
           ],
-          "input": "data",
           "key$": "load"
         }
       },
@@ -585,36 +589,36 @@ class Config {
     "words_learning": {
       "fields": [
         {
+          "active": true,
           "name": "category",
           "req": false,
           "type": "`$ARRAY`",
-          "active": true,
           "index$": 0
         }
       ],
       "name": "words_learning",
       "op": {
         "list": {
+          "input": "data",
           "name": "list",
           "points": [
             {
+              "active": true,
+              "args": {},
               "method": "GET",
               "orig": "/words/categories",
               "parts": [
                 "words",
                 "categories"
               ],
+              "select": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "active": true,
-              "args": {},
-              "select": {},
               "index$": 0
             }
           ],
-          "input": "data",
           "key$": "list"
         }
       },

@@ -111,6 +111,7 @@ function basicSetup(extra?: any) {
     'ANSWERBOOK_TEST_WORD_ENTID': idmap,
     'ANSWERBOOK_TEST_LIVE': 'FALSE',
     'ANSWERBOOK_TEST_EXPLAIN': 'FALSE',
+    'ANSWERBOOK_APIKEY': 'NONE',
   })
 
   idmap = env['ANSWERBOOK_TEST_WORD_ENTID']
@@ -120,6 +121,7 @@ function basicSetup(extra?: any) {
   if (live) {
     client = new AnswerbookSDK(merge([
       {
+        apikey: env.ANSWERBOOK_APIKEY,
       },
       extra
     ]))

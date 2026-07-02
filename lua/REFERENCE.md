@@ -30,12 +30,12 @@ Create a new SDK client instance.
 
 ### Static Methods
 
-#### `sdk.test(testopts, sdkopts)`
+#### `sdk.test(testopts?, sdkopts?)`
 
-Create a test client with mock features active. Both arguments may be `nil`.
+Create a test client with mock features active. Both arguments are optional.
 
 ```lua
-local client = sdk.test(nil, nil)
+local client = sdk.test()
 ```
 
 
@@ -127,7 +127,7 @@ local book_of_answer = client:BookOfAnswer(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:BookOfAnswer(nil):load({ id = "book_of_answer_id" }, nil)
+local result, err = client:BookOfAnswer():load({ id = "book_of_answer_id" })
 ```
 
 ### Common Methods
@@ -173,7 +173,7 @@ local get_api_doc = client:GetApiDoc(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetApiDoc(nil):load({ id = "get_api_doc_id" }, nil)
+local result, err = client:GetApiDoc():load({ id = "get_api_doc_id" })
 ```
 
 ### Common Methods
@@ -227,7 +227,7 @@ local market_data = client:MarketData(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:MarketData(nil):load({ id = "market_data_id" }, nil)
+local result, err = client:MarketData():load({ id = "market_data_id" })
 ```
 
 ### Common Methods
@@ -280,7 +280,7 @@ local poetry__oracle = client:PoetryOracle(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PoetryOracle(nil):load({ id = "poetry__oracle_id" }, nil)
+local result, err = client:PoetryOracle():load({ id = "poetry__oracle_id" })
 ```
 
 ### Common Methods
@@ -332,7 +332,7 @@ local tool = client:Tool(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Tool(nil):load({ id = "tool_id" }, nil)
+local result, err = client:Tool():load({ id = "tool_id" })
 ```
 
 ### Common Methods
@@ -386,7 +386,7 @@ local word = client:Word(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Word(nil):load({ id = "word_id" }, nil)
+local result, err = client:Word():load({ id = "word_id" })
 ```
 
 ### Common Methods
@@ -438,7 +438,7 @@ local words_learning = client:WordsLearning(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:WordsLearning(nil):list(nil, nil)
+local results, err = client:WordsLearning():list()
 ```
 
 ### Common Methods

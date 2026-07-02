@@ -99,12 +99,14 @@ func book_of_answerDirectSetup(mockres any) *book_of_answerDirectSetupResult {
 	env := envOverride(map[string]any{
 		"ANSWERBOOK_TEST_BOOK_OF_ANSWER_ENTID": map[string]any{},
 		"ANSWERBOOK_TEST_LIVE":    "FALSE",
+		"ANSWERBOOK_APIKEY":       "NONE",
 	})
 
 	live := env["ANSWERBOOK_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["ANSWERBOOK_APIKEY"],
 		}
 		client := sdk.NewAnswerbookSDK(mergedOpts)
 

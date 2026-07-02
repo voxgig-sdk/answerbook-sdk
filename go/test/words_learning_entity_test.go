@@ -119,6 +119,7 @@ func words_learningBasicSetup(extra map[string]any) *entityTestSetup {
 		"ANSWERBOOK_TEST_WORDS_LEARNING_ENTID": idmap,
 		"ANSWERBOOK_TEST_LIVE":      "FALSE",
 		"ANSWERBOOK_TEST_EXPLAIN":   "FALSE",
+		"ANSWERBOOK_APIKEY":         "NONE",
 	})
 
 	idmapResolved := core.ToMapAny(env["ANSWERBOOK_TEST_WORDS_LEARNING_ENTID"])
@@ -129,6 +130,7 @@ func words_learningBasicSetup(extra map[string]any) *entityTestSetup {
 	if env["ANSWERBOOK_TEST_LIVE"] == "TRUE" {
 		mergedOpts := vs.Merge([]any{
 			map[string]any{
+				"apikey": env["ANSWERBOOK_APIKEY"],
 			},
 			extra,
 		})

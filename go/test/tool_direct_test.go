@@ -99,12 +99,14 @@ func toolDirectSetup(mockres any) *toolDirectSetupResult {
 	env := envOverride(map[string]any{
 		"ANSWERBOOK_TEST_TOOL_ENTID": map[string]any{},
 		"ANSWERBOOK_TEST_LIVE":    "FALSE",
+		"ANSWERBOOK_APIKEY":       "NONE",
 	})
 
 	live := env["ANSWERBOOK_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
+			"apikey": env["ANSWERBOOK_APIKEY"],
 		}
 		client := sdk.NewAnswerbookSDK(mergedOpts)
 

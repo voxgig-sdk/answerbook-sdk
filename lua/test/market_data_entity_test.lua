@@ -91,6 +91,7 @@ function market_data_basic_setup(extra)
     ["ANSWERBOOK_TEST_MARKET_DATA_ENTID"] = idmap,
     ["ANSWERBOOK_TEST_LIVE"] = "FALSE",
     ["ANSWERBOOK_TEST_EXPLAIN"] = "FALSE",
+    ["ANSWERBOOK_APIKEY"] = "NONE",
   })
 
   local idmap_resolved = helpers.to_map(
@@ -102,6 +103,7 @@ function market_data_basic_setup(extra)
   if env["ANSWERBOOK_TEST_LIVE"] == "TRUE" then
     local merged_opts = vs.merge({
       {
+        apikey = env["ANSWERBOOK_APIKEY"],
       },
       extra or {},
     })
