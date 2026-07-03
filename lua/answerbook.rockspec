@@ -8,12 +8,14 @@ source = {
   dir = "answerbook-sdk/lua"
 }
 description = {
-  summary = "Answerbook SDK for Lua",
-  license = "MIT"
+  summary = "Unofficial generated Lua SDK for the Answerbook public API. Not affiliated with or endorsed by the upstream API provider.",
+  homepage = "https://github.com/voxgig-sdk/answerbook-sdk",
+  issues_url = "https://github.com/voxgig-sdk/answerbook-sdk/issues",
+  license = "MIT",
+  labels = { "voxgig", "sdk", "generated-sdk", "openapi", "api-client", "answerbook" }
 }
 dependencies = {
   "lua >= 5.3",
-  "dkjson >= 2.5",
   "dkjson >= 2.5",
 }
 build = {

@@ -10,7 +10,7 @@ The TypeScript SDK for the Answerbook API — a type-safe, entity-oriented clien
 
 ## Install
 ```bash
-npm install answerbook
+npm install @voxgig-sdk/answerbook
 ```
 ## Tutorial: your first API call
 

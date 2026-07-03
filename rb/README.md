@@ -10,13 +10,13 @@ The Ruby SDK for the Answerbook API — an entity-oriented client using idiomati
 
 ## Install
 ```bash
-gem install answerbook-sdk
+gem install voxgig-sdk-answerbook
 ```
 
 Or add to your `Gemfile`:
 
 ```ruby
-gem "answerbook-sdk"
+gem "voxgig-sdk-answerbook"
 ```
 
 Then run:

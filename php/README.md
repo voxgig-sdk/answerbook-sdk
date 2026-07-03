@@ -10,7 +10,7 @@ The PHP SDK for the Answerbook API — an entity-oriented client using PHP conve
 
 ## Install
 ```bash
-composer require voxgig/answerbook-sdk
+composer require voxgig-sdk/answerbook
 ```
 
 

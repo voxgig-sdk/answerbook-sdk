@@ -10,7 +10,7 @@ The Lua SDK for the Answerbook API — an entity-oriented client using Lua conve
 
 ## Install
 ```bash
-luarocks install answerbook-sdk
+luarocks install voxgig-sdk-answerbook
 ```
 
 If the module is not yet published, add the source directory to

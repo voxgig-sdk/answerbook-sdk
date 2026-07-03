@@ -10,7 +10,7 @@ The Python SDK for the Answerbook API — an entity-oriented client following Py
 
 ## Install
 ```bash
-pip install answerbook-sdk
+pip install voxgig-sdk-answerbook
 ```
 
 Or install from source:
