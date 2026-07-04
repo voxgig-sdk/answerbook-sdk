@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  GetApiDoc,
+  GetApiDocLoadMatch,
+} from '../AnswerbookTypes'
 
 // TODO: needs Entity superclass
-class GetApiDocEntity extends AnswerbookEntityBase {
+class GetApiDocEntity extends AnswerbookEntityBase<GetApiDoc> {
 
   constructor(client: AnswerbookSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class GetApiDocEntity extends AnswerbookEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: GetApiDocLoadMatch, ctrl?: Control): Promise<GetApiDoc> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class GetApiDocEntity extends AnswerbookEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<GetApiDoc> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

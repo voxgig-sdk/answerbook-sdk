@@ -244,42 +244,133 @@ end
 
 
 
+-- Idiomatic facade: client:book_of_answer():list() / client:book_of_answer():load({ id = ... })
+function AnswerbookSDK:book_of_answer(data)
+  local EntityMod = require("entity.book_of_answer_entity")
+  if data == nil then
+    if self._book_of_answer == nil then
+      self._book_of_answer = EntityMod.new(self, nil)
+    end
+    return self._book_of_answer
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:book_of_answer() instead.
 function AnswerbookSDK:BookOfAnswer(data)
   local EntityMod = require("entity.book_of_answer_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:get_api_doc():list() / client:get_api_doc():load({ id = ... })
+function AnswerbookSDK:get_api_doc(data)
+  local EntityMod = require("entity.get_api_doc_entity")
+  if data == nil then
+    if self._get_api_doc == nil then
+      self._get_api_doc = EntityMod.new(self, nil)
+    end
+    return self._get_api_doc
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:get_api_doc() instead.
 function AnswerbookSDK:GetApiDoc(data)
   local EntityMod = require("entity.get_api_doc_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:market_data():list() / client:market_data():load({ id = ... })
+function AnswerbookSDK:market_data(data)
+  local EntityMod = require("entity.market_data_entity")
+  if data == nil then
+    if self._market_data == nil then
+      self._market_data = EntityMod.new(self, nil)
+    end
+    return self._market_data
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:market_data() instead.
 function AnswerbookSDK:MarketData(data)
   local EntityMod = require("entity.market_data_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:poetry__oracle():list() / client:poetry__oracle():load({ id = ... })
+function AnswerbookSDK:poetry__oracle(data)
+  local EntityMod = require("entity.poetry__oracle_entity")
+  if data == nil then
+    if self._poetry__oracle == nil then
+      self._poetry__oracle = EntityMod.new(self, nil)
+    end
+    return self._poetry__oracle
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:poetry__oracle() instead.
 function AnswerbookSDK:PoetryOracle(data)
   local EntityMod = require("entity.poetry__oracle_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:tool():list() / client:tool():load({ id = ... })
+function AnswerbookSDK:tool(data)
+  local EntityMod = require("entity.tool_entity")
+  if data == nil then
+    if self._tool == nil then
+      self._tool = EntityMod.new(self, nil)
+    end
+    return self._tool
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:tool() instead.
 function AnswerbookSDK:Tool(data)
   local EntityMod = require("entity.tool_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:word():list() / client:word():load({ id = ... })
+function AnswerbookSDK:word(data)
+  local EntityMod = require("entity.word_entity")
+  if data == nil then
+    if self._word == nil then
+      self._word = EntityMod.new(self, nil)
+    end
+    return self._word
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:word() instead.
 function AnswerbookSDK:Word(data)
   local EntityMod = require("entity.word_entity")
   return EntityMod.new(self, data)
 end
 
 
+-- Idiomatic facade: client:words_learning():list() / client:words_learning():load({ id = ... })
+function AnswerbookSDK:words_learning(data)
+  local EntityMod = require("entity.words_learning_entity")
+  if data == nil then
+    if self._words_learning == nil then
+      self._words_learning = EntityMod.new(self, nil)
+    end
+    return self._words_learning
+  end
+  return EntityMod.new(self, data)
+end
+
+-- Deprecated: use client:words_learning() instead.
 function AnswerbookSDK:WordsLearning(data)
   local EntityMod = require("entity.words_learning_entity")
   return EntityMod.new(self, data)

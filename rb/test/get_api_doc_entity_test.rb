@@ -42,8 +42,7 @@ class GetApiDocEntityTest < Minitest::Test
     # LOAD
     get_api_doc_ref01_ent = client.GetApiDoc(nil)
     get_api_doc_ref01_match_dt0 = {}
-    get_api_doc_ref01_data_dt0_loaded, err = get_api_doc_ref01_ent.load(get_api_doc_ref01_match_dt0, nil)
-    assert_nil err
+    get_api_doc_ref01_data_dt0_loaded = get_api_doc_ref01_ent.load(get_api_doc_ref01_match_dt0, nil)
     assert !get_api_doc_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def get_api_doc_basic_setup(extra)
     "ANSWERBOOK_TEST_GET_API_DOC_ENTID" => idmap,
     "ANSWERBOOK_TEST_LIVE" => "FALSE",
     "ANSWERBOOK_TEST_EXPLAIN" => "FALSE",
-    "ANSWERBOOK_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def get_api_doc_basic_setup(extra)
   if env["ANSWERBOOK_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ANSWERBOOK_APIKEY"],
       },
       extra || {},
     ])

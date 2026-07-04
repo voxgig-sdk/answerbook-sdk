@@ -44,8 +44,7 @@ class BookOfAnswerEntityTest < Minitest::Test
     book_of_answer_ref01_match_dt0 = {
       "id" => book_of_answer_ref01_data["id"],
     }
-    book_of_answer_ref01_data_dt0_loaded, err = book_of_answer_ref01_ent.load(book_of_answer_ref01_match_dt0, nil)
-    assert_nil err
+    book_of_answer_ref01_data_dt0_loaded = book_of_answer_ref01_ent.load(book_of_answer_ref01_match_dt0, nil)
     book_of_answer_ref01_data_dt0_load_result = Helpers.to_map(book_of_answer_ref01_data_dt0_loaded)
     assert !book_of_answer_ref01_data_dt0_load_result.nil?
     assert_equal book_of_answer_ref01_data_dt0_load_result["id"], book_of_answer_ref01_data["id"]
@@ -86,7 +85,6 @@ def book_of_answer_basic_setup(extra)
     "ANSWERBOOK_TEST_BOOK_OF_ANSWER_ENTID" => idmap,
     "ANSWERBOOK_TEST_LIVE" => "FALSE",
     "ANSWERBOOK_TEST_EXPLAIN" => "FALSE",
-    "ANSWERBOOK_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -98,7 +96,6 @@ def book_of_answer_basic_setup(extra)
   if env["ANSWERBOOK_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ANSWERBOOK_APIKEY"],
       },
       extra || {},
     ])

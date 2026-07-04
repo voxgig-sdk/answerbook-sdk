@@ -144,16 +144,23 @@ class AnswerbookSDK:
 
         _, err = utility.prepare_auth(ctx)
         if err is not None:
-            return None, err
+            raise err
 
-        return utility.make_fetch_def(ctx)
+        fetchdef, err = utility.make_fetch_def(ctx)
+        if err is not None:
+            raise err
+
+        return fetchdef
 
     def direct(self, fetchargs=None):
         utility = self._utility
 
-        fetchdef, err = self.prepare(fetchargs)
-        if err is not None:
-            return {"ok": False, "err": err}, None
+        try:
+            fetchdef = self.prepare(fetchargs)
+        except Exception as err:
+            # direct() is the raw-HTTP escape hatch: it never raises, it
+            # returns a result object callers branch on via result["ok"].
+            return {"ok": False, "err": err}
 
         if fetchargs is None:
             fetchargs = {}
@@ -170,13 +177,13 @@ class AnswerbookSDK:
         fetched, fetch_err = utility.fetcher(ctx, url, fetchdef)
 
         if fetch_err is not None:
-            return {"ok": False, "err": fetch_err}, None
+            return {"ok": False, "err": fetch_err}
 
         if fetched is None:
             return {
                 "ok": False,
                 "err": ctx.make_error("direct_no_response", "response: undefined"),
-            }, None
+            }
 
         if isinstance(fetched, dict):
             status = helpers.to_int(vs.getprop(fetched, "status"))
@@ -205,45 +212,122 @@ class AnswerbookSDK:
                 "status": status,
                 "headers": headers,
                 "data": json_data,
-            }, None
+            }
 
         return {
             "ok": False,
             "err": ctx.make_error("direct_invalid", "invalid response type"),
-        }, None
+        }
 
+
+    @property
+    def book_of_answer(self):
+        """Idiomatic facade: client.book_of_answer.list() / client.book_of_answer.load({"id": ...})."""
+        from entity.book_of_answer_entity import BookOfAnswerEntity
+        cached = getattr(self, "_book_of_answer", None)
+        if cached is None:
+            cached = BookOfAnswerEntity(self, None)
+            self._book_of_answer = cached
+        return cached
 
     def BookOfAnswer(self, data=None):
+        # Deprecated: use client.book_of_answer instead.
         from entity.book_of_answer_entity import BookOfAnswerEntity
         return BookOfAnswerEntity(self, data)
 
 
+    @property
+    def get_api_doc(self):
+        """Idiomatic facade: client.get_api_doc.list() / client.get_api_doc.load({"id": ...})."""
+        from entity.get_api_doc_entity import GetApiDocEntity
+        cached = getattr(self, "_get_api_doc", None)
+        if cached is None:
+            cached = GetApiDocEntity(self, None)
+            self._get_api_doc = cached
+        return cached
+
     def GetApiDoc(self, data=None):
+        # Deprecated: use client.get_api_doc instead.
         from entity.get_api_doc_entity import GetApiDocEntity
         return GetApiDocEntity(self, data)
 
 
+    @property
+    def market_data(self):
+        """Idiomatic facade: client.market_data.list() / client.market_data.load({"id": ...})."""
+        from entity.market_data_entity import MarketDataEntity
+        cached = getattr(self, "_market_data", None)
+        if cached is None:
+            cached = MarketDataEntity(self, None)
+            self._market_data = cached
+        return cached
+
     def MarketData(self, data=None):
+        # Deprecated: use client.market_data instead.
         from entity.market_data_entity import MarketDataEntity
         return MarketDataEntity(self, data)
 
 
+    @property
+    def poetry__oracle(self):
+        """Idiomatic facade: client.poetry__oracle.list() / client.poetry__oracle.load({"id": ...})."""
+        from entity.poetry__oracle_entity import PoetryOracleEntity
+        cached = getattr(self, "_poetry__oracle", None)
+        if cached is None:
+            cached = PoetryOracleEntity(self, None)
+            self._poetry__oracle = cached
+        return cached
+
     def PoetryOracle(self, data=None):
+        # Deprecated: use client.poetry__oracle instead.
         from entity.poetry__oracle_entity import PoetryOracleEntity
         return PoetryOracleEntity(self, data)
 
 
+    @property
+    def tool(self):
+        """Idiomatic facade: client.tool.list() / client.tool.load({"id": ...})."""
+        from entity.tool_entity import ToolEntity
+        cached = getattr(self, "_tool", None)
+        if cached is None:
+            cached = ToolEntity(self, None)
+            self._tool = cached
+        return cached
+
     def Tool(self, data=None):
+        # Deprecated: use client.tool instead.
         from entity.tool_entity import ToolEntity
         return ToolEntity(self, data)
 
 
+    @property
+    def word(self):
+        """Idiomatic facade: client.word.list() / client.word.load({"id": ...})."""
+        from entity.word_entity import WordEntity
+        cached = getattr(self, "_word", None)
+        if cached is None:
+            cached = WordEntity(self, None)
+            self._word = cached
+        return cached
+
     def Word(self, data=None):
+        # Deprecated: use client.word instead.
         from entity.word_entity import WordEntity
         return WordEntity(self, data)
 
 
+    @property
+    def words_learning(self):
+        """Idiomatic facade: client.words_learning.list() / client.words_learning.load({"id": ...})."""
+        from entity.words_learning_entity import WordsLearningEntity
+        cached = getattr(self, "_words_learning", None)
+        if cached is None:
+            cached = WordsLearningEntity(self, None)
+            self._words_learning = cached
+        return cached
+
     def WordsLearning(self, data=None):
+        # Deprecated: use client.words_learning instead.
         from entity.words_learning_entity import WordsLearningEntity
         return WordsLearningEntity(self, data)
 

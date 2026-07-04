@@ -20,7 +20,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `$options` | `array` | SDK configuration options. |
-| `$options["apikey"]` | `string` | API key for authentication. |
 | `$options["base"]` | `string` | Base URL for API requests. |
 | `$options["prefix"]` | `string` | URL prefix appended after base. |
 | `$options["suffix"]` | `string` | URL suffix appended after path. |
@@ -80,7 +79,10 @@ Return a copy of the SDK utility object.
 
 #### `direct(array $fetchargs = []): array`
 
-Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
+Make a direct HTTP request to any API endpoint. This is the raw-HTTP escape
+hatch: it does **not** throw. It returns a result array
+`["ok" => bool, "status" => int, "headers" => array, "data" => mixed]`, or
+`["ok" => false, "err" => \Exception]` on failure. Branch on `$result["ok"]`.
 
 **Parameters:**
 
@@ -94,11 +96,12 @@ Make a direct HTTP request to any API endpoint. Returns `[$result, $err]`.
 | `$fetchargs["body"]` | `mixed` | Request body (arrays are JSON-serialized). |
 | `$fetchargs["ctrl"]` | `array` | Control options. |
 
-**Returns:** `array [$result, $err]`
+**Returns:** `array` — the result dict (see above); never throws.
 
-#### `prepare(array $fetchargs = []): array`
+#### `prepare(array $fetchargs = []): mixed`
 
-Prepare a fetch definition without sending the request. Returns `[$fetchdef, $err]`.
+Prepare a fetch definition without sending the request. Returns the
+`$fetchdef` array. Throws on error.
 
 
 ---
@@ -106,7 +109,7 @@ Prepare a fetch definition without sending the request. Returns `[$fetchdef, $er
 ## BookOfAnswerEntity
 
 ```php
-$book_of_answer = $client->BookOfAnswer();
+$book_of_answer = $client->book_of_answer();
 ```
 
 ### Fields
@@ -120,12 +123,12 @@ $book_of_answer = $client->BookOfAnswer();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->BookOfAnswer()->load(["id" => "book_of_answer_id"]);
+$result = $client->book_of_answer()->load(["id" => "book_of_answer_id"]);
 ```
 
 ### Common Methods
@@ -161,17 +164,17 @@ Return the entity name.
 ## GetApiDocEntity
 
 ```php
-$get_api_doc = $client->GetApiDoc();
+$get_api_doc = $client->get_api_doc();
 ```
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->GetApiDoc()->load(["id" => "get_api_doc_id"]);
+$result = $client->get_api_doc()->load(["id" => "get_api_doc_id"]);
 ```
 
 ### Common Methods
@@ -207,7 +210,7 @@ Return the entity name.
 ## MarketDataEntity
 
 ```php
-$market_data = $client->MarketData();
+$market_data = $client->market_data();
 ```
 
 ### Fields
@@ -220,12 +223,12 @@ $market_data = $client->MarketData();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->MarketData()->load(["id" => "market_data_id"]);
+$result = $client->market_data()->load(["id" => "market_data_id"]);
 ```
 
 ### Common Methods
@@ -261,7 +264,7 @@ Return the entity name.
 ## PoetryOracleEntity
 
 ```php
-$poetry__oracle = $client->PoetryOracle();
+$poetry__oracle = $client->poetry__oracle();
 ```
 
 ### Fields
@@ -273,12 +276,12 @@ $poetry__oracle = $client->PoetryOracle();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->PoetryOracle()->load(["id" => "poetry__oracle_id"]);
+$result = $client->poetry__oracle()->load(["id" => "poetry__oracle_id"]);
 ```
 
 ### Common Methods
@@ -314,7 +317,7 @@ Return the entity name.
 ## ToolEntity
 
 ```php
-$tool = $client->Tool();
+$tool = $client->tool();
 ```
 
 ### Fields
@@ -325,12 +328,12 @@ $tool = $client->Tool();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Tool()->load(["id" => "tool_id"]);
+$result = $client->tool()->load(["id" => "tool_id"]);
 ```
 
 ### Common Methods
@@ -366,7 +369,7 @@ Return the entity name.
 ## WordEntity
 
 ```php
-$word = $client->Word();
+$word = $client->word();
 ```
 
 ### Fields
@@ -379,12 +382,12 @@ $word = $client->Word();
 
 ### Operations
 
-#### `load(array $reqmatch, ?array $ctrl = null): array`
+#### `load(array $reqmatch, ?array $ctrl = null): mixed`
 
-Load a single entity matching the given criteria.
+Load a single entity matching the given criteria. Throws on error.
 
 ```php
-[$result, $err] = $client->Word()->load(["id" => "word_id"]);
+$result = $client->word()->load(["id" => "word_id"]);
 ```
 
 ### Common Methods
@@ -420,7 +423,7 @@ Return the entity name.
 ## WordsLearningEntity
 
 ```php
-$words_learning = $client->WordsLearning();
+$words_learning = $client->words_learning();
 ```
 
 ### Fields
@@ -431,12 +434,12 @@ $words_learning = $client->WordsLearning();
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): array`
+#### `list(array $reqmatch, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-[$results, $err] = $client->WordsLearning()->list([]);
+$results = $client->words_learning()->list([]);
 ```
 
 ### Common Methods

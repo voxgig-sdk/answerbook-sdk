@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch PoetryOracleLoadMatch
+---@param ctrl? table
+---@return PoetryOracle
+---@return string? err
 function PoetryOracleEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

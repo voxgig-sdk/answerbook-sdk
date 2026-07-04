@@ -49,8 +49,7 @@ class TestMarketDataEntity:
         # LOAD
         market_data_ref01_ent = client.MarketData(None)
         market_data_ref01_match_dt0 = {}
-        market_data_ref01_data_dt0_loaded, err = market_data_ref01_ent.load(market_data_ref01_match_dt0, None)
-        assert err is None
+        market_data_ref01_data_dt0_loaded = market_data_ref01_ent.load(market_data_ref01_match_dt0, None)
         assert market_data_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _market_data_basic_setup(extra):
         "ANSWERBOOK_TEST_MARKET_DATA_ENTID": idmap,
         "ANSWERBOOK_TEST_LIVE": "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN": "FALSE",
-        "ANSWERBOOK_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _market_data_basic_setup(extra):
     if env.get("ANSWERBOOK_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ANSWERBOOK_APIKEY"),
             },
             extra or {},
         ])

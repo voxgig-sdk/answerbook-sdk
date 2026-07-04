@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  WordsLearning,
+  WordsLearningListMatch,
+} from '../AnswerbookTypes'
 
 // TODO: needs Entity superclass
-class WordsLearningEntity extends AnswerbookEntityBase {
+class WordsLearningEntity extends AnswerbookEntityBase<WordsLearning> {
 
   constructor(client: AnswerbookSDK, entopts: any) {
     super(client, entopts)
@@ -33,7 +37,7 @@ class WordsLearningEntity extends AnswerbookEntityBase {
 
 
 
-  async list(this: any, reqmatch?: any, ctrl?: Control) {
+  async list(this: any, reqmatch?: WordsLearningListMatch, ctrl?: Control): Promise<WordsLearning[]> {
 
     const utility = this._utility
 
@@ -133,7 +137,9 @@ class WordsLearningEntity extends AnswerbookEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<WordsLearning[]> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

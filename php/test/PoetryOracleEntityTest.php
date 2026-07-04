@@ -49,8 +49,7 @@ class PoetryOracleEntityTest extends TestCase
         // LOAD
         $poetry__oracle_ref01_ent = $client->PoetryOracle(null);
         $poetry__oracle_ref01_match_dt0 = [];
-        [$poetry__oracle_ref01_data_dt0_loaded, $err] = $poetry__oracle_ref01_ent->load($poetry__oracle_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $poetry__oracle_ref01_data_dt0_loaded = $poetry__oracle_ref01_ent->load($poetry__oracle_ref01_match_dt0, null);
         $this->assertNotNull($poetry__oracle_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function poetry__oracle_basic_setup($extra)
         "ANSWERBOOK_TEST_POETRY__ORACLE_ENTID" => $idmap,
         "ANSWERBOOK_TEST_LIVE" => "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN" => "FALSE",
-        "ANSWERBOOK_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function poetry__oracle_basic_setup($extra)
     if ($env["ANSWERBOOK_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ANSWERBOOK_APIKEY"],
             ],
             $extra ?? [],
         ]);

@@ -49,8 +49,7 @@ class TestGetApiDocEntity:
         # LOAD
         get_api_doc_ref01_ent = client.GetApiDoc(None)
         get_api_doc_ref01_match_dt0 = {}
-        get_api_doc_ref01_data_dt0_loaded, err = get_api_doc_ref01_ent.load(get_api_doc_ref01_match_dt0, None)
-        assert err is None
+        get_api_doc_ref01_data_dt0_loaded = get_api_doc_ref01_ent.load(get_api_doc_ref01_match_dt0, None)
         assert get_api_doc_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _get_api_doc_basic_setup(extra):
         "ANSWERBOOK_TEST_GET_API_DOC_ENTID": idmap,
         "ANSWERBOOK_TEST_LIVE": "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN": "FALSE",
-        "ANSWERBOOK_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _get_api_doc_basic_setup(extra):
     if env.get("ANSWERBOOK_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ANSWERBOOK_APIKEY"),
             },
             extra or {},
         ])

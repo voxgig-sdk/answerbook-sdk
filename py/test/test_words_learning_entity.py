@@ -50,8 +50,7 @@ class TestWordsLearningEntity:
         words_learning_ref01_ent = client.WordsLearning(None)
         words_learning_ref01_match = {}
 
-        words_learning_ref01_list_result, err = words_learning_ref01_ent.list(words_learning_ref01_match, None)
-        assert err is None
+        words_learning_ref01_list_result = words_learning_ref01_ent.list(words_learning_ref01_match, None)
         assert isinstance(words_learning_ref01_list_result, list)
 
 
@@ -92,7 +91,6 @@ def _words_learning_basic_setup(extra):
         "ANSWERBOOK_TEST_WORDS_LEARNING_ENTID": idmap,
         "ANSWERBOOK_TEST_LIVE": "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN": "FALSE",
-        "ANSWERBOOK_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -103,7 +101,6 @@ def _words_learning_basic_setup(extra):
     if env.get("ANSWERBOOK_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ANSWERBOOK_APIKEY"),
             },
             extra or {},
         ])

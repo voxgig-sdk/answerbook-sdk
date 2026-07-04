@@ -8,6 +8,8 @@ import { ToolEntity } from './entity/ToolEntity'
 import { WordEntity } from './entity/WordEntity'
 import { WordsLearningEntity } from './entity/WordsLearningEntity'
 
+export type * from './AnswerbookTypes'
+
 
 import { inspect } from 'node:util'
 
@@ -208,42 +210,98 @@ class AnswerbookSDK {
 
 
 
+  _book_of_answer?: BookOfAnswerEntity
+
+  // Idiomatic facade: `client.book_of_answer.list()` / `client.book_of_answer.load({ id })`.
+  get book_of_answer(): BookOfAnswerEntity {
+    return (this._book_of_answer ??= new BookOfAnswerEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.book_of_answer` instead. */
   BookOfAnswer(data?: any) {
     const self = this
     return new BookOfAnswerEntity(self,data)
   }
 
 
+  _get_api_doc?: GetApiDocEntity
+
+  // Idiomatic facade: `client.get_api_doc.list()` / `client.get_api_doc.load({ id })`.
+  get get_api_doc(): GetApiDocEntity {
+    return (this._get_api_doc ??= new GetApiDocEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.get_api_doc` instead. */
   GetApiDoc(data?: any) {
     const self = this
     return new GetApiDocEntity(self,data)
   }
 
 
+  _market_data?: MarketDataEntity
+
+  // Idiomatic facade: `client.market_data.list()` / `client.market_data.load({ id })`.
+  get market_data(): MarketDataEntity {
+    return (this._market_data ??= new MarketDataEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.market_data` instead. */
   MarketData(data?: any) {
     const self = this
     return new MarketDataEntity(self,data)
   }
 
 
+  _poetry__oracle?: PoetryOracleEntity
+
+  // Idiomatic facade: `client.poetry__oracle.list()` / `client.poetry__oracle.load({ id })`.
+  get poetry__oracle(): PoetryOracleEntity {
+    return (this._poetry__oracle ??= new PoetryOracleEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.poetry__oracle` instead. */
   PoetryOracle(data?: any) {
     const self = this
     return new PoetryOracleEntity(self,data)
   }
 
 
+  _tool?: ToolEntity
+
+  // Idiomatic facade: `client.tool.list()` / `client.tool.load({ id })`.
+  get tool(): ToolEntity {
+    return (this._tool ??= new ToolEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.tool` instead. */
   Tool(data?: any) {
     const self = this
     return new ToolEntity(self,data)
   }
 
 
+  _word?: WordEntity
+
+  // Idiomatic facade: `client.word.list()` / `client.word.load({ id })`.
+  get word(): WordEntity {
+    return (this._word ??= new WordEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.word` instead. */
   Word(data?: any) {
     const self = this
     return new WordEntity(self,data)
   }
 
 
+  _words_learning?: WordsLearningEntity
+
+  // Idiomatic facade: `client.words_learning.list()` / `client.words_learning.load({ id })`.
+  get words_learning(): WordsLearningEntity {
+    return (this._words_learning ??= new WordsLearningEntity(this, undefined))
+  }
+
+  /** @deprecated Use `client.words_learning` instead. */
   WordsLearning(data?: any) {
     const self = this
     return new WordsLearningEntity(self,data)

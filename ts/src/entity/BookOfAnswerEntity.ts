@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  BookOfAnswer,
+  BookOfAnswerLoadMatch,
+} from '../AnswerbookTypes'
 
 // TODO: needs Entity superclass
-class BookOfAnswerEntity extends AnswerbookEntityBase {
+class BookOfAnswerEntity extends AnswerbookEntityBase<BookOfAnswer> {
 
   constructor(client: AnswerbookSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class BookOfAnswerEntity extends AnswerbookEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: BookOfAnswerLoadMatch, ctrl?: Control): Promise<BookOfAnswer> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class BookOfAnswerEntity extends AnswerbookEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<BookOfAnswer> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

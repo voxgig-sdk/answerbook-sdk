@@ -50,8 +50,7 @@ class WordsLearningEntityTest extends TestCase
         $words_learning_ref01_ent = $client->WordsLearning(null);
         $words_learning_ref01_match = [];
 
-        [$words_learning_ref01_list_result, $err] = $words_learning_ref01_ent->list($words_learning_ref01_match, null);
-        $this->assertNull($err);
+        $words_learning_ref01_list_result = $words_learning_ref01_ent->list($words_learning_ref01_match, null);
         $this->assertIsArray($words_learning_ref01_list_result);
 
     }
@@ -86,7 +85,6 @@ function words_learning_basic_setup($extra)
         "ANSWERBOOK_TEST_WORDS_LEARNING_ENTID" => $idmap,
         "ANSWERBOOK_TEST_LIVE" => "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN" => "FALSE",
-        "ANSWERBOOK_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -98,7 +96,6 @@ function words_learning_basic_setup($extra)
     if ($env["ANSWERBOOK_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ANSWERBOOK_APIKEY"],
             ],
             $extra ?? [],
         ]);

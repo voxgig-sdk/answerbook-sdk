@@ -20,9 +20,6 @@ class AnswerbookConfig
             ],
             "options" => [
                 "base" => "https://answerbook.david888.com",
-                "auth" => [
-                    "prefix" => "Bearer",
-                ],
                 "headers" => [
           'content-type' => 'application/json',
         ],
@@ -471,6 +468,7 @@ class AnswerbookConfig
                         'orig' => 'category',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                       [
                         'active' => true,
@@ -479,6 +477,7 @@ class AnswerbookConfig
                         'orig' => 'word',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 1,
                       ],
                     ],
                   ],
@@ -512,6 +511,7 @@ class AnswerbookConfig
                         'orig' => 'category',
                         'reqd' => true,
                         'type' => '`$STRING`',
+                        'index$' => 0,
                       ],
                     ],
                   ],

@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch GetApiDocLoadMatch
+---@param ctrl? table
+---@return GetApiDoc
+---@return string? err
 function GetApiDocEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

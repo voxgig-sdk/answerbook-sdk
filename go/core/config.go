@@ -14,9 +14,6 @@ func MakeConfig() map[string]any {
 		},
 		"options": map[string]any{
 			"base": "https://answerbook.david888.com",
-			"auth": map[string]any{
-				"prefix": "Bearer",
-			},
 			"headers": map[string]any{
 				"content-type": "application/json",
 			},
@@ -465,6 +462,7 @@ func MakeConfig() map[string]any {
 											"orig": "category",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 										map[string]any{
 											"active": true,
@@ -473,6 +471,7 @@ func MakeConfig() map[string]any {
 											"orig": "word",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 1,
 										},
 									},
 								},
@@ -506,6 +505,7 @@ func MakeConfig() map[string]any {
 											"orig": "category",
 											"reqd": true,
 											"type": "`$STRING`",
+											"index$": 0,
 										},
 									},
 								},

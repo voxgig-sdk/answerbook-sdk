@@ -9,9 +9,12 @@ The TypeScript SDK for the Answerbook API — a type-safe, entity-oriented clien
 
 
 ## Install
-```bash
-npm install @voxgig-sdk/answerbook
-```
+This package is not yet published to npm. Install it from the GitHub
+release tag (`ts/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/answerbook-sdk/releases](https://github.com/voxgig-sdk/answerbook-sdk/releases)
+
+
 ## Tutorial: your first API call
 
 This tutorial walks through creating a client, listing entities, and
@@ -20,17 +23,15 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AnswerbookSDK } from 'answerbook'
+import { AnswerbookSDK } from '@voxgig-sdk/answerbook'
 
-const client = new AnswerbookSDK({
-  apikey: process.env.ANSWERBOOK_APIKEY,
-})
+const client = new AnswerbookSDK()
 ```
 
 ### 3. Load a bookofanswer
 
 ```ts
-const result = await client.BookOfAnswer().load({ id: 'example_id' })
+const result = await client.bookofanswer.load({ id: 'example_id' })
 
 if (result.ok) {
   console.log(result.data)
@@ -79,7 +80,7 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AnswerbookSDK.test()
 
-const result = await client.Planet().load({ id: 'test01' })
+const result = await client.bookofanswer.load({ id: 'test01' })
 // result.ok === true
 // result.data contains mock response data
 ```
@@ -87,7 +88,7 @@ const result = await client.Planet().load({ id: 'test01' })
 You can also use the instance method:
 
 ```ts
-const client = new AnswerbookSDK({ apikey: '...' })
+const client = new AnswerbookSDK()
 const testClient = client.tester()
 ```
 
@@ -96,7 +97,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Planet()
+const entity = client.bookofanswer
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -123,7 +124,6 @@ const logger = {
 }
 
 const client = new AnswerbookSDK({
-  apikey: '...',
   extend: [logger],
 })
 ```
@@ -134,7 +134,6 @@ Create a `.env.local` file at the project root:
 
 ```
 ANSWERBOOK_TEST_LIVE=TRUE
-ANSWERBOOK_APIKEY=<your-key>
 ```
 
 Then run:
@@ -152,7 +151,6 @@ cd ts && npm test
 
 ```ts
 new AnswerbookSDK(options?: {
-  apikey?: string
   base?: string
   prefix?: string
   suffix?: string
@@ -163,7 +161,6 @@ new AnswerbookSDK(options?: {
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -339,7 +336,7 @@ API path: `/words/categories`
 
 ### BookOfAnswer
 
-Create an instance: `const book_of_answer = client.BookOfAnswer()`
+Create an instance: `const book_of_answer = client.book_of_answer`
 
 #### Operations
 
@@ -359,13 +356,13 @@ Create an instance: `const book_of_answer = client.BookOfAnswer()`
 #### Example: Load
 
 ```ts
-const book_of_answer = await client.BookOfAnswer().load({ id: 'book_of_answer_id' })
+const book_of_answer = await client.book_of_answer.load({ id: 'book_of_answer_id' })
 ```
 
 
 ### GetApiDoc
 
-Create an instance: `const get_api_doc = client.GetApiDoc()`
+Create an instance: `const get_api_doc = client.get_api_doc`
 
 #### Operations
 
@@ -376,13 +373,13 @@ Create an instance: `const get_api_doc = client.GetApiDoc()`
 #### Example: Load
 
 ```ts
-const get_api_doc = await client.GetApiDoc().load({ id: 'get_api_doc_id' })
+const get_api_doc = await client.get_api_doc.load({ id: 'get_api_doc_id' })
 ```
 
 
 ### MarketData
 
-Create an instance: `const market_data = client.MarketData()`
+Create an instance: `const market_data = client.market_data`
 
 #### Operations
 
@@ -401,13 +398,13 @@ Create an instance: `const market_data = client.MarketData()`
 #### Example: Load
 
 ```ts
-const market_data = await client.MarketData().load({ id: 'market_data_id' })
+const market_data = await client.market_data.load({ id: 'market_data_id' })
 ```
 
 
 ### PoetryOracle
 
-Create an instance: `const poetry__oracle = client.PoetryOracle()`
+Create an instance: `const poetry__oracle = client.poetry__oracle`
 
 #### Operations
 
@@ -425,13 +422,13 @@ Create an instance: `const poetry__oracle = client.PoetryOracle()`
 #### Example: Load
 
 ```ts
-const poetry__oracle = await client.PoetryOracle().load({ id: 'poetry__oracle_id' })
+const poetry__oracle = await client.poetry__oracle.load({ id: 'poetry__oracle_id' })
 ```
 
 
 ### Tool
 
-Create an instance: `const tool = client.Tool()`
+Create an instance: `const tool = client.tool`
 
 #### Operations
 
@@ -448,13 +445,13 @@ Create an instance: `const tool = client.Tool()`
 #### Example: Load
 
 ```ts
-const tool = await client.Tool().load({ id: 'tool_id' })
+const tool = await client.tool.load({ id: 'tool_id' })
 ```
 
 
 ### Word
 
-Create an instance: `const word = client.Word()`
+Create an instance: `const word = client.word`
 
 #### Operations
 
@@ -473,13 +470,13 @@ Create an instance: `const word = client.Word()`
 #### Example: Load
 
 ```ts
-const word = await client.Word().load({ id: 'word_id' })
+const word = await client.word.load({ id: 'word_id' })
 ```
 
 
 ### WordsLearning
 
-Create an instance: `const words_learning = client.WordsLearning()`
+Create an instance: `const words_learning = client.words_learning`
 
 #### Operations
 
@@ -496,7 +493,7 @@ Create an instance: `const words_learning = client.WordsLearning()`
 #### Example: List
 
 ```ts
-const words_learnings = await client.WordsLearning().list()
+const words_learnings = await client.words_learning.list()
 ```
 
 
@@ -557,7 +554,7 @@ answerbook/
 Import the SDK from the package root:
 
 ```ts
-import { AnswerbookSDK } from 'answerbook'
+import { AnswerbookSDK } from '@voxgig-sdk/answerbook'
 ```
 
 ### Entity state
@@ -567,11 +564,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const moon = client.Moon()
-await moon.load({ planet_id: 'earth', id: 'luna' })
+const bookofanswer = client.bookofanswer
+await bookofanswer.load({ id: "example_id" })
 
-// moon.data() now returns the loaded moon data
-// moon.match() returns { planet_id: 'earth', id: 'luna' }
+// bookofanswer.data() now returns the loaded bookofanswer data
+// bookofanswer.match() returns { id: "example_id" }
 ```
 
 Call `make()` to create a fresh instance with the same configuration

@@ -45,6 +45,7 @@ class PoetryOracleEntity
     end
   end
 
+  # @return [PoetryOracle, Hash] the current PoetryOracle data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class PoetryOracleEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of PoetryOracle fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single PoetryOracle.
+  #
+  # @param reqmatch [PoetryOracleLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [PoetryOracle, Hash] the loaded PoetryOracle; raises AnswerbookError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

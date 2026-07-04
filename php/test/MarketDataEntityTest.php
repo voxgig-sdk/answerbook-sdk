@@ -49,8 +49,7 @@ class MarketDataEntityTest extends TestCase
         // LOAD
         $market_data_ref01_ent = $client->MarketData(null);
         $market_data_ref01_match_dt0 = [];
-        [$market_data_ref01_data_dt0_loaded, $err] = $market_data_ref01_ent->load($market_data_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $market_data_ref01_data_dt0_loaded = $market_data_ref01_ent->load($market_data_ref01_match_dt0, null);
         $this->assertNotNull($market_data_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function market_data_basic_setup($extra)
         "ANSWERBOOK_TEST_MARKET_DATA_ENTID" => $idmap,
         "ANSWERBOOK_TEST_LIVE" => "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN" => "FALSE",
-        "ANSWERBOOK_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function market_data_basic_setup($extra)
     if ($env["ANSWERBOOK_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ANSWERBOOK_APIKEY"],
             ],
             $extra ?? [],
         ]);

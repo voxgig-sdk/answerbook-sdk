@@ -19,7 +19,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `table` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -108,7 +107,7 @@ same parameters as `direct()`.
 ## BookOfAnswerEntity
 
 ```lua
-local book_of_answer = client:BookOfAnswer(nil)
+local book_of_answer = client:book_of_answer(nil)
 ```
 
 ### Fields
@@ -127,7 +126,7 @@ local book_of_answer = client:BookOfAnswer(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:BookOfAnswer():load({ id = "book_of_answer_id" })
+local result, err = client:book_of_answer():load({ id = "book_of_answer_id" })
 ```
 
 ### Common Methods
@@ -163,7 +162,7 @@ Return the entity name.
 ## GetApiDocEntity
 
 ```lua
-local get_api_doc = client:GetApiDoc(nil)
+local get_api_doc = client:get_api_doc(nil)
 ```
 
 ### Operations
@@ -173,7 +172,7 @@ local get_api_doc = client:GetApiDoc(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetApiDoc():load({ id = "get_api_doc_id" })
+local result, err = client:get_api_doc():load({ id = "get_api_doc_id" })
 ```
 
 ### Common Methods
@@ -209,7 +208,7 @@ Return the entity name.
 ## MarketDataEntity
 
 ```lua
-local market_data = client:MarketData(nil)
+local market_data = client:market_data(nil)
 ```
 
 ### Fields
@@ -227,7 +226,7 @@ local market_data = client:MarketData(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:MarketData():load({ id = "market_data_id" })
+local result, err = client:market_data():load({ id = "market_data_id" })
 ```
 
 ### Common Methods
@@ -263,7 +262,7 @@ Return the entity name.
 ## PoetryOracleEntity
 
 ```lua
-local poetry__oracle = client:PoetryOracle(nil)
+local poetry__oracle = client:poetry__oracle(nil)
 ```
 
 ### Fields
@@ -280,7 +279,7 @@ local poetry__oracle = client:PoetryOracle(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PoetryOracle():load({ id = "poetry__oracle_id" })
+local result, err = client:poetry__oracle():load({ id = "poetry__oracle_id" })
 ```
 
 ### Common Methods
@@ -316,7 +315,7 @@ Return the entity name.
 ## ToolEntity
 
 ```lua
-local tool = client:Tool(nil)
+local tool = client:tool(nil)
 ```
 
 ### Fields
@@ -332,7 +331,7 @@ local tool = client:Tool(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Tool():load({ id = "tool_id" })
+local result, err = client:tool():load({ id = "tool_id" })
 ```
 
 ### Common Methods
@@ -368,7 +367,7 @@ Return the entity name.
 ## WordEntity
 
 ```lua
-local word = client:Word(nil)
+local word = client:word(nil)
 ```
 
 ### Fields
@@ -386,7 +385,7 @@ local word = client:Word(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Word():load({ id = "word_id" })
+local result, err = client:word():load({ id = "word_id" })
 ```
 
 ### Common Methods
@@ -422,7 +421,7 @@ Return the entity name.
 ## WordsLearningEntity
 
 ```lua
-local words_learning = client:WordsLearning(nil)
+local words_learning = client:words_learning(nil)
 ```
 
 ### Fields
@@ -438,7 +437,7 @@ local words_learning = client:WordsLearning(nil)
 List entities matching the given criteria. Returns an array.
 
 ```lua
-local results, err = client:WordsLearning():list()
+local results, err = client:words_learning():list()
 ```
 
 ### Common Methods

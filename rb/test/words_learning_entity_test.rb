@@ -43,8 +43,7 @@ class WordsLearningEntityTest < Minitest::Test
     words_learning_ref01_ent = client.WordsLearning(nil)
     words_learning_ref01_match = {}
 
-    words_learning_ref01_list_result, err = words_learning_ref01_ent.list(words_learning_ref01_match, nil)
-    assert_nil err
+    words_learning_ref01_list_result = words_learning_ref01_ent.list(words_learning_ref01_match, nil)
     assert words_learning_ref01_list_result.is_a?(Array)
 
   end
@@ -83,7 +82,6 @@ def words_learning_basic_setup(extra)
     "ANSWERBOOK_TEST_WORDS_LEARNING_ENTID" => idmap,
     "ANSWERBOOK_TEST_LIVE" => "FALSE",
     "ANSWERBOOK_TEST_EXPLAIN" => "FALSE",
-    "ANSWERBOOK_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -95,7 +93,6 @@ def words_learning_basic_setup(extra)
   if env["ANSWERBOOK_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ANSWERBOOK_APIKEY"],
       },
       extra || {},
     ])

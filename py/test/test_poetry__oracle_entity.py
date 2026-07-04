@@ -49,8 +49,7 @@ class TestPoetryOracleEntity:
         # LOAD
         poetry__oracle_ref01_ent = client.PoetryOracle(None)
         poetry__oracle_ref01_match_dt0 = {}
-        poetry__oracle_ref01_data_dt0_loaded, err = poetry__oracle_ref01_ent.load(poetry__oracle_ref01_match_dt0, None)
-        assert err is None
+        poetry__oracle_ref01_data_dt0_loaded = poetry__oracle_ref01_ent.load(poetry__oracle_ref01_match_dt0, None)
         assert poetry__oracle_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _poetry__oracle_basic_setup(extra):
         "ANSWERBOOK_TEST_POETRY__ORACLE_ENTID": idmap,
         "ANSWERBOOK_TEST_LIVE": "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN": "FALSE",
-        "ANSWERBOOK_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _poetry__oracle_basic_setup(extra):
     if env.get("ANSWERBOOK_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ANSWERBOOK_APIKEY"),
             },
             extra or {},
         ])

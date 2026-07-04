@@ -38,10 +38,6 @@ class Config {
   options = {
     base: 'https://answerbook.david888.com',
 
-    auth: {
-      prefix: 'Bearer',
-    },
-
     headers: {
       "content-type": "application/json"
     },
@@ -507,7 +503,8 @@ class Config {
                     "name": "category",
                     "orig": "category",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   },
                   {
                     "active": true,
@@ -515,7 +512,8 @@ class Config {
                     "name": "word",
                     "orig": "word",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 1
                   }
                 ]
               },
@@ -548,7 +546,8 @@ class Config {
                     "name": "id",
                     "orig": "category",
                     "reqd": true,
-                    "type": "`$STRING`"
+                    "type": "`$STRING`",
+                    "index$": 0
                   }
                 ]
               },

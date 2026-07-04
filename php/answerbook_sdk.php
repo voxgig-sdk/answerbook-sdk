@@ -103,7 +103,7 @@ class AnswerbookSDK
         return $this->_rootctx;
     }
 
-    public function prepare(array $fetchargs = []): array
+    public function prepare(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
         $fetchargs = $fetchargs ?? [];
@@ -149,19 +149,27 @@ class AnswerbookSDK
 
         [$_, $err] = ($utility->prepare_auth)($ctx);
         if ($err) {
-            return [null, $err];
+            return ($utility->make_error)($ctx, $err);
         }
 
-        return ($utility->make_fetch_def)($ctx);
+        [$fetchdef, $fd_err] = ($utility->make_fetch_def)($ctx);
+        if ($fd_err) {
+            return ($utility->make_error)($ctx, $fd_err);
+        }
+        return $fetchdef;
     }
 
-    public function direct(array $fetchargs = []): array
+    public function direct(array $fetchargs = []): mixed
     {
         $utility = $this->_utility;
 
-        [$fetchdef, $err] = $this->prepare($fetchargs);
-        if ($err) {
-            return [["ok" => false, "err" => $err], null];
+        // direct() is the raw-HTTP escape hatch: it never throws, it returns
+        // an {ok, err, ...} dict. prepare() now raises on error, so catch it
+        // and surface the failure through the dict instead.
+        try {
+            $fetchdef = $this->prepare($fetchargs);
+        } catch (\Throwable $err) {
+            return ["ok" => false, "err" => $err];
         }
 
         $fetchargs = $fetchargs ?? [];
@@ -176,14 +184,14 @@ class AnswerbookSDK
         [$fetched, $fetch_err] = ($utility->fetcher)($ctx, $url, $fetchdef);
 
         if ($fetch_err) {
-            return [["ok" => false, "err" => $fetch_err], null];
+            return ["ok" => false, "err" => $fetch_err];
         }
 
         if ($fetched === null) {
-            return [[
+            return [
                 "ok" => false,
                 "err" => $ctx->make_error("direct_no_response", "response: undefined"),
-            ], null];
+            ];
         }
 
         if (is_array($fetched)) {
@@ -208,66 +216,143 @@ class AnswerbookSDK
                 }
             }
 
-            return [[
+            return [
                 "ok" => $status >= 200 && $status < 300,
                 "status" => $status,
                 "headers" => Struct::getprop($fetched, "headers"),
                 "data" => $json_data,
-            ], null];
+            ];
         }
 
-        return [[
+        return [
             "ok" => false,
             "err" => $ctx->make_error("direct_invalid", "invalid response type"),
-        ], null];
+        ];
     }
 
 
-    public function BookOfAnswer($data = null)
+    private $_book_of_answer = null;
+
+    // Idiomatic facade: $client->book_of_answer()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias BookOfAnswer() (PHP method
+    // names are case-insensitive).
+    public function book_of_answer($data = null)
     {
         require_once __DIR__ . '/entity/book_of_answer_entity.php';
+        if ($data === null) {
+            if ($this->_book_of_answer === null) {
+                $this->_book_of_answer = new BookOfAnswerEntity($this, null);
+            }
+            return $this->_book_of_answer;
+        }
         return new BookOfAnswerEntity($this, $data);
     }
 
 
-    public function GetApiDoc($data = null)
+    private $_get_api_doc = null;
+
+    // Idiomatic facade: $client->get_api_doc()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias GetApiDoc() (PHP method
+    // names are case-insensitive).
+    public function get_api_doc($data = null)
     {
         require_once __DIR__ . '/entity/get_api_doc_entity.php';
+        if ($data === null) {
+            if ($this->_get_api_doc === null) {
+                $this->_get_api_doc = new GetApiDocEntity($this, null);
+            }
+            return $this->_get_api_doc;
+        }
         return new GetApiDocEntity($this, $data);
     }
 
 
-    public function MarketData($data = null)
+    private $_market_data = null;
+
+    // Idiomatic facade: $client->market_data()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias MarketData() (PHP method
+    // names are case-insensitive).
+    public function market_data($data = null)
     {
         require_once __DIR__ . '/entity/market_data_entity.php';
+        if ($data === null) {
+            if ($this->_market_data === null) {
+                $this->_market_data = new MarketDataEntity($this, null);
+            }
+            return $this->_market_data;
+        }
         return new MarketDataEntity($this, $data);
     }
 
 
-    public function PoetryOracle($data = null)
+    private $_poetry__oracle = null;
+
+    // Idiomatic facade: $client->poetry__oracle()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias PoetryOracle() (PHP method
+    // names are case-insensitive).
+    public function poetry__oracle($data = null)
     {
         require_once __DIR__ . '/entity/poetry__oracle_entity.php';
+        if ($data === null) {
+            if ($this->_poetry__oracle === null) {
+                $this->_poetry__oracle = new PoetryOracleEntity($this, null);
+            }
+            return $this->_poetry__oracle;
+        }
         return new PoetryOracleEntity($this, $data);
     }
 
 
-    public function Tool($data = null)
+    private $_tool = null;
+
+    // Idiomatic facade: $client->tool()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Tool() (PHP method
+    // names are case-insensitive).
+    public function tool($data = null)
     {
         require_once __DIR__ . '/entity/tool_entity.php';
+        if ($data === null) {
+            if ($this->_tool === null) {
+                $this->_tool = new ToolEntity($this, null);
+            }
+            return $this->_tool;
+        }
         return new ToolEntity($this, $data);
     }
 
 
-    public function Word($data = null)
+    private $_word = null;
+
+    // Idiomatic facade: $client->word()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias Word() (PHP method
+    // names are case-insensitive).
+    public function word($data = null)
     {
         require_once __DIR__ . '/entity/word_entity.php';
+        if ($data === null) {
+            if ($this->_word === null) {
+                $this->_word = new WordEntity($this, null);
+            }
+            return $this->_word;
+        }
         return new WordEntity($this, $data);
     }
 
 
-    public function WordsLearning($data = null)
+    private $_words_learning = null;
+
+    // Idiomatic facade: $client->words_learning()->list() / ->load(["id" => ...]).
+    // Also serves the deprecated PascalCase alias WordsLearning() (PHP method
+    // names are case-insensitive).
+    public function words_learning($data = null)
     {
         require_once __DIR__ . '/entity/words_learning_entity.php';
+        if ($data === null) {
+            if ($this->_words_learning === null) {
+                $this->_words_learning = new WordsLearningEntity($this, null);
+            }
+            return $this->_words_learning;
+        }
         return new WordsLearningEntity($this, $data);
     }
 

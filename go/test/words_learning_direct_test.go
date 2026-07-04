@@ -93,14 +93,12 @@ func words_learningDirectSetup(mockres any) *words_learningDirectSetupResult {
 	env := envOverride(map[string]any{
 		"ANSWERBOOK_TEST_WORDS_LEARNING_ENTID": map[string]any{},
 		"ANSWERBOOK_TEST_LIVE":    "FALSE",
-		"ANSWERBOOK_APIKEY":       "NONE",
 	})
 
 	live := env["ANSWERBOOK_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["ANSWERBOOK_APIKEY"],
 		}
 		client := sdk.NewAnswerbookSDK(mergedOpts)
 

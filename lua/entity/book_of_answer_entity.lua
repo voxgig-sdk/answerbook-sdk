@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch BookOfAnswerLoadMatch
+---@param ctrl? table
+---@return BookOfAnswer
+---@return string? err
 function BookOfAnswerEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

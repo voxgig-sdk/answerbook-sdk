@@ -49,8 +49,7 @@ class TestWordEntity:
         # LOAD
         word_ref01_ent = client.Word(None)
         word_ref01_match_dt0 = {}
-        word_ref01_data_dt0_loaded, err = word_ref01_ent.load(word_ref01_match_dt0, None)
-        assert err is None
+        word_ref01_data_dt0_loaded = word_ref01_ent.load(word_ref01_match_dt0, None)
         assert word_ref01_data_dt0_loaded is not None
 
 
@@ -91,7 +90,6 @@ def _word_basic_setup(extra):
         "ANSWERBOOK_TEST_WORD_ENTID": idmap,
         "ANSWERBOOK_TEST_LIVE": "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN": "FALSE",
-        "ANSWERBOOK_APIKEY": "NONE",
     })
 
     idmap_resolved = helpers.to_map(
@@ -102,7 +100,6 @@ def _word_basic_setup(extra):
     if env.get("ANSWERBOOK_TEST_LIVE") == "TRUE":
         merged_opts = vs.merge([
             {
-                "apikey": env.get("ANSWERBOOK_APIKEY"),
             },
             extra or {},
         ])

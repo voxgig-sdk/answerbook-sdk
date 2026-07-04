@@ -99,14 +99,12 @@ func market_dataDirectSetup(mockres any) *market_dataDirectSetupResult {
 	env := envOverride(map[string]any{
 		"ANSWERBOOK_TEST_MARKET_DATA_ENTID": map[string]any{},
 		"ANSWERBOOK_TEST_LIVE":    "FALSE",
-		"ANSWERBOOK_APIKEY":       "NONE",
 	})
 
 	live := env["ANSWERBOOK_TEST_LIVE"] == "TRUE"
 
 	if live {
 		mergedOpts := map[string]any{
-			"apikey": env["ANSWERBOOK_APIKEY"],
 		}
 		client := sdk.NewAnswerbookSDK(mergedOpts)
 

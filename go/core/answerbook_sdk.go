@@ -245,36 +245,57 @@ func (sdk *AnswerbookSDK) Direct(fetchargs map[string]any) (map[string]any, erro
 }
 
 
+// BookOfAnswer returns a BookOfAnswer entity bound to this client.
+// Idiomatic usage: client.BookOfAnswer(nil).List(nil, nil) or
+// client.BookOfAnswer(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AnswerbookSDK) BookOfAnswer(data map[string]any) AnswerbookEntity {
 	return NewBookOfAnswerEntityFunc(sdk, data)
 }
 
 
+// GetApiDoc returns a GetApiDoc entity bound to this client.
+// Idiomatic usage: client.GetApiDoc(nil).List(nil, nil) or
+// client.GetApiDoc(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AnswerbookSDK) GetApiDoc(data map[string]any) AnswerbookEntity {
 	return NewGetApiDocEntityFunc(sdk, data)
 }
 
 
+// MarketData returns a MarketData entity bound to this client.
+// Idiomatic usage: client.MarketData(nil).List(nil, nil) or
+// client.MarketData(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AnswerbookSDK) MarketData(data map[string]any) AnswerbookEntity {
 	return NewMarketDataEntityFunc(sdk, data)
 }
 
 
+// PoetryOracle returns a PoetryOracle entity bound to this client.
+// Idiomatic usage: client.PoetryOracle(nil).List(nil, nil) or
+// client.PoetryOracle(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AnswerbookSDK) PoetryOracle(data map[string]any) AnswerbookEntity {
 	return NewPoetryOracleEntityFunc(sdk, data)
 }
 
 
+// Tool returns a Tool entity bound to this client.
+// Idiomatic usage: client.Tool(nil).List(nil, nil) or
+// client.Tool(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AnswerbookSDK) Tool(data map[string]any) AnswerbookEntity {
 	return NewToolEntityFunc(sdk, data)
 }
 
 
+// Word returns a Word entity bound to this client.
+// Idiomatic usage: client.Word(nil).List(nil, nil) or
+// client.Word(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AnswerbookSDK) Word(data map[string]any) AnswerbookEntity {
 	return NewWordEntityFunc(sdk, data)
 }
 
 
+// WordsLearning returns a WordsLearning entity bound to this client.
+// Idiomatic usage: client.WordsLearning(nil).List(nil, nil) or
+// client.WordsLearning(nil).Load(map[string]any{"id": ...}, nil).
 func (sdk *AnswerbookSDK) WordsLearning(data map[string]any) AnswerbookEntity {
 	return NewWordsLearningEntityFunc(sdk, data)
 }

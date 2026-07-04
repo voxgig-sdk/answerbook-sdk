@@ -9,12 +9,9 @@ The Lua SDK for the Answerbook API — an entity-oriented client using Lua conve
 
 
 ## Install
-```bash
-luarocks install voxgig-sdk-answerbook
-```
-
-If the module is not yet published, add the source directory to
-your `LUA_PATH`:
+This package is not yet published to LuaRocks. Install it from the
+GitHub release tag (`lua/vX.Y.Z`, see [Releases](https://github.com/voxgig-sdk/answerbook-sdk/releases)),
+or add the source directory to your `LUA_PATH`:
 
 ```bash
 export LUA_PATH="path/to/lua/?.lua;path/to/lua/?/init.lua;;"
@@ -31,15 +28,13 @@ loading a specific record.
 ```lua
 local sdk = require("answerbook_sdk")
 
-local client = sdk.new({
-  apikey = os.getenv("ANSWERBOOK_APIKEY"),
-})
+local client = sdk.new()
 ```
 
 ### 3. Load a bookofanswer
 
 ```lua
-local result, err = client:BookOfAnswer():load({ id = "example_id" })
+local result, err = client:bookofanswer():load({ id = "example_id" })
 if err then error(err) end
 print(result)
 ```
@@ -87,7 +82,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Answerbook():load({ id = "test01" })
+local result, err = client:bookofanswer():load({ id = "test01" })
 -- result contains mock response data
 ```
 
@@ -121,7 +116,6 @@ Create a `.env.local` file at the project root:
 
 ```
 ANSWERBOOK_TEST_LIVE=TRUE
-ANSWERBOOK_APIKEY=<your-key>
 ```
 
 Then run:
@@ -144,7 +138,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -294,7 +287,7 @@ API path: `/words/categories`
 
 ### BookOfAnswer
 
-Create an instance: `const book_of_answer = client.BookOfAnswer()`
+Create an instance: `const book_of_answer = client.book_of_answer`
 
 #### Operations
 
@@ -314,13 +307,13 @@ Create an instance: `const book_of_answer = client.BookOfAnswer()`
 #### Example: Load
 
 ```ts
-const book_of_answer = await client.BookOfAnswer().load({ id: 'book_of_answer_id' })
+const book_of_answer = await client.book_of_answer.load({ id: 'book_of_answer_id' })
 ```
 
 
 ### GetApiDoc
 
-Create an instance: `const get_api_doc = client.GetApiDoc()`
+Create an instance: `const get_api_doc = client.get_api_doc`
 
 #### Operations
 
@@ -331,13 +324,13 @@ Create an instance: `const get_api_doc = client.GetApiDoc()`
 #### Example: Load
 
 ```ts
-const get_api_doc = await client.GetApiDoc().load({ id: 'get_api_doc_id' })
+const get_api_doc = await client.get_api_doc.load({ id: 'get_api_doc_id' })
 ```
 
 
 ### MarketData
 
-Create an instance: `const market_data = client.MarketData()`
+Create an instance: `const market_data = client.market_data`
 
 #### Operations
 
@@ -356,13 +349,13 @@ Create an instance: `const market_data = client.MarketData()`
 #### Example: Load
 
 ```ts
-const market_data = await client.MarketData().load({ id: 'market_data_id' })
+const market_data = await client.market_data.load({ id: 'market_data_id' })
 ```
 
 
 ### PoetryOracle
 
-Create an instance: `const poetry__oracle = client.PoetryOracle()`
+Create an instance: `const poetry__oracle = client.poetry__oracle`
 
 #### Operations
 
@@ -380,13 +373,13 @@ Create an instance: `const poetry__oracle = client.PoetryOracle()`
 #### Example: Load
 
 ```ts
-const poetry__oracle = await client.PoetryOracle().load({ id: 'poetry__oracle_id' })
+const poetry__oracle = await client.poetry__oracle.load({ id: 'poetry__oracle_id' })
 ```
 
 
 ### Tool
 
-Create an instance: `const tool = client.Tool()`
+Create an instance: `const tool = client.tool`
 
 #### Operations
 
@@ -403,13 +396,13 @@ Create an instance: `const tool = client.Tool()`
 #### Example: Load
 
 ```ts
-const tool = await client.Tool().load({ id: 'tool_id' })
+const tool = await client.tool.load({ id: 'tool_id' })
 ```
 
 
 ### Word
 
-Create an instance: `const word = client.Word()`
+Create an instance: `const word = client.word`
 
 #### Operations
 
@@ -428,13 +421,13 @@ Create an instance: `const word = client.Word()`
 #### Example: Load
 
 ```ts
-const word = await client.Word().load({ id: 'word_id' })
+const word = await client.word.load({ id: 'word_id' })
 ```
 
 
 ### WordsLearning
 
-Create an instance: `const words_learning = client.WordsLearning()`
+Create an instance: `const words_learning = client.words_learning`
 
 #### Operations
 
@@ -451,7 +444,7 @@ Create an instance: `const words_learning = client.WordsLearning()`
 #### Example: List
 
 ```ts
-const words_learnings = await client.WordsLearning().list()
+const words_learnings = await client.words_learning.list()
 ```
 
 
@@ -526,11 +519,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local moon = client:Moon(nil)
-moon:load({ planet_id = "earth", id = "luna" }, nil)
+local bookofanswer = client:bookofanswer()
+bookofanswer:load({ id = "example_id" })
 
--- moon:data_get() now returns the loaded moon data
--- moon:match_get() returns the last match criteria
+-- bookofanswer:data_get() now returns the loaded bookofanswer data
+-- bookofanswer:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

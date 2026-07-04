@@ -14,9 +14,13 @@ import type {
   Control,
 } from '../types'
 
+import type {
+  Tool,
+  ToolLoadMatch,
+} from '../AnswerbookTypes'
 
 // TODO: needs Entity superclass
-class ToolEntity extends AnswerbookEntityBase {
+class ToolEntity extends AnswerbookEntityBase<Tool> {
 
   constructor(client: AnswerbookSDK, entopts: any) {
     super(client, entopts)
@@ -32,7 +36,7 @@ class ToolEntity extends AnswerbookEntityBase {
 
 
 
-  async load(this: any, reqmatch?: any, ctrl?: Control) {
+  async load(this: any, reqmatch?: ToolLoadMatch, ctrl?: Control): Promise<Tool> {
 
     const utility = this._utility
 
@@ -136,7 +140,9 @@ class ToolEntity extends AnswerbookEntityBase {
         throw err
       }
       else {
-        return undefined
+        // Off-happy-path (throw disabled): typed as any so the method's
+        // Promise<Tool> return stays clean under strict null checks.
+        return undefined as any
       }
     }
   }

@@ -9,9 +9,10 @@ The PHP SDK for the Answerbook API — an entity-oriented client using PHP conve
 
 
 ## Install
-```bash
-composer require voxgig-sdk/answerbook
-```
+This package is not yet published to Packagist. Install it from the
+GitHub release tag (`php/vX.Y.Z`):
+
+- Releases: [https://github.com/voxgig-sdk/answerbook-sdk/releases](https://github.com/voxgig-sdk/answerbook-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -25,17 +26,18 @@ loading a specific record.
 <?php
 require_once 'answerbook_sdk.php';
 
-$client = new AnswerbookSDK([
-    "apikey" => getenv("ANSWERBOOK_APIKEY"),
-]);
+$client = new AnswerbookSDK();
 ```
 
 ### 3. Load a bookofanswer
 
 ```php
-[$result, $err] = $client->BookOfAnswer()->load(["id" => "example_id"]);
-if ($err) { throw new \Exception($err); }
-print_r($result);
+try {
+    $result = $client->bookofanswer()->load(["id" => "example_id"]);
+    print_r($result);
+} catch (\Exception $err) {
+    echo "Error: " . $err->getMessage();
+}
 ```
 
 
@@ -46,28 +48,31 @@ print_r($result);
 For endpoints not covered by entity methods:
 
 ```php
-[$result, $err] = $client->direct([
+// direct() is the raw-HTTP escape hatch: it returns a result array
+// (it does not throw). Branch on $result["ok"].
+$result = $client->direct([
     "path" => "/api/resource/{id}",
     "method" => "GET",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
+} else {
+    echo "Error: " . $result["err"]->getMessage();
 }
 ```
 
 ### Prepare a request without sending it
 
 ```php
-[$fetchdef, $err] = $client->prepare([
+// prepare() throws on error and returns the fetch definition.
+$fetchdef = $client->prepare([
     "path" => "/api/resource/{id}",
     "method" => "DELETE",
     "params" => ["id" => "example"],
 ]);
-if ($err) { throw new \Exception($err); }
 
 echo $fetchdef["url"];
 echo $fetchdef["method"];
@@ -81,7 +86,7 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = AnswerbookSDK::test();
 
-[$result, $err] = $client->Answerbook()->load(["id" => "test01"]);
+$result = $client->bookofanswer()->load(["id" => "test01"]);
 // $result contains mock response data
 ```
 
@@ -116,7 +121,6 @@ Create a `.env.local` file at the project root:
 
 ```
 ANSWERBOOK_TEST_LIVE=TRUE
-ANSWERBOOK_APIKEY=<your-key>
 ```
 
 Then run:
@@ -139,7 +143,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `string` | API key for authentication. |
 | `base` | `string` | Base URL of the API server. |
 | `prefix` | `string` | URL path prefix prepended to all requests. |
 | `suffix` | `string` | URL path suffix appended to all requests. |
@@ -191,8 +194,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[$result, $err]`. The first value is an
-`array` with these keys:
+Entity operations return the bare result data (an `array` for single-entity
+ops, a `list` for `list`) and throw on error. Wrap calls in
+`try`/`catch` to handle failures.
+
+The `direct()` escape hatch never throws — it returns a result `array`
+you branch on via `$result["ok"]`:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -289,7 +296,7 @@ API path: `/words/categories`
 
 ### BookOfAnswer
 
-Create an instance: `const book_of_answer = client.BookOfAnswer()`
+Create an instance: `const book_of_answer = client.book_of_answer`
 
 #### Operations
 
@@ -309,13 +316,13 @@ Create an instance: `const book_of_answer = client.BookOfAnswer()`
 #### Example: Load
 
 ```ts
-const book_of_answer = await client.BookOfAnswer().load({ id: 'book_of_answer_id' })
+const book_of_answer = await client.book_of_answer.load({ id: 'book_of_answer_id' })
 ```
 
 
 ### GetApiDoc
 
-Create an instance: `const get_api_doc = client.GetApiDoc()`
+Create an instance: `const get_api_doc = client.get_api_doc`
 
 #### Operations
 
@@ -326,13 +333,13 @@ Create an instance: `const get_api_doc = client.GetApiDoc()`
 #### Example: Load
 
 ```ts
-const get_api_doc = await client.GetApiDoc().load({ id: 'get_api_doc_id' })
+const get_api_doc = await client.get_api_doc.load({ id: 'get_api_doc_id' })
 ```
 
 
 ### MarketData
 
-Create an instance: `const market_data = client.MarketData()`
+Create an instance: `const market_data = client.market_data`
 
 #### Operations
 
@@ -351,13 +358,13 @@ Create an instance: `const market_data = client.MarketData()`
 #### Example: Load
 
 ```ts
-const market_data = await client.MarketData().load({ id: 'market_data_id' })
+const market_data = await client.market_data.load({ id: 'market_data_id' })
 ```
 
 
 ### PoetryOracle
 
-Create an instance: `const poetry__oracle = client.PoetryOracle()`
+Create an instance: `const poetry__oracle = client.poetry__oracle`
 
 #### Operations
 
@@ -375,13 +382,13 @@ Create an instance: `const poetry__oracle = client.PoetryOracle()`
 #### Example: Load
 
 ```ts
-const poetry__oracle = await client.PoetryOracle().load({ id: 'poetry__oracle_id' })
+const poetry__oracle = await client.poetry__oracle.load({ id: 'poetry__oracle_id' })
 ```
 
 
 ### Tool
 
-Create an instance: `const tool = client.Tool()`
+Create an instance: `const tool = client.tool`
 
 #### Operations
 
@@ -398,13 +405,13 @@ Create an instance: `const tool = client.Tool()`
 #### Example: Load
 
 ```ts
-const tool = await client.Tool().load({ id: 'tool_id' })
+const tool = await client.tool.load({ id: 'tool_id' })
 ```
 
 
 ### Word
 
-Create an instance: `const word = client.Word()`
+Create an instance: `const word = client.word`
 
 #### Operations
 
@@ -423,13 +430,13 @@ Create an instance: `const word = client.Word()`
 #### Example: Load
 
 ```ts
-const word = await client.Word().load({ id: 'word_id' })
+const word = await client.word.load({ id: 'word_id' })
 ```
 
 
 ### WordsLearning
 
-Create an instance: `const words_learning = client.WordsLearning()`
+Create an instance: `const words_learning = client.words_learning`
 
 #### Operations
 
@@ -446,7 +453,7 @@ Create an instance: `const words_learning = client.WordsLearning()`
 #### Example: List
 
 ```ts
-const words_learnings = await client.WordsLearning().list()
+const words_learnings = await client.words_learning.list()
 ```
 
 
@@ -521,11 +528,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$moon = $client->Moon();
-[$result, $err] = $moon->load(["planet_id" => "earth", "id" => "luna"]);
+$bookofanswer = $client->bookofanswer();
+$bookofanswer->load(["id" => "example_id"]);
 
-// $moon->dataGet() now returns the loaded moon data
-// $moon->matchGet() returns the last match criteria
+// $bookofanswer->dataGet() now returns the loaded bookofanswer data
+// $bookofanswer->matchGet() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

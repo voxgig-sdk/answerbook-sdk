@@ -13,6 +13,9 @@ require_relative 'config'
 require_relative 'feature/base_feature'
 require_relative 'features'
 
+# Load typed models (Struct value objects).
+require_relative 'Answerbook_types'
+
 
 class AnswerbookSDK
   attr_accessor :mode, :features, :options
@@ -131,7 +134,7 @@ class AnswerbookSDK
     end
 
     _, err = utility.prepare_auth.call(ctx)
-    return nil, err if err
+    raise err if err
 
     utility.make_fetch_def.call(ctx)
   end
@@ -139,8 +142,14 @@ class AnswerbookSDK
   def direct(fetchargs = {})
     utility = @_utility
 
-    fetchdef, err = prepare(fetchargs)
-    return { "ok" => false, "err" => err }, nil if err
+    # direct() is the raw-HTTP escape hatch: it always returns a result hash
+    # ({ "ok" => ..., ... }) and never raises. prepare() raises on error, so
+    # trap that and surface it in the hash.
+    begin
+      fetchdef = prepare(fetchargs)
+    rescue AnswerbookError => err
+      return { "ok" => false, "err" => err }
+    end
 
     fetchargs ||= {}
     ctrl = AnswerbookHelpers.to_map(VoxgigStruct.getprop(fetchargs, "ctrl")) || {}
@@ -153,13 +162,13 @@ class AnswerbookSDK
     url = fetchdef["url"] || ""
     fetched, fetch_err = utility.fetcher.call(ctx, url, fetchdef)
 
-    return { "ok" => false, "err" => fetch_err }, nil if fetch_err
+    return { "ok" => false, "err" => fetch_err } if fetch_err
 
     if fetched.nil?
       return {
         "ok" => false,
         "err" => ctx.make_error("direct_no_response", "response: undefined"),
-      }, nil
+      }
     end
 
     if fetched.is_a?(Hash)
@@ -189,52 +198,101 @@ class AnswerbookSDK
         "status" => status,
         "headers" => headers,
         "data" => json_data,
-      }, nil
+      }
     end
 
     return {
       "ok" => false,
       "err" => ctx.make_error("direct_invalid", "invalid response type"),
-    }, nil
+    }
   end
 
 
+  # Idiomatic facade: client.book_of_answer.list / client.book_of_answer.load({ "id" => ... })
+  def book_of_answer
+    require_relative 'entity/book_of_answer_entity'
+    @book_of_answer ||= BookOfAnswerEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.book_of_answer instead.
   def BookOfAnswer(data = nil)
     require_relative 'entity/book_of_answer_entity'
     BookOfAnswerEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.get_api_doc.list / client.get_api_doc.load({ "id" => ... })
+  def get_api_doc
+    require_relative 'entity/get_api_doc_entity'
+    @get_api_doc ||= GetApiDocEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.get_api_doc instead.
   def GetApiDoc(data = nil)
     require_relative 'entity/get_api_doc_entity'
     GetApiDocEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.market_data.list / client.market_data.load({ "id" => ... })
+  def market_data
+    require_relative 'entity/market_data_entity'
+    @market_data ||= MarketDataEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.market_data instead.
   def MarketData(data = nil)
     require_relative 'entity/market_data_entity'
     MarketDataEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.poetry__oracle.list / client.poetry__oracle.load({ "id" => ... })
+  def poetry__oracle
+    require_relative 'entity/poetry__oracle_entity'
+    @poetry__oracle ||= PoetryOracleEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.poetry__oracle instead.
   def PoetryOracle(data = nil)
     require_relative 'entity/poetry__oracle_entity'
     PoetryOracleEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.tool.list / client.tool.load({ "id" => ... })
+  def tool
+    require_relative 'entity/tool_entity'
+    @tool ||= ToolEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.tool instead.
   def Tool(data = nil)
     require_relative 'entity/tool_entity'
     ToolEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.word.list / client.word.load({ "id" => ... })
+  def word
+    require_relative 'entity/word_entity'
+    @word ||= WordEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.word instead.
   def Word(data = nil)
     require_relative 'entity/word_entity'
     WordEntity.new(self, data)
   end
 
 
+  # Idiomatic facade: client.words_learning.list / client.words_learning.load({ "id" => ... })
+  def words_learning
+    require_relative 'entity/words_learning_entity'
+    @words_learning ||= WordsLearningEntity.new(self, nil)
+  end
+
+  # Deprecated: use client.words_learning instead.
   def WordsLearning(data = nil)
     require_relative 'entity/words_learning_entity'
     WordsLearningEntity.new(self, data)

@@ -18,7 +18,6 @@ Create a new SDK client instance.
 | Name | Type | Description |
 | --- | --- | --- |
 | `options` | `object` | SDK configuration options. |
-| `options.apikey` | `string` | API key for authentication. |
 | `options.base` | `string` | Base URL for API requests. |
 | `options.prefix` | `string` | URL prefix appended after base. |
 | `options.suffix` | `string` | URL suffix appended after path. |
@@ -182,7 +181,7 @@ Alias for `AnswerbookSDK.test()`.
 ## BookOfAnswerEntity
 
 ```ts
-const book_of_answer = client.BookOfAnswer()
+const book_of_answer = client.book_of_answer
 ```
 
 ### Fields
@@ -201,7 +200,7 @@ const book_of_answer = client.BookOfAnswer()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.BookOfAnswer().load({ id: 'book_of_answer_id' })
+const result = await client.book_of_answer.load({ id: 'book_of_answer_id' })
 ```
 
 ### Common Methods
@@ -235,7 +234,7 @@ Return a copy of the entity options.
 ## GetApiDocEntity
 
 ```ts
-const get_api_doc = client.GetApiDoc()
+const get_api_doc = client.get_api_doc
 ```
 
 ### Operations
@@ -245,7 +244,7 @@ const get_api_doc = client.GetApiDoc()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetApiDoc().load({ id: 'get_api_doc_id' })
+const result = await client.get_api_doc.load({ id: 'get_api_doc_id' })
 ```
 
 ### Common Methods
@@ -279,7 +278,7 @@ Return a copy of the entity options.
 ## MarketDataEntity
 
 ```ts
-const market_data = client.MarketData()
+const market_data = client.market_data
 ```
 
 ### Fields
@@ -297,7 +296,7 @@ const market_data = client.MarketData()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.MarketData().load({ id: 'market_data_id' })
+const result = await client.market_data.load({ id: 'market_data_id' })
 ```
 
 ### Common Methods
@@ -331,7 +330,7 @@ Return a copy of the entity options.
 ## PoetryOracleEntity
 
 ```ts
-const poetry__oracle = client.PoetryOracle()
+const poetry__oracle = client.poetry__oracle
 ```
 
 ### Fields
@@ -348,7 +347,7 @@ const poetry__oracle = client.PoetryOracle()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PoetryOracle().load({ id: 'poetry__oracle_id' })
+const result = await client.poetry__oracle.load({ id: 'poetry__oracle_id' })
 ```
 
 ### Common Methods
@@ -382,7 +381,7 @@ Return a copy of the entity options.
 ## ToolEntity
 
 ```ts
-const tool = client.Tool()
+const tool = client.tool
 ```
 
 ### Fields
@@ -398,7 +397,7 @@ const tool = client.Tool()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Tool().load({ id: 'tool_id' })
+const result = await client.tool.load({ id: 'tool_id' })
 ```
 
 ### Common Methods
@@ -432,7 +431,7 @@ Return a copy of the entity options.
 ## WordEntity
 
 ```ts
-const word = client.Word()
+const word = client.word
 ```
 
 ### Fields
@@ -450,7 +449,7 @@ const word = client.Word()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Word().load({ id: 'word_id' })
+const result = await client.word.load({ id: 'word_id' })
 ```
 
 ### Common Methods
@@ -484,7 +483,7 @@ Return a copy of the entity options.
 ## WordsLearningEntity
 
 ```ts
-const words_learning = client.WordsLearning()
+const words_learning = client.words_learning
 ```
 
 ### Fields
@@ -500,7 +499,7 @@ const words_learning = client.WordsLearning()
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.WordsLearning().list()
+const results = await client.words_learning.list()
 ```
 
 ### Common Methods

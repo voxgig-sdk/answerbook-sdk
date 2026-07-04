@@ -79,6 +79,10 @@ end
 
 
 
+---@param reqmatch MarketDataLoadMatch
+---@param ctrl? table
+---@return MarketData
+---@return string? err
 function MarketDataEntity:load(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

@@ -45,6 +45,7 @@ class ToolEntity
     end
   end
 
+  # @return [Tool, Hash] the current Tool data
   def data_get
     @_utility.feature_hook.call(@_entctx, "GetData")
     VoxgigStruct.clone(@_data)
@@ -57,12 +58,18 @@ class ToolEntity
     end
   end
 
+  # @return [Hash] the current match filter (any subset of Tool fields)
   def match_get
     @_utility.feature_hook.call(@_entctx, "GetMatch")
     VoxgigStruct.clone(@_match)
   end
 
   
+  # Load a single Tool.
+  #
+  # @param reqmatch [ToolLoadMatch, Hash, nil] match criteria (id/query fields)
+  # @param ctrl [Object, nil] optional per-call control
+  # @return [Tool, Hash] the loaded Tool; raises AnswerbookError on failure
   def load(reqmatch, ctrl = nil)
     utility = @_utility
     ctx = utility.make_context.call({

@@ -9,21 +9,10 @@ The Ruby SDK for the Answerbook API — an entity-oriented client using idiomati
 
 
 ## Install
-```bash
-gem install voxgig-sdk-answerbook
-```
+This package is not yet published to RubyGems. Install it from the
+GitHub release tag (`rb/vX.Y.Z`):
 
-Or add to your `Gemfile`:
-
-```ruby
-gem "voxgig-sdk-answerbook"
-```
-
-Then run:
-
-```bash
-bundle install
-```
+- Releases: [https://github.com/voxgig-sdk/answerbook-sdk/releases](https://github.com/voxgig-sdk/answerbook-sdk/releases)
 
 
 ## Tutorial: your first API call
@@ -36,17 +25,18 @@ loading a specific record.
 ```ruby
 require_relative "Answerbook_sdk"
 
-client = AnswerbookSDK.new({
-  "apikey" => ENV["ANSWERBOOK_APIKEY"],
-})
+client = AnswerbookSDK.new
 ```
 
 ### 3. Load a bookofanswer
 
 ```ruby
-result, err = client.BookOfAnswer().load({ "id" => "example_id" })
-raise err if err
-puts result
+begin
+  result = client.bookofanswer.load({ "id" => "example_id" })
+  puts result
+rescue => err
+  warn "load failed: #{err}"
+end
 ```
 
 
@@ -57,32 +47,35 @@ puts result
 For endpoints not covered by entity methods:
 
 ```ruby
-result, err = client.direct({
+result = client.direct({
   "path" => "/api/resource/{id}",
   "method" => "GET",
   "params" => { "id" => "example" },
 })
-raise err if err
 
 if result["ok"]
   puts result["status"]  # 200
   puts result["data"]    # response body
+else
+  warn result["err"]
 end
 ```
 
 ### Prepare a request without sending it
 
 ```ruby
-fetchdef, err = client.prepare({
-  "path" => "/api/resource/{id}",
-  "method" => "DELETE",
-  "params" => { "id" => "example" },
-})
-raise err if err
-
-puts fetchdef["url"]
-puts fetchdef["method"]
-puts fetchdef["headers"]
+begin
+  fetchdef = client.prepare({
+    "path" => "/api/resource/{id}",
+    "method" => "DELETE",
+    "params" => { "id" => "example" },
+  })
+  puts fetchdef["url"]
+  puts fetchdef["method"]
+  puts fetchdef["headers"]
+rescue => err
+  warn "prepare failed: #{err}"
+end
 ```
 
 ### Use test mode
@@ -92,7 +85,7 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = AnswerbookSDK.test
 
-result, err = client.Answerbook().load({ "id" => "test01" })
+result = client.bookofanswer.load({ "id" => "test01" })
 # result contains mock response data
 ```
 
@@ -124,7 +117,6 @@ Create a `.env.local` file at the project root:
 
 ```
 ANSWERBOOK_TEST_LIVE=TRUE
-ANSWERBOOK_APIKEY=<your-key>
 ```
 
 Then run:
@@ -147,7 +139,6 @@ Creates a new SDK client.
 
 | Option | Type | Description |
 | --- | --- | --- |
-| `apikey` | `String` | API key for authentication. |
 | `base` | `String` | Base URL of the API server. |
 | `prefix` | `String` | URL path prefix prepended to all requests. |
 | `suffix` | `String` | URL path suffix appended to all requests. |
@@ -169,8 +160,8 @@ Creates a test-mode client with mock transport. Both arguments may be `nil`.
 | --- | --- | --- |
 | `options_map` | `() -> Hash` | Deep copy of current SDK options. |
 | `get_utility` | `() -> Utility` | Copy of the SDK utility object. |
-| `prepare` | `(fetchargs) -> [Hash, err]` | Build an HTTP request definition without sending. |
-| `direct` | `(fetchargs) -> [Hash, err]` | Build and send an HTTP request. |
+| `prepare` | `(fetchargs) -> Hash` | Build an HTTP request definition without sending. Raises on error. |
+| `direct` | `(fetchargs) -> Hash` | Build and send an HTTP request. Returns a result hash (`result["ok"]`); does not raise. |
 | `BookOfAnswer` | `(data) -> BookOfAnswerEntity` | Create a BookOfAnswer entity instance. |
 | `GetApiDoc` | `(data) -> GetApiDocEntity` | Create a GetApiDoc entity instance. |
 | `MarketData` | `(data) -> MarketDataEntity` | Create a MarketData entity instance. |
@@ -185,11 +176,11 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `(reqmatch, ctrl) -> [any, err]` | Load a single entity by match criteria. |
-| `list` | `(reqmatch, ctrl) -> [any, err]` | List entities matching the criteria. |
-| `create` | `(reqdata, ctrl) -> [any, err]` | Create a new entity. |
-| `update` | `(reqdata, ctrl) -> [any, err]` | Update an existing entity. |
-| `remove` | `(reqmatch, ctrl) -> [any, err]` | Remove an entity. |
+| `load` | `(reqmatch, ctrl) -> any` | Load a single entity by match criteria. Raises on error. |
+| `list` | `(reqmatch, ctrl) -> Array` | List entities matching the criteria. Raises on error. |
+| `create` | `(reqdata, ctrl) -> any` | Create a new entity. Raises on error. |
+| `update` | `(reqdata, ctrl) -> any` | Update an existing entity. Raises on error. |
+| `remove` | `(reqmatch, ctrl) -> any` | Remove an entity. Raises on error. |
 | `data_get` | `() -> Hash` | Get entity data. |
 | `data_set` | `(data)` | Set entity data. |
 | `match_get` | `() -> Hash` | Get entity match criteria. |
@@ -199,8 +190,12 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `[any, err]`. The first value is a
-`Hash` with these keys:
+Entity operations return the result data directly. On failure they
+raise a `AnswerbookError` (a `StandardError` subclass), so wrap
+calls in `begin`/`rescue` where you need to handle errors.
+
+The `direct` escape hatch is the exception: it never raises and instead
+returns a result `Hash` with these keys:
 
 | Key | Type | Description |
 | --- | --- | --- |
@@ -208,8 +203,7 @@ Entity operations return `[any, err]`. The first value is a
 | `status` | `Integer` | HTTP status code. |
 | `headers` | `Hash` | Response headers. |
 | `data` | `any` | Parsed JSON response body. |
-
-On error, `ok` is `false` and `err` contains the error value.
+| `err` | `Error` | Present when `ok` is `false`. |
 
 ### Entities
 
@@ -297,7 +291,7 @@ API path: `/words/categories`
 
 ### BookOfAnswer
 
-Create an instance: `const book_of_answer = client.BookOfAnswer()`
+Create an instance: `const book_of_answer = client.book_of_answer`
 
 #### Operations
 
@@ -317,13 +311,13 @@ Create an instance: `const book_of_answer = client.BookOfAnswer()`
 #### Example: Load
 
 ```ts
-const book_of_answer = await client.BookOfAnswer().load({ id: 'book_of_answer_id' })
+const book_of_answer = await client.book_of_answer.load({ id: 'book_of_answer_id' })
 ```
 
 
 ### GetApiDoc
 
-Create an instance: `const get_api_doc = client.GetApiDoc()`
+Create an instance: `const get_api_doc = client.get_api_doc`
 
 #### Operations
 
@@ -334,13 +328,13 @@ Create an instance: `const get_api_doc = client.GetApiDoc()`
 #### Example: Load
 
 ```ts
-const get_api_doc = await client.GetApiDoc().load({ id: 'get_api_doc_id' })
+const get_api_doc = await client.get_api_doc.load({ id: 'get_api_doc_id' })
 ```
 
 
 ### MarketData
 
-Create an instance: `const market_data = client.MarketData()`
+Create an instance: `const market_data = client.market_data`
 
 #### Operations
 
@@ -359,13 +353,13 @@ Create an instance: `const market_data = client.MarketData()`
 #### Example: Load
 
 ```ts
-const market_data = await client.MarketData().load({ id: 'market_data_id' })
+const market_data = await client.market_data.load({ id: 'market_data_id' })
 ```
 
 
 ### PoetryOracle
 
-Create an instance: `const poetry__oracle = client.PoetryOracle()`
+Create an instance: `const poetry__oracle = client.poetry__oracle`
 
 #### Operations
 
@@ -383,13 +377,13 @@ Create an instance: `const poetry__oracle = client.PoetryOracle()`
 #### Example: Load
 
 ```ts
-const poetry__oracle = await client.PoetryOracle().load({ id: 'poetry__oracle_id' })
+const poetry__oracle = await client.poetry__oracle.load({ id: 'poetry__oracle_id' })
 ```
 
 
 ### Tool
 
-Create an instance: `const tool = client.Tool()`
+Create an instance: `const tool = client.tool`
 
 #### Operations
 
@@ -406,13 +400,13 @@ Create an instance: `const tool = client.Tool()`
 #### Example: Load
 
 ```ts
-const tool = await client.Tool().load({ id: 'tool_id' })
+const tool = await client.tool.load({ id: 'tool_id' })
 ```
 
 
 ### Word
 
-Create an instance: `const word = client.Word()`
+Create an instance: `const word = client.word`
 
 #### Operations
 
@@ -431,13 +425,13 @@ Create an instance: `const word = client.Word()`
 #### Example: Load
 
 ```ts
-const word = await client.Word().load({ id: 'word_id' })
+const word = await client.word.load({ id: 'word_id' })
 ```
 
 
 ### WordsLearning
 
-Create an instance: `const words_learning = client.WordsLearning()`
+Create an instance: `const words_learning = client.words_learning`
 
 #### Operations
 
@@ -454,7 +448,7 @@ Create an instance: `const words_learning = client.WordsLearning()`
 #### Example: List
 
 ```ts
-const words_learnings = await client.WordsLearning().list()
+const words_learnings = await client.words_learning.list()
 ```
 
 
@@ -529,11 +523,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-moon = client.Moon
-moon.load({ "planet_id" => "earth", "id" => "luna" })
+bookofanswer = client.bookofanswer
+bookofanswer.load({ "id" => "example_id" })
 
-# moon.data_get now returns the loaded moon data
-# moon.match_get returns the last match criteria
+# bookofanswer.data_get now returns the loaded bookofanswer data
+# bookofanswer.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

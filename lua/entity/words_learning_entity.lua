@@ -81,6 +81,10 @@ end
 
 
 
+---@param reqmatch WordsLearningListMatch
+---@param ctrl? table
+---@return WordsLearning[]
+---@return string? err
 function WordsLearningEntity:list(reqmatch, ctrl)
   local utility = self._utility
   local ctx = utility.make_context({

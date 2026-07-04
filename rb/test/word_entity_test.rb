@@ -42,8 +42,7 @@ class WordEntityTest < Minitest::Test
     # LOAD
     word_ref01_ent = client.Word(nil)
     word_ref01_match_dt0 = {}
-    word_ref01_data_dt0_loaded, err = word_ref01_ent.load(word_ref01_match_dt0, nil)
-    assert_nil err
+    word_ref01_data_dt0_loaded = word_ref01_ent.load(word_ref01_match_dt0, nil)
     assert !word_ref01_data_dt0_loaded.nil?
 
   end
@@ -82,7 +81,6 @@ def word_basic_setup(extra)
     "ANSWERBOOK_TEST_WORD_ENTID" => idmap,
     "ANSWERBOOK_TEST_LIVE" => "FALSE",
     "ANSWERBOOK_TEST_EXPLAIN" => "FALSE",
-    "ANSWERBOOK_APIKEY" => "NONE",
   })
 
   idmap_resolved = Helpers.to_map(
@@ -94,7 +92,6 @@ def word_basic_setup(extra)
   if env["ANSWERBOOK_TEST_LIVE"] == "TRUE"
     merged_opts = Vs.merge([
       {
-        "apikey" => env["ANSWERBOOK_APIKEY"],
       },
       extra || {},
     ])

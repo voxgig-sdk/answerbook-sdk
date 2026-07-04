@@ -49,8 +49,7 @@ class ToolEntityTest extends TestCase
         // LOAD
         $tool_ref01_ent = $client->Tool(null);
         $tool_ref01_match_dt0 = [];
-        [$tool_ref01_data_dt0_loaded, $err] = $tool_ref01_ent->load($tool_ref01_match_dt0, null);
-        $this->assertNull($err);
+        $tool_ref01_data_dt0_loaded = $tool_ref01_ent->load($tool_ref01_match_dt0, null);
         $this->assertNotNull($tool_ref01_data_dt0_loaded);
 
     }
@@ -85,7 +84,6 @@ function tool_basic_setup($extra)
         "ANSWERBOOK_TEST_TOOL_ENTID" => $idmap,
         "ANSWERBOOK_TEST_LIVE" => "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN" => "FALSE",
-        "ANSWERBOOK_APIKEY" => "NONE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
@@ -97,7 +95,6 @@ function tool_basic_setup($extra)
     if ($env["ANSWERBOOK_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
-                "apikey" => $env["ANSWERBOOK_APIKEY"],
             ],
             $extra ?? [],
         ]);
