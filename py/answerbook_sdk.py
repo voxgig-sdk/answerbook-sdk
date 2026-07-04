@@ -220,121 +220,51 @@ class AnswerbookSDK:
         }
 
 
-    @property
-    def book_of_answer(self):
-        """Idiomatic facade: client.book_of_answer.list() / client.book_of_answer.load({"id": ...})."""
-        from entity.book_of_answer_entity import BookOfAnswerEntity
-        cached = getattr(self, "_book_of_answer", None)
-        if cached is None:
-            cached = BookOfAnswerEntity(self, None)
-            self._book_of_answer = cached
-        return cached
-
-    def BookOfAnswer(self, data=None):
-        # Deprecated: use client.book_of_answer instead.
+    def BookOfAnswer(self, data=None) -> "BookOfAnswerEntity":
+        """Entity factory: client.BookOfAnswer().list({}) / client.BookOfAnswer().load({"id": ...})."""
         from entity.book_of_answer_entity import BookOfAnswerEntity
         return BookOfAnswerEntity(self, data)
 
 
-    @property
-    def get_api_doc(self):
-        """Idiomatic facade: client.get_api_doc.list() / client.get_api_doc.load({"id": ...})."""
-        from entity.get_api_doc_entity import GetApiDocEntity
-        cached = getattr(self, "_get_api_doc", None)
-        if cached is None:
-            cached = GetApiDocEntity(self, None)
-            self._get_api_doc = cached
-        return cached
-
-    def GetApiDoc(self, data=None):
-        # Deprecated: use client.get_api_doc instead.
+    def GetApiDoc(self, data=None) -> "GetApiDocEntity":
+        """Entity factory: client.GetApiDoc().list({}) / client.GetApiDoc().load({"id": ...})."""
         from entity.get_api_doc_entity import GetApiDocEntity
         return GetApiDocEntity(self, data)
 
 
-    @property
-    def market_data(self):
-        """Idiomatic facade: client.market_data.list() / client.market_data.load({"id": ...})."""
-        from entity.market_data_entity import MarketDataEntity
-        cached = getattr(self, "_market_data", None)
-        if cached is None:
-            cached = MarketDataEntity(self, None)
-            self._market_data = cached
-        return cached
-
-    def MarketData(self, data=None):
-        # Deprecated: use client.market_data instead.
+    def MarketData(self, data=None) -> "MarketDataEntity":
+        """Entity factory: client.MarketData().list({}) / client.MarketData().load({"id": ...})."""
         from entity.market_data_entity import MarketDataEntity
         return MarketDataEntity(self, data)
 
 
-    @property
-    def poetry__oracle(self):
-        """Idiomatic facade: client.poetry__oracle.list() / client.poetry__oracle.load({"id": ...})."""
-        from entity.poetry__oracle_entity import PoetryOracleEntity
-        cached = getattr(self, "_poetry__oracle", None)
-        if cached is None:
-            cached = PoetryOracleEntity(self, None)
-            self._poetry__oracle = cached
-        return cached
-
-    def PoetryOracle(self, data=None):
-        # Deprecated: use client.poetry__oracle instead.
+    def PoetryOracle(self, data=None) -> "PoetryOracleEntity":
+        """Entity factory: client.PoetryOracle().list({}) / client.PoetryOracle().load({"id": ...})."""
         from entity.poetry__oracle_entity import PoetryOracleEntity
         return PoetryOracleEntity(self, data)
 
 
-    @property
-    def tool(self):
-        """Idiomatic facade: client.tool.list() / client.tool.load({"id": ...})."""
-        from entity.tool_entity import ToolEntity
-        cached = getattr(self, "_tool", None)
-        if cached is None:
-            cached = ToolEntity(self, None)
-            self._tool = cached
-        return cached
-
-    def Tool(self, data=None):
-        # Deprecated: use client.tool instead.
+    def Tool(self, data=None) -> "ToolEntity":
+        """Entity factory: client.Tool().list({}) / client.Tool().load({"id": ...})."""
         from entity.tool_entity import ToolEntity
         return ToolEntity(self, data)
 
 
-    @property
-    def word(self):
-        """Idiomatic facade: client.word.list() / client.word.load({"id": ...})."""
-        from entity.word_entity import WordEntity
-        cached = getattr(self, "_word", None)
-        if cached is None:
-            cached = WordEntity(self, None)
-            self._word = cached
-        return cached
-
-    def Word(self, data=None):
-        # Deprecated: use client.word instead.
+    def Word(self, data=None) -> "WordEntity":
+        """Entity factory: client.Word().list({}) / client.Word().load({"id": ...})."""
         from entity.word_entity import WordEntity
         return WordEntity(self, data)
 
 
-    @property
-    def words_learning(self):
-        """Idiomatic facade: client.words_learning.list() / client.words_learning.load({"id": ...})."""
-        from entity.words_learning_entity import WordsLearningEntity
-        cached = getattr(self, "_words_learning", None)
-        if cached is None:
-            cached = WordsLearningEntity(self, None)
-            self._words_learning = cached
-        return cached
-
-    def WordsLearning(self, data=None):
-        # Deprecated: use client.words_learning instead.
+    def WordsLearning(self, data=None) -> "WordsLearningEntity":
+        """Entity factory: client.WordsLearning().list({}) / client.WordsLearning().load({"id": ...})."""
         from entity.words_learning_entity import WordsLearningEntity
         return WordsLearningEntity(self, data)
 
 
 
     @classmethod
-    def test(cls, testopts=None, sdkopts=None):
+    def test(cls, testopts=None, sdkopts=None) -> "AnswerbookSDK":
         if sdkopts is None:
             sdkopts = {}
         sdkopts = vs.clone(sdkopts)
@@ -354,3 +284,15 @@ class AnswerbookSDK:
         sdk.mode = "test"
 
         return sdk
+
+
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from entity.book_of_answer_entity import BookOfAnswerEntity
+    from entity.get_api_doc_entity import GetApiDocEntity
+    from entity.market_data_entity import MarketDataEntity
+    from entity.poetry__oracle_entity import PoetryOracleEntity
+    from entity.tool_entity import ToolEntity
+    from entity.word_entity import WordEntity
+    from entity.words_learning_entity import WordsLearningEntity

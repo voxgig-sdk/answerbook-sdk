@@ -109,7 +109,7 @@ Prepare a fetch definition without sending the request. Returns the
 ## BookOfAnswerEntity
 
 ```php
-$book_of_answer = $client->book_of_answer();
+$book_of_answer = $client->BookOfAnswer();
 ```
 
 ### Fields
@@ -128,7 +128,7 @@ $book_of_answer = $client->book_of_answer();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->book_of_answer()->load(["id" => "book_of_answer_id"]);
+$result = $client->BookOfAnswer()->load(["id" => "book_of_answer_id"]);
 ```
 
 ### Common Methods
@@ -164,7 +164,7 @@ Return the entity name.
 ## GetApiDocEntity
 
 ```php
-$get_api_doc = $client->get_api_doc();
+$get_api_doc = $client->GetApiDoc();
 ```
 
 ### Operations
@@ -174,7 +174,7 @@ $get_api_doc = $client->get_api_doc();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->get_api_doc()->load(["id" => "get_api_doc_id"]);
+$result = $client->GetApiDoc()->load(["id" => "get_api_doc_id"]);
 ```
 
 ### Common Methods
@@ -210,7 +210,7 @@ Return the entity name.
 ## MarketDataEntity
 
 ```php
-$market_data = $client->market_data();
+$market_data = $client->MarketData();
 ```
 
 ### Fields
@@ -228,7 +228,7 @@ $market_data = $client->market_data();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->market_data()->load(["id" => "market_data_id"]);
+$result = $client->MarketData()->load(["id" => "market_data_id"]);
 ```
 
 ### Common Methods
@@ -264,7 +264,7 @@ Return the entity name.
 ## PoetryOracleEntity
 
 ```php
-$poetry__oracle = $client->poetry__oracle();
+$poetry__oracle = $client->PoetryOracle();
 ```
 
 ### Fields
@@ -281,7 +281,7 @@ $poetry__oracle = $client->poetry__oracle();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->poetry__oracle()->load(["id" => "poetry__oracle_id"]);
+$result = $client->PoetryOracle()->load(["id" => "poetry__oracle_id"]);
 ```
 
 ### Common Methods
@@ -317,7 +317,7 @@ Return the entity name.
 ## ToolEntity
 
 ```php
-$tool = $client->tool();
+$tool = $client->Tool();
 ```
 
 ### Fields
@@ -333,7 +333,7 @@ $tool = $client->tool();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->tool()->load(["id" => "tool_id"]);
+$result = $client->Tool()->load(["id" => "tool_id"]);
 ```
 
 ### Common Methods
@@ -369,7 +369,7 @@ Return the entity name.
 ## WordEntity
 
 ```php
-$word = $client->word();
+$word = $client->Word();
 ```
 
 ### Fields
@@ -387,7 +387,7 @@ $word = $client->word();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->word()->load(["id" => "word_id"]);
+$result = $client->Word()->load(["id" => "word_id"]);
 ```
 
 ### Common Methods
@@ -423,7 +423,7 @@ Return the entity name.
 ## WordsLearningEntity
 
 ```php
-$words_learning = $client->words_learning();
+$words_learning = $client->WordsLearning();
 ```
 
 ### Fields
@@ -439,7 +439,7 @@ $words_learning = $client->words_learning();
 List entities matching the given criteria. Returns an array. Throws on error.
 
 ```php
-$results = $client->words_learning()->list([]);
+$results = $client->WordsLearning()->list([]);
 ```
 
 ### Common Methods

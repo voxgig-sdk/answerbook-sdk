@@ -4,95 +4,85 @@
 # params (op.<name>.points[].args.params[]). Field/param types come from the
 # canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 # @voxgig/apidef VALID_CANON). Do not edit by hand.
+#
+# These are TypedDicts, not dataclasses: the SDK ops return/accept plain dicts
+# at runtime, and a TypedDict IS a dict shape, so the types match the runtime.
+# Optional (req:false) keys are modelled as TypedDict key-optionality
+# (total=False), split into a required base + total=False subclass when a type
+# has both required and optional keys.
 
 from __future__ import annotations
 
-from dataclasses import dataclass
-from typing import Optional, Any
+from typing import TypedDict, Any
 
 
-@dataclass
-class BookOfAnswer:
-    answer: Optional[str] = None
-    answer_i18n: Optional[dict] = None
-    id: Optional[str] = None
-    meta: Optional[dict] = None
+class BookOfAnswer(TypedDict, total=False):
+    answer: str
+    answer_i18n: dict
+    id: str
+    meta: dict
 
 
-@dataclass
-class BookOfAnswerLoadMatch:
-    answer: Optional[str] = None
-    answer_i18n: Optional[dict] = None
-    id: Optional[str] = None
-    meta: Optional[dict] = None
+class BookOfAnswerLoadMatch(TypedDict, total=False):
+    answer: str
+    answer_i18n: dict
+    id: str
+    meta: dict
 
 
-@dataclass
-class GetApiDoc:
+class GetApiDoc(TypedDict):
     pass
 
 
-@dataclass
-class GetApiDocLoadMatch:
+class GetApiDocLoadMatch(TypedDict):
     pass
 
 
-@dataclass
-class MarketData:
-    nasdaq100: Optional[dict] = None
-    sp500: Optional[dict] = None
-    tw0050: Optional[dict] = None
+class MarketData(TypedDict, total=False):
+    nasdaq100: dict
+    sp500: dict
+    tw0050: dict
 
 
-@dataclass
-class MarketDataLoadMatch:
-    nasdaq100: Optional[dict] = None
-    sp500: Optional[dict] = None
-    tw0050: Optional[dict] = None
+class MarketDataLoadMatch(TypedDict, total=False):
+    nasdaq100: dict
+    sp500: dict
+    tw0050: dict
 
 
-@dataclass
-class PoetryOracle:
-    oracle: Optional[dict] = None
-    poem: Optional[dict] = None
+class PoetryOracle(TypedDict, total=False):
+    oracle: dict
+    poem: dict
 
 
-@dataclass
-class PoetryOracleLoadMatch:
-    oracle: Optional[dict] = None
-    poem: Optional[dict] = None
+class PoetryOracleLoadMatch(TypedDict, total=False):
+    oracle: dict
+    poem: dict
 
 
-@dataclass
-class Tool:
-    random_password: Optional[str] = None
+class Tool(TypedDict, total=False):
+    random_password: str
 
 
-@dataclass
-class ToolLoadMatch:
-    random_password: Optional[str] = None
+class ToolLoadMatch(TypedDict, total=False):
+    random_password: str
 
 
-@dataclass
-class Word:
-    category: Optional[str] = None
-    definition: Optional[str] = None
-    word: Optional[str] = None
+class Word(TypedDict, total=False):
+    category: str
+    definition: str
+    word: str
 
 
-@dataclass
-class WordLoadMatch:
+class WordLoadMatch(TypedDict):
     category: str
     word: str
     id: str
 
 
-@dataclass
-class WordsLearning:
-    category: Optional[list] = None
+class WordsLearning(TypedDict, total=False):
+    category: list
 
 
-@dataclass
-class WordsLearningListMatch:
-    category: Optional[list] = None
-
+class WordsLearningListMatch(TypedDict, total=False):
+    category: list

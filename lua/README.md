@@ -34,9 +34,9 @@ local client = sdk.new()
 ### 3. Load a bookofanswer
 
 ```lua
-local result, err = client:bookofanswer():load({ id = "example_id" })
+local bookofanswer, err = client:BookOfAnswer():load({ id = "example_id" })
 if err then error(err) end
-print(result)
+print(bookofanswer)
 ```
 
 
@@ -82,8 +82,8 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:bookofanswer():load({ id = "test01" })
--- result contains mock response data
+local result, err = client:BookOfAnswer():load({ id = "test01" })
+-- result is the loaded data; err is set on failure
 ```
 
 ### Use a custom fetch function
@@ -189,17 +189,22 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return `(any, err)`. The first value is a
-`table` with these keys:
+Entity operations return `(value, err)`. The `value` is the operation's
+data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `ok` | `boolean` | `true` if the HTTP status is 2xx. |
-| `status` | `number` | HTTP status code. |
-| `headers` | `table` | Response headers. |
-| `data` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `load` / `create` / `update` / `remove` | the entity record (a `table`) |
+| `list` | an array (`table`) of entity records |
 
-On error, `ok` is `false` and `err` contains the error value.
+Check `err` first (it is non-`nil` on failure), then use `value`:
+
+    local book_of_answer, err = client:BookOfAnswer():load({ id = "example_id" })
+    if err then error(err) end
+    -- book_of_answer is the loaded record
+
+Only `direct()` returns a response envelope — a `table` with `ok`,
+`status`, `headers`, and `data` keys.
 
 ### Entities
 
@@ -287,7 +292,7 @@ API path: `/words/categories`
 
 ### BookOfAnswer
 
-Create an instance: `const book_of_answer = client.book_of_answer`
+Create an instance: `local book_of_answer = client:BookOfAnswer(nil)`
 
 #### Operations
 
@@ -306,14 +311,14 @@ Create an instance: `const book_of_answer = client.book_of_answer`
 
 #### Example: Load
 
-```ts
-const book_of_answer = await client.book_of_answer.load({ id: 'book_of_answer_id' })
+```lua
+local book_of_answer, err = client:BookOfAnswer():load({ id = "book_of_answer_id" })
 ```
 
 
 ### GetApiDoc
 
-Create an instance: `const get_api_doc = client.get_api_doc`
+Create an instance: `local get_api_doc = client:GetApiDoc(nil)`
 
 #### Operations
 
@@ -323,14 +328,14 @@ Create an instance: `const get_api_doc = client.get_api_doc`
 
 #### Example: Load
 
-```ts
-const get_api_doc = await client.get_api_doc.load({ id: 'get_api_doc_id' })
+```lua
+local get_api_doc, err = client:GetApiDoc():load({ id = "get_api_doc_id" })
 ```
 
 
 ### MarketData
 
-Create an instance: `const market_data = client.market_data`
+Create an instance: `local market_data = client:MarketData(nil)`
 
 #### Operations
 
@@ -348,14 +353,14 @@ Create an instance: `const market_data = client.market_data`
 
 #### Example: Load
 
-```ts
-const market_data = await client.market_data.load({ id: 'market_data_id' })
+```lua
+local market_data, err = client:MarketData():load({ id = "market_data_id" })
 ```
 
 
 ### PoetryOracle
 
-Create an instance: `const poetry__oracle = client.poetry__oracle`
+Create an instance: `local poetry__oracle = client:PoetryOracle(nil)`
 
 #### Operations
 
@@ -372,14 +377,14 @@ Create an instance: `const poetry__oracle = client.poetry__oracle`
 
 #### Example: Load
 
-```ts
-const poetry__oracle = await client.poetry__oracle.load({ id: 'poetry__oracle_id' })
+```lua
+local poetry__oracle, err = client:PoetryOracle():load({ id = "poetry__oracle_id" })
 ```
 
 
 ### Tool
 
-Create an instance: `const tool = client.tool`
+Create an instance: `local tool = client:Tool(nil)`
 
 #### Operations
 
@@ -395,14 +400,14 @@ Create an instance: `const tool = client.tool`
 
 #### Example: Load
 
-```ts
-const tool = await client.tool.load({ id: 'tool_id' })
+```lua
+local tool, err = client:Tool():load({ id = "tool_id" })
 ```
 
 
 ### Word
 
-Create an instance: `const word = client.word`
+Create an instance: `local word = client:Word(nil)`
 
 #### Operations
 
@@ -420,14 +425,14 @@ Create an instance: `const word = client.word`
 
 #### Example: Load
 
-```ts
-const word = await client.word.load({ id: 'word_id' })
+```lua
+local word, err = client:Word():load({ id = "word_id" })
 ```
 
 
 ### WordsLearning
 
-Create an instance: `const words_learning = client.words_learning`
+Create an instance: `local words_learning = client:WordsLearning(nil)`
 
 #### Operations
 
@@ -443,8 +448,8 @@ Create an instance: `const words_learning = client.words_learning`
 
 #### Example: List
 
-```ts
-const words_learnings = await client.words_learning.list()
+```lua
+local words_learnings, err = client:WordsLearning():list()
 ```
 
 
@@ -519,7 +524,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local bookofanswer = client:bookofanswer()
+local bookofanswer = client:BookOfAnswer()
 bookofanswer:load({ id = "example_id" })
 
 -- bookofanswer:data_get() now returns the loaded bookofanswer data

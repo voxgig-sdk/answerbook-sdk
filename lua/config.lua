@@ -490,7 +490,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body.word`",
+                  ["res"] = "`body`",
                 },
                 ["index$"] = 0,
               },
@@ -527,7 +527,7 @@ local function make_config()
                 },
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body.word`",
+                  ["res"] = "`body`",
                 },
                 ["index$"] = 1,
               },

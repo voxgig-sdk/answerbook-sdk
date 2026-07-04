@@ -110,7 +110,7 @@ same parameters as `direct()`. Raises on error.
 ## BookOfAnswerEntity
 
 ```ruby
-book_of_answer = client.book_of_answer
+book_of_answer = client.BookOfAnswer
 ```
 
 ### Fields
@@ -129,7 +129,7 @@ book_of_answer = client.book_of_answer
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.book_of_answer.load({ "id" => "book_of_answer_id" })
+result = client.BookOfAnswer.load({ "id" => "book_of_answer_id" })
 ```
 
 ### Common Methods
@@ -165,7 +165,7 @@ Return the entity name.
 ## GetApiDocEntity
 
 ```ruby
-get_api_doc = client.get_api_doc
+get_api_doc = client.GetApiDoc
 ```
 
 ### Operations
@@ -175,7 +175,7 @@ get_api_doc = client.get_api_doc
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.get_api_doc.load({ "id" => "get_api_doc_id" })
+result = client.GetApiDoc.load({ "id" => "get_api_doc_id" })
 ```
 
 ### Common Methods
@@ -211,7 +211,7 @@ Return the entity name.
 ## MarketDataEntity
 
 ```ruby
-market_data = client.market_data
+market_data = client.MarketData
 ```
 
 ### Fields
@@ -229,7 +229,7 @@ market_data = client.market_data
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.market_data.load({ "id" => "market_data_id" })
+result = client.MarketData.load({ "id" => "market_data_id" })
 ```
 
 ### Common Methods
@@ -265,7 +265,7 @@ Return the entity name.
 ## PoetryOracleEntity
 
 ```ruby
-poetry__oracle = client.poetry__oracle
+poetry__oracle = client.PoetryOracle
 ```
 
 ### Fields
@@ -282,7 +282,7 @@ poetry__oracle = client.poetry__oracle
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.poetry__oracle.load({ "id" => "poetry__oracle_id" })
+result = client.PoetryOracle.load({ "id" => "poetry__oracle_id" })
 ```
 
 ### Common Methods
@@ -318,7 +318,7 @@ Return the entity name.
 ## ToolEntity
 
 ```ruby
-tool = client.tool
+tool = client.Tool
 ```
 
 ### Fields
@@ -334,7 +334,7 @@ tool = client.tool
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.tool.load({ "id" => "tool_id" })
+result = client.Tool.load({ "id" => "tool_id" })
 ```
 
 ### Common Methods
@@ -370,7 +370,7 @@ Return the entity name.
 ## WordEntity
 
 ```ruby
-word = client.word
+word = client.Word
 ```
 
 ### Fields
@@ -388,7 +388,7 @@ word = client.word
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.word.load({ "id" => "word_id" })
+result = client.Word.load({ "id" => "word_id" })
 ```
 
 ### Common Methods
@@ -424,7 +424,7 @@ Return the entity name.
 ## WordsLearningEntity
 
 ```ruby
-words_learning = client.words_learning
+words_learning = client.WordsLearning
 ```
 
 ### Fields
@@ -440,7 +440,7 @@ words_learning = client.words_learning
 List entities matching the given criteria. Returns an array. Raises on error.
 
 ```ruby
-results = client.words_learning.list(nil)
+results = client.WordsLearning.list(nil)
 ```
 
 ### Common Methods

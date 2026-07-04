@@ -244,8 +244,9 @@ end
 
 
 
--- Idiomatic facade: client:book_of_answer():list() / client:book_of_answer():load({ id = ... })
-function AnswerbookSDK:book_of_answer(data)
+-- Idiomatic facade: client:BookOfAnswer():list() / client:BookOfAnswer():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AnswerbookSDK:BookOfAnswer(data)
   local EntityMod = require("entity.book_of_answer_entity")
   if data == nil then
     if self._book_of_answer == nil then
@@ -256,15 +257,10 @@ function AnswerbookSDK:book_of_answer(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:book_of_answer() instead.
-function AnswerbookSDK:BookOfAnswer(data)
-  local EntityMod = require("entity.book_of_answer_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:get_api_doc():list() / client:get_api_doc():load({ id = ... })
-function AnswerbookSDK:get_api_doc(data)
+-- Idiomatic facade: client:GetApiDoc():list() / client:GetApiDoc():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AnswerbookSDK:GetApiDoc(data)
   local EntityMod = require("entity.get_api_doc_entity")
   if data == nil then
     if self._get_api_doc == nil then
@@ -275,15 +271,10 @@ function AnswerbookSDK:get_api_doc(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:get_api_doc() instead.
-function AnswerbookSDK:GetApiDoc(data)
-  local EntityMod = require("entity.get_api_doc_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:market_data():list() / client:market_data():load({ id = ... })
-function AnswerbookSDK:market_data(data)
+-- Idiomatic facade: client:MarketData():list() / client:MarketData():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AnswerbookSDK:MarketData(data)
   local EntityMod = require("entity.market_data_entity")
   if data == nil then
     if self._market_data == nil then
@@ -294,15 +285,10 @@ function AnswerbookSDK:market_data(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:market_data() instead.
-function AnswerbookSDK:MarketData(data)
-  local EntityMod = require("entity.market_data_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:poetry__oracle():list() / client:poetry__oracle():load({ id = ... })
-function AnswerbookSDK:poetry__oracle(data)
+-- Idiomatic facade: client:PoetryOracle():list() / client:PoetryOracle():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AnswerbookSDK:PoetryOracle(data)
   local EntityMod = require("entity.poetry__oracle_entity")
   if data == nil then
     if self._poetry__oracle == nil then
@@ -313,15 +299,10 @@ function AnswerbookSDK:poetry__oracle(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:poetry__oracle() instead.
-function AnswerbookSDK:PoetryOracle(data)
-  local EntityMod = require("entity.poetry__oracle_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:tool():list() / client:tool():load({ id = ... })
-function AnswerbookSDK:tool(data)
+-- Idiomatic facade: client:Tool():list() / client:Tool():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AnswerbookSDK:Tool(data)
   local EntityMod = require("entity.tool_entity")
   if data == nil then
     if self._tool == nil then
@@ -332,15 +313,10 @@ function AnswerbookSDK:tool(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:tool() instead.
-function AnswerbookSDK:Tool(data)
-  local EntityMod = require("entity.tool_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:word():list() / client:word():load({ id = ... })
-function AnswerbookSDK:word(data)
+-- Idiomatic facade: client:Word():list() / client:Word():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AnswerbookSDK:Word(data)
   local EntityMod = require("entity.word_entity")
   if data == nil then
     if self._word == nil then
@@ -351,15 +327,10 @@ function AnswerbookSDK:word(data)
   return EntityMod.new(self, data)
 end
 
--- Deprecated: use client:word() instead.
-function AnswerbookSDK:Word(data)
-  local EntityMod = require("entity.word_entity")
-  return EntityMod.new(self, data)
-end
 
-
--- Idiomatic facade: client:words_learning():list() / client:words_learning():load({ id = ... })
-function AnswerbookSDK:words_learning(data)
+-- Idiomatic facade: client:WordsLearning():list() / client:WordsLearning():load({ id = ... })
+-- Entity access is capitalised (PascalCase) for parity with the other SDKs.
+function AnswerbookSDK:WordsLearning(data)
   local EntityMod = require("entity.words_learning_entity")
   if data == nil then
     if self._words_learning == nil then
@@ -367,12 +338,6 @@ function AnswerbookSDK:words_learning(data)
     end
     return self._words_learning
   end
-  return EntityMod.new(self, data)
-end
-
--- Deprecated: use client:words_learning() instead.
-function AnswerbookSDK:WordsLearning(data)
-  local EntityMod = require("entity.words_learning_entity")
   return EntityMod.new(self, data)
 end
 

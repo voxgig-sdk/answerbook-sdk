@@ -208,91 +208,49 @@ class AnswerbookSDK
   end
 
 
-  # Idiomatic facade: client.book_of_answer.list / client.book_of_answer.load({ "id" => ... })
-  def book_of_answer
-    require_relative 'entity/book_of_answer_entity'
-    @book_of_answer ||= BookOfAnswerEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.book_of_answer instead.
+  # Canonical facade: client.BookOfAnswer.list / client.BookOfAnswer.load({ "id" => ... })
   def BookOfAnswer(data = nil)
     require_relative 'entity/book_of_answer_entity'
     BookOfAnswerEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.get_api_doc.list / client.get_api_doc.load({ "id" => ... })
-  def get_api_doc
-    require_relative 'entity/get_api_doc_entity'
-    @get_api_doc ||= GetApiDocEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.get_api_doc instead.
+  # Canonical facade: client.GetApiDoc.list / client.GetApiDoc.load({ "id" => ... })
   def GetApiDoc(data = nil)
     require_relative 'entity/get_api_doc_entity'
     GetApiDocEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.market_data.list / client.market_data.load({ "id" => ... })
-  def market_data
-    require_relative 'entity/market_data_entity'
-    @market_data ||= MarketDataEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.market_data instead.
+  # Canonical facade: client.MarketData.list / client.MarketData.load({ "id" => ... })
   def MarketData(data = nil)
     require_relative 'entity/market_data_entity'
     MarketDataEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.poetry__oracle.list / client.poetry__oracle.load({ "id" => ... })
-  def poetry__oracle
-    require_relative 'entity/poetry__oracle_entity'
-    @poetry__oracle ||= PoetryOracleEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.poetry__oracle instead.
+  # Canonical facade: client.PoetryOracle.list / client.PoetryOracle.load({ "id" => ... })
   def PoetryOracle(data = nil)
     require_relative 'entity/poetry__oracle_entity'
     PoetryOracleEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.tool.list / client.tool.load({ "id" => ... })
-  def tool
-    require_relative 'entity/tool_entity'
-    @tool ||= ToolEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.tool instead.
+  # Canonical facade: client.Tool.list / client.Tool.load({ "id" => ... })
   def Tool(data = nil)
     require_relative 'entity/tool_entity'
     ToolEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.word.list / client.word.load({ "id" => ... })
-  def word
-    require_relative 'entity/word_entity'
-    @word ||= WordEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.word instead.
+  # Canonical facade: client.Word.list / client.Word.load({ "id" => ... })
   def Word(data = nil)
     require_relative 'entity/word_entity'
     WordEntity.new(self, data)
   end
 
 
-  # Idiomatic facade: client.words_learning.list / client.words_learning.load({ "id" => ... })
-  def words_learning
-    require_relative 'entity/words_learning_entity'
-    @words_learning ||= WordsLearningEntity.new(self, nil)
-  end
-
-  # Deprecated: use client.words_learning instead.
+  # Canonical facade: client.WordsLearning.list / client.WordsLearning.load({ "id" => ... })
   def WordsLearning(data = nil)
     require_relative 'entity/words_learning_entity'
     WordsLearningEntity.new(self, data)

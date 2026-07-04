@@ -30,36 +30,30 @@ go mod edit -replace github.com/voxgig-sdk/answerbook-sdk/go=../answerbook-sdk/g
 This tutorial walks through creating a client, listing entities, and
 loading a specific record.
 
-### 1. Create a client
+### Quickstart
+
+A complete program: create a client, then call the entity operations.
+Each operation returns `(value, error)` — the value is the data itself
+(there is no `{ok, data}` wrapper), so check `err` and use the value
+directly.
 
 ```go
 package main
 
 import (
     "fmt"
-
     sdk "github.com/voxgig-sdk/answerbook-sdk/go"
-    "github.com/voxgig-sdk/answerbook-sdk/go/core"
 )
 
 func main() {
     client := sdk.New()
-```
 
-### 3. Load a bookofanswer
-
-```go
-    result, err = client.BookOfAnswer(nil).Load(
-        map[string]any{"id": "example_id"}, nil,
-    )
+    // Load a single bookofanswer — the value is the loaded record.
+    bookofanswer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-
-    rm = core.ToMapAny(result)
-    if rm["ok"] == true {
-        fmt.Println(rm["data"])
-    }
+    fmt.Println(bookofanswer)
 }
 ```
 
@@ -110,10 +104,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-result, err := client.BookOfAnswer(nil).Load(
+bookofanswer, err := client.BookOfAnswer(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
-// result contains mock response data
+if err != nil {
+    panic(err)
+}
+fmt.Println(bookofanswer) // the loaded mock data
 ```
 
 ### Use a custom fetch function
@@ -216,17 +213,24 @@ All entities implement the `AnswerbookEntity` interface.
 
 ### Result shape
 
-Entity operations return `(any, error)`. The `any` value is a
-`map[string]any` with these keys:
+Entity operations return `(value, error)`. The `value` is the
+operation's data **directly** — there is no wrapper:
 
-| Key | Type | Description |
-| --- | --- | --- |
-| `"ok"` | `bool` | `true` if the HTTP status is 2xx. |
-| `"status"` | `int` | HTTP status code. |
-| `"headers"` | `map[string]any` | Response headers. |
-| `"data"` | `any` | Parsed JSON response body. |
+| Operation | `value` |
+| --- | --- |
+| `Load` / `Create` / `Update` / `Remove` | the entity record (`map[string]any`) |
+| `List` | a `[]any` of entity records |
 
-On error, `"ok"` is `false` and `"err"` contains the error value.
+Check `err` first, then use the value directly (or the typed
+`...Typed` variants, which return the entity's model struct and a typed
+slice):
+
+    bookofanswer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "example_id"}, nil)
+    if err != nil { /* handle */ }
+    // bookofanswer is the loaded record
+
+Only `Direct()` returns a response envelope — a `map[string]any` with
+`"ok"`, `"status"`, `"headers"`, and `"data"` keys.
 
 ### Entities
 
@@ -334,7 +338,11 @@ Create an instance: `book_of_answer := client.BookOfAnswer(nil)`
 #### Example: Load
 
 ```go
-result, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "book_of_answer_id"}, nil)
+book_of_answer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "book_of_answer_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(book_of_answer) // the loaded record
 ```
 
 
@@ -351,7 +359,11 @@ Create an instance: `get_api_doc := client.GetApiDoc(nil)`
 #### Example: Load
 
 ```go
-result, err := client.GetApiDoc(nil).Load(map[string]any{"id": "get_api_doc_id"}, nil)
+get_api_doc, err := client.GetApiDoc(nil).Load(map[string]any{"id": "get_api_doc_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(get_api_doc) // the loaded record
 ```
 
 
@@ -376,7 +388,11 @@ Create an instance: `market_data := client.MarketData(nil)`
 #### Example: Load
 
 ```go
-result, err := client.MarketData(nil).Load(map[string]any{"id": "market_data_id"}, nil)
+market_data, err := client.MarketData(nil).Load(map[string]any{"id": "market_data_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(market_data) // the loaded record
 ```
 
 
@@ -400,7 +416,11 @@ Create an instance: `poetry__oracle := client.PoetryOracle(nil)`
 #### Example: Load
 
 ```go
-result, err := client.PoetryOracle(nil).Load(map[string]any{"id": "poetry__oracle_id"}, nil)
+poetry__oracle, err := client.PoetryOracle(nil).Load(map[string]any{"id": "poetry__oracle_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(poetry__oracle) // the loaded record
 ```
 
 
@@ -423,7 +443,11 @@ Create an instance: `tool := client.Tool(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Tool(nil).Load(map[string]any{"id": "tool_id"}, nil)
+tool, err := client.Tool(nil).Load(map[string]any{"id": "tool_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(tool) // the loaded record
 ```
 
 
@@ -448,7 +472,11 @@ Create an instance: `word := client.Word(nil)`
 #### Example: Load
 
 ```go
-result, err := client.Word(nil).Load(map[string]any{"id": "word_id"}, nil)
+word, err := client.Word(nil).Load(map[string]any{"id": "word_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(word) // the loaded record
 ```
 
 
@@ -471,7 +499,11 @@ Create an instance: `words_learning := client.WordsLearning(nil)`
 #### Example: List
 
 ```go
-results, err := client.WordsLearning(nil).List(nil, nil)
+words_learnings, err := client.WordsLearning(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(words_learnings) // the array of records
 ```
 
 

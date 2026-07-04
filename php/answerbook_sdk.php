@@ -233,10 +233,10 @@ class AnswerbookSDK
 
     private $_book_of_answer = null;
 
-    // Idiomatic facade: $client->book_of_answer()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias BookOfAnswer() (PHP method
-    // names are case-insensitive).
-    public function book_of_answer($data = null)
+    // Canonical facade: $client->BookOfAnswer()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->book_of_answer()
+    // resolves here too.
+    public function BookOfAnswer($data = null)
     {
         require_once __DIR__ . '/entity/book_of_answer_entity.php';
         if ($data === null) {
@@ -251,10 +251,10 @@ class AnswerbookSDK
 
     private $_get_api_doc = null;
 
-    // Idiomatic facade: $client->get_api_doc()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias GetApiDoc() (PHP method
-    // names are case-insensitive).
-    public function get_api_doc($data = null)
+    // Canonical facade: $client->GetApiDoc()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->get_api_doc()
+    // resolves here too.
+    public function GetApiDoc($data = null)
     {
         require_once __DIR__ . '/entity/get_api_doc_entity.php';
         if ($data === null) {
@@ -269,10 +269,10 @@ class AnswerbookSDK
 
     private $_market_data = null;
 
-    // Idiomatic facade: $client->market_data()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias MarketData() (PHP method
-    // names are case-insensitive).
-    public function market_data($data = null)
+    // Canonical facade: $client->MarketData()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->market_data()
+    // resolves here too.
+    public function MarketData($data = null)
     {
         require_once __DIR__ . '/entity/market_data_entity.php';
         if ($data === null) {
@@ -287,10 +287,10 @@ class AnswerbookSDK
 
     private $_poetry__oracle = null;
 
-    // Idiomatic facade: $client->poetry__oracle()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias PoetryOracle() (PHP method
-    // names are case-insensitive).
-    public function poetry__oracle($data = null)
+    // Canonical facade: $client->PoetryOracle()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->poetry__oracle()
+    // resolves here too.
+    public function PoetryOracle($data = null)
     {
         require_once __DIR__ . '/entity/poetry__oracle_entity.php';
         if ($data === null) {
@@ -305,10 +305,10 @@ class AnswerbookSDK
 
     private $_tool = null;
 
-    // Idiomatic facade: $client->tool()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Tool() (PHP method
-    // names are case-insensitive).
-    public function tool($data = null)
+    // Canonical facade: $client->Tool()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->tool()
+    // resolves here too.
+    public function Tool($data = null)
     {
         require_once __DIR__ . '/entity/tool_entity.php';
         if ($data === null) {
@@ -323,10 +323,10 @@ class AnswerbookSDK
 
     private $_word = null;
 
-    // Idiomatic facade: $client->word()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias Word() (PHP method
-    // names are case-insensitive).
-    public function word($data = null)
+    // Canonical facade: $client->Word()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->word()
+    // resolves here too.
+    public function Word($data = null)
     {
         require_once __DIR__ . '/entity/word_entity.php';
         if ($data === null) {
@@ -341,10 +341,10 @@ class AnswerbookSDK
 
     private $_words_learning = null;
 
-    // Idiomatic facade: $client->words_learning()->list() / ->load(["id" => ...]).
-    // Also serves the deprecated PascalCase alias WordsLearning() (PHP method
-    // names are case-insensitive).
-    public function words_learning($data = null)
+    // Canonical facade: $client->WordsLearning()->list() / ->load(["id" => ...]).
+    // PHP method names are case-insensitive, so lowercase $client->words_learning()
+    // resolves here too.
+    public function WordsLearning($data = null)
     {
         require_once __DIR__ . '/entity/words_learning_entity.php';
         if ($data === null) {

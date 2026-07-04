@@ -30,11 +30,14 @@ const client = new AnswerbookSDK()
 
 ### 3. Load a bookofanswer
 
-```ts
-const result = await client.bookofanswer.load({ id: 'example_id' })
+`load()` returns the entity directly and throws on failure:
 
-if (result.ok) {
-  console.log(result.data)
+```ts
+try {
+  const bookofanswer = await client.BookOfAnswer().load({ id: 'example_id' })
+  console.log(bookofanswer)
+} catch (err) {
+  console.error('load failed:', err)
 }
 ```
 
@@ -52,6 +55,9 @@ const result = await client.direct({
   params: { id: 'example' },
 })
 
+if (result instanceof Error) {
+  throw result
+}
 if (result.ok) {
   console.log(result.status)  // 200
   console.log(result.data)    // response body
@@ -80,9 +86,9 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AnswerbookSDK.test()
 
-const result = await client.bookofanswer.load({ id: 'test01' })
-// result.ok === true
-// result.data contains mock response data
+const bookofanswer = await client.BookOfAnswer().load({ id: 'test01' })
+// bookofanswer is a bare entity populated with mock response data
+console.log(bookofanswer)
 ```
 
 You can also use the instance method:
@@ -97,7 +103,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.bookofanswer
+const entity = client.BookOfAnswer()
 
 // First call sets internal match
 await entity.load({ id: 'example' })
@@ -198,29 +204,30 @@ All entities share the same interface.
 
 | Method | Signature | Description |
 | --- | --- | --- |
-| `load` | `load(reqmatch?, ctrl?): Promise<Result>` | Load a single entity by match criteria. |
-| `list` | `list(reqmatch?, ctrl?): Promise<Result>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Result>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Result>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<Result>` | Remove an entity. |
+| `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
+| `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
+| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
+| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
+| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
 | `data` | `data(data?): any` | Get or set entity data. |
 | `match` | `match(match?): any` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): AnswerbookSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
 
-#### Result shape
+#### Return values
 
-All entity operations return a Result object:
+Entity operations resolve to the entity data directly — there is no
+result envelope:
 
-```ts
-{
-  ok: boolean      // true if the HTTP status is 2xx
-  status: number   // HTTP status code
-  headers: object  // response headers
-  data: any        // parsed JSON response body
-}
-```
+- `load`, `create` and `update` resolve to a single entity object.
+- `list` resolves to an **array** of entity objects (iterate it directly;
+  there is no `.data` and no `.ok`).
+- `remove` resolves to `void`.
+
+On a failed request these methods **throw**, so wrap calls in
+`try`/`catch` to handle errors. Only `direct()` returns the result
+envelope described below.
 
 ### DirectResult shape
 
@@ -336,7 +343,7 @@ API path: `/words/categories`
 
 ### BookOfAnswer
 
-Create an instance: `const book_of_answer = client.book_of_answer`
+Create an instance: `const book_of_answer = client.BookOfAnswer()`
 
 #### Operations
 
@@ -356,13 +363,13 @@ Create an instance: `const book_of_answer = client.book_of_answer`
 #### Example: Load
 
 ```ts
-const book_of_answer = await client.book_of_answer.load({ id: 'book_of_answer_id' })
+const book_of_answer = await client.BookOfAnswer().load({ id: 'book_of_answer_id' })
 ```
 
 
 ### GetApiDoc
 
-Create an instance: `const get_api_doc = client.get_api_doc`
+Create an instance: `const get_api_doc = client.GetApiDoc()`
 
 #### Operations
 
@@ -373,13 +380,13 @@ Create an instance: `const get_api_doc = client.get_api_doc`
 #### Example: Load
 
 ```ts
-const get_api_doc = await client.get_api_doc.load({ id: 'get_api_doc_id' })
+const get_api_doc = await client.GetApiDoc().load({ id: 'get_api_doc_id' })
 ```
 
 
 ### MarketData
 
-Create an instance: `const market_data = client.market_data`
+Create an instance: `const market_data = client.MarketData()`
 
 #### Operations
 
@@ -398,13 +405,13 @@ Create an instance: `const market_data = client.market_data`
 #### Example: Load
 
 ```ts
-const market_data = await client.market_data.load({ id: 'market_data_id' })
+const market_data = await client.MarketData().load({ id: 'market_data_id' })
 ```
 
 
 ### PoetryOracle
 
-Create an instance: `const poetry__oracle = client.poetry__oracle`
+Create an instance: `const poetry__oracle = client.PoetryOracle()`
 
 #### Operations
 
@@ -422,13 +429,13 @@ Create an instance: `const poetry__oracle = client.poetry__oracle`
 #### Example: Load
 
 ```ts
-const poetry__oracle = await client.poetry__oracle.load({ id: 'poetry__oracle_id' })
+const poetry__oracle = await client.PoetryOracle().load({ id: 'poetry__oracle_id' })
 ```
 
 
 ### Tool
 
-Create an instance: `const tool = client.tool`
+Create an instance: `const tool = client.Tool()`
 
 #### Operations
 
@@ -445,13 +452,13 @@ Create an instance: `const tool = client.tool`
 #### Example: Load
 
 ```ts
-const tool = await client.tool.load({ id: 'tool_id' })
+const tool = await client.Tool().load({ id: 'tool_id' })
 ```
 
 
 ### Word
 
-Create an instance: `const word = client.word`
+Create an instance: `const word = client.Word()`
 
 #### Operations
 
@@ -470,13 +477,13 @@ Create an instance: `const word = client.word`
 #### Example: Load
 
 ```ts
-const word = await client.word.load({ id: 'word_id' })
+const word = await client.Word().load({ id: 'word_id' })
 ```
 
 
 ### WordsLearning
 
-Create an instance: `const words_learning = client.words_learning`
+Create an instance: `const words_learning = client.WordsLearning()`
 
 #### Operations
 
@@ -493,7 +500,7 @@ Create an instance: `const words_learning = client.words_learning`
 #### Example: List
 
 ```ts
-const words_learnings = await client.words_learning.list()
+const words_learnings = await client.WordsLearning().list()
 ```
 
 
@@ -564,7 +571,7 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const bookofanswer = client.bookofanswer
+const bookofanswer = client.BookOfAnswer()
 await bookofanswer.load({ id: "example_id" })
 
 // bookofanswer.data() now returns the loaded bookofanswer data

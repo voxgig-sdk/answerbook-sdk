@@ -482,7 +482,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body.word`"
+                    "res": "`body`"
                   }
                 },
                 {
@@ -517,7 +517,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body.word`"
+                    "res": "`body`"
                   }
                 }
               ]

@@ -33,9 +33,10 @@ $client = new AnswerbookSDK();
 
 ```php
 try {
-    $result = $client->bookofanswer()->load(["id" => "example_id"]);
-    print_r($result);
-} catch (\Exception $err) {
+    // load() returns the bare BookOfAnswer record (throws on error).
+    $bookofanswer = $client->BookOfAnswer()->load(["id" => "example_id"]);
+    print_r($bookofanswer);
+} catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
 ```
@@ -81,13 +82,17 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required:
+Create a mock client for unit testing — no server required. Seed fixture
+data via the `entity` option so offline calls resolve without a live server:
 
 ```php
-$client = AnswerbookSDK::test();
+$client = AnswerbookSDK::test([
+    "entity" => ["bookofanswer" => ["test01" => ["id" => "test01"]]],
+]);
 
-$result = $client->bookofanswer()->load(["id" => "test01"]);
-// $result contains mock response data
+// load() returns the bare mock record (throws on error).
+$bookofanswer = $client->BookOfAnswer()->load(["id" => "test01"]);
+print_r($bookofanswer);
 ```
 
 ### Use a custom fetch function
@@ -296,7 +301,7 @@ API path: `/words/categories`
 
 ### BookOfAnswer
 
-Create an instance: `const book_of_answer = client.book_of_answer`
+Create an instance: `$book_of_answer = $client->BookOfAnswer();`
 
 #### Operations
 
@@ -315,14 +320,15 @@ Create an instance: `const book_of_answer = client.book_of_answer`
 
 #### Example: Load
 
-```ts
-const book_of_answer = await client.book_of_answer.load({ id: 'book_of_answer_id' })
+```php
+// load() returns the bare BookOfAnswer record (throws on error).
+$book_of_answer = $client->BookOfAnswer()->load(["id" => "book_of_answer_id"]);
 ```
 
 
 ### GetApiDoc
 
-Create an instance: `const get_api_doc = client.get_api_doc`
+Create an instance: `$get_api_doc = $client->GetApiDoc();`
 
 #### Operations
 
@@ -332,14 +338,15 @@ Create an instance: `const get_api_doc = client.get_api_doc`
 
 #### Example: Load
 
-```ts
-const get_api_doc = await client.get_api_doc.load({ id: 'get_api_doc_id' })
+```php
+// load() returns the bare GetApiDoc record (throws on error).
+$get_api_doc = $client->GetApiDoc()->load(["id" => "get_api_doc_id"]);
 ```
 
 
 ### MarketData
 
-Create an instance: `const market_data = client.market_data`
+Create an instance: `$market_data = $client->MarketData();`
 
 #### Operations
 
@@ -357,14 +364,15 @@ Create an instance: `const market_data = client.market_data`
 
 #### Example: Load
 
-```ts
-const market_data = await client.market_data.load({ id: 'market_data_id' })
+```php
+// load() returns the bare MarketData record (throws on error).
+$market_data = $client->MarketData()->load(["id" => "market_data_id"]);
 ```
 
 
 ### PoetryOracle
 
-Create an instance: `const poetry__oracle = client.poetry__oracle`
+Create an instance: `$poetry__oracle = $client->PoetryOracle();`
 
 #### Operations
 
@@ -381,14 +389,15 @@ Create an instance: `const poetry__oracle = client.poetry__oracle`
 
 #### Example: Load
 
-```ts
-const poetry__oracle = await client.poetry__oracle.load({ id: 'poetry__oracle_id' })
+```php
+// load() returns the bare PoetryOracle record (throws on error).
+$poetry__oracle = $client->PoetryOracle()->load(["id" => "poetry__oracle_id"]);
 ```
 
 
 ### Tool
 
-Create an instance: `const tool = client.tool`
+Create an instance: `$tool = $client->Tool();`
 
 #### Operations
 
@@ -404,14 +413,15 @@ Create an instance: `const tool = client.tool`
 
 #### Example: Load
 
-```ts
-const tool = await client.tool.load({ id: 'tool_id' })
+```php
+// load() returns the bare Tool record (throws on error).
+$tool = $client->Tool()->load(["id" => "tool_id"]);
 ```
 
 
 ### Word
 
-Create an instance: `const word = client.word`
+Create an instance: `$word = $client->Word();`
 
 #### Operations
 
@@ -429,14 +439,15 @@ Create an instance: `const word = client.word`
 
 #### Example: Load
 
-```ts
-const word = await client.word.load({ id: 'word_id' })
+```php
+// load() returns the bare Word record (throws on error).
+$word = $client->Word()->load(["id" => "word_id"]);
 ```
 
 
 ### WordsLearning
 
-Create an instance: `const words_learning = client.words_learning`
+Create an instance: `$words_learning = $client->WordsLearning();`
 
 #### Operations
 
@@ -452,8 +463,9 @@ Create an instance: `const words_learning = client.words_learning`
 
 #### Example: List
 
-```ts
-const words_learnings = await client.words_learning.list()
+```php
+// list() returns an array of WordsLearning records (throws on error).
+$words_learnings = $client->WordsLearning()->list();
 ```
 
 
@@ -528,7 +540,7 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$bookofanswer = $client->bookofanswer();
+$bookofanswer = $client->BookOfAnswer();
 $bookofanswer->load(["id" => "example_id"]);
 
 // $bookofanswer->dataGet() now returns the loaded bookofanswer data

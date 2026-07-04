@@ -26,9 +26,9 @@ import { AnswerbookSDK } from '@voxgig-sdk/answerbook'
 
 const client = new AnswerbookSDK()
 
-// Load bookofanswer data
-const bookofanswer = await client.bookofanswer.load({})
-console.log(bookofanswer.data)
+// Load bookofanswer data (returns a BookOfAnswer)
+const bookofanswer = await client.BookOfAnswer().load()
+console.log(bookofanswer)
 ```
 
 See the [TypeScript README](ts/README.md) for the full guide.
@@ -90,8 +90,8 @@ from answerbook_sdk import AnswerbookSDK
 client = AnswerbookSDK()
 
 
-# Load a specific bookofanswer
-bookofanswer = client.bookofanswer.load({"id": "example_id"})
+# Load a specific bookofanswer (returns the record, raises on error)
+bookofanswer = client.BookOfAnswer().load({"id": "example_id"})
 print(bookofanswer)
 ```
 
@@ -104,8 +104,8 @@ require_once 'answerbook_sdk.php';
 $client = new AnswerbookSDK();
 
 
-// Load a specific bookofanswer
-$bookofanswer = $client->bookofanswer()->load(["id" => "example_id"]);
+// Load a specific bookofanswer (returns the bare record; throws on error)
+$bookofanswer = $client->BookOfAnswer()->load(["id" => "example_id"]);
 print_r($bookofanswer);
 ```
 
@@ -129,8 +129,8 @@ require_relative "Answerbook_sdk"
 client = AnswerbookSDK.new
 
 
-# Load a specific bookofanswer
-bookofanswer = client.bookofanswer.load({ "id" => "example_id" })
+# Load a specific bookofanswer (returns the bare record; raises on error)
+bookofanswer = client.BookOfAnswer.load({ "id" => "example_id" })
 puts bookofanswer
 ```
 
@@ -143,7 +143,7 @@ local client = sdk.new()
 
 
 -- Load a specific bookofanswer
-local bookofanswer, err = client:bookofanswer():load({ id = "example_id" })
+local bookofanswer, err = client:BookOfAnswer():load({ id = "example_id" })
 print(bookofanswer)
 ```
 
@@ -156,22 +156,27 @@ in-memory mock, so unit tests run offline.
 
 ```ts
 const client = AnswerbookSDK.test()
-const result = await client.bookofanswer.load({ id: 'test01' })
-// result.ok === true, result.data contains mock data
+const bookofanswer = await client.BookOfAnswer().load({ id: 'test01' })
+// bookofanswer is a bare BookOfAnswer populated with mock data
+console.log(bookofanswer)
 ```
 
 ### Python
 
 ```python
 client = AnswerbookSDK.test()
-result = client.bookofanswer.load({"id": "test01"})
+bookofanswer = client.BookOfAnswer().load({"id": "test01"})
+print(bookofanswer)
 ```
 
 ### PHP
 
 ```php
-$client = AnswerbookSDK::test();
-$result = $client->bookofanswer()->load(["id" => "test01"]);
+// Seed fixture data so offline calls resolve without a live server.
+$client = AnswerbookSDK::test([
+    "entity" => ["bookofanswer" => ["test01" => ["id" => "test01"]]],
+]);
+$bookofanswer = $client->BookOfAnswer()->load(["id" => "test01"]);
 ```
 
 ### Golang
@@ -186,15 +191,18 @@ result, err := client.BookOfAnswer(nil).Load(
 ### Ruby
 
 ```ruby
-client = AnswerbookSDK.test
-result = client.bookofanswer.load({ "id" => "test01" })
+# Seed fixture data so offline calls resolve without a live server.
+client = AnswerbookSDK.test({
+  "entity" => { "bookofanswer" => { "test01" => { "id" => "test01" } } },
+})
+bookofanswer = client.BookOfAnswer.load({ "id" => "test01" })
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:bookofanswer():load({ id = "test01" })
+local result, err = client:BookOfAnswer():load({ id = "test01" })
 ```
 
 ## How it works
@@ -242,6 +250,9 @@ const result = await client.direct({
   method: 'GET',
   params: { id: 'example' },
 })
+if (result instanceof Error) {
+  throw result
+}
 console.log(result.data)
 ```
 

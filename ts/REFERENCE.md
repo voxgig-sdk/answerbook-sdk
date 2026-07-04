@@ -181,7 +181,7 @@ Alias for `AnswerbookSDK.test()`.
 ## BookOfAnswerEntity
 
 ```ts
-const book_of_answer = client.book_of_answer
+const book_of_answer = client.BookOfAnswer()
 ```
 
 ### Fields
@@ -200,7 +200,7 @@ const book_of_answer = client.book_of_answer
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.book_of_answer.load({ id: 'book_of_answer_id' })
+const result = await client.BookOfAnswer().load({ id: 'book_of_answer_id' })
 ```
 
 ### Common Methods
@@ -234,7 +234,7 @@ Return a copy of the entity options.
 ## GetApiDocEntity
 
 ```ts
-const get_api_doc = client.get_api_doc
+const get_api_doc = client.GetApiDoc()
 ```
 
 ### Operations
@@ -244,7 +244,7 @@ const get_api_doc = client.get_api_doc
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.get_api_doc.load({ id: 'get_api_doc_id' })
+const result = await client.GetApiDoc().load({ id: 'get_api_doc_id' })
 ```
 
 ### Common Methods
@@ -278,7 +278,7 @@ Return a copy of the entity options.
 ## MarketDataEntity
 
 ```ts
-const market_data = client.market_data
+const market_data = client.MarketData()
 ```
 
 ### Fields
@@ -296,7 +296,7 @@ const market_data = client.market_data
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.market_data.load({ id: 'market_data_id' })
+const result = await client.MarketData().load({ id: 'market_data_id' })
 ```
 
 ### Common Methods
@@ -330,7 +330,7 @@ Return a copy of the entity options.
 ## PoetryOracleEntity
 
 ```ts
-const poetry__oracle = client.poetry__oracle
+const poetry__oracle = client.PoetryOracle()
 ```
 
 ### Fields
@@ -347,7 +347,7 @@ const poetry__oracle = client.poetry__oracle
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.poetry__oracle.load({ id: 'poetry__oracle_id' })
+const result = await client.PoetryOracle().load({ id: 'poetry__oracle_id' })
 ```
 
 ### Common Methods
@@ -381,7 +381,7 @@ Return a copy of the entity options.
 ## ToolEntity
 
 ```ts
-const tool = client.tool
+const tool = client.Tool()
 ```
 
 ### Fields
@@ -397,7 +397,7 @@ const tool = client.tool
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.tool.load({ id: 'tool_id' })
+const result = await client.Tool().load({ id: 'tool_id' })
 ```
 
 ### Common Methods
@@ -431,7 +431,7 @@ Return a copy of the entity options.
 ## WordEntity
 
 ```ts
-const word = client.word
+const word = client.Word()
 ```
 
 ### Fields
@@ -449,7 +449,7 @@ const word = client.word
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.word.load({ id: 'word_id' })
+const result = await client.Word().load({ id: 'word_id' })
 ```
 
 ### Common Methods
@@ -483,7 +483,7 @@ Return a copy of the entity options.
 ## WordsLearningEntity
 
 ```ts
-const words_learning = client.words_learning
+const words_learning = client.WordsLearning()
 ```
 
 ### Fields
@@ -499,7 +499,7 @@ const words_learning = client.words_learning
 List entities matching the given criteria. Returns an array.
 
 ```ts
-const results = await client.words_learning.list()
+const results = await client.WordsLearning().list()
 ```
 
 ### Common Methods

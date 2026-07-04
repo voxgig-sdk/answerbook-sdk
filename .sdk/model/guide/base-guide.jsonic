@@ -54,11 +54,9 @@ guide: {
     path: "/words/{category}": {
       rename: param: "category": *"id"
       op: load: method: *GET
-      op: load: transform: res: *("`body.word`")|top
     }
     path: "/words/{category}/{word}": {
       op: load: method: *GET
-      op: load: transform: res: *("`body.word`")|top
     }
   }
 
