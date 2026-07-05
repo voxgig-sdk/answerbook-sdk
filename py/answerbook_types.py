@@ -23,10 +23,13 @@ class BookOfAnswer(TypedDict, total=False):
     meta: dict
 
 
-class BookOfAnswerLoadMatch(TypedDict, total=False):
+class BookOfAnswerLoadMatchRequired(TypedDict):
+    id: str
+
+
+class BookOfAnswerLoadMatch(BookOfAnswerLoadMatchRequired, total=False):
     answer: str
     answer_i18n: dict
-    id: str
     meta: dict
 
 

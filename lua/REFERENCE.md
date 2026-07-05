@@ -114,10 +114,10 @@ local book_of_answer = client:BookOfAnswer(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `answer` | ``$STRING`` | No |  |
-| `answer_i18n` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
+| `answer` | `string` | No |  |
+| `answer_i18n` | `table` | No |  |
+| `id` | `string` | No |  |
+| `meta` | `table` | No |  |
 
 ### Operations
 
@@ -172,7 +172,7 @@ local get_api_doc = client:GetApiDoc(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:GetApiDoc():load({ id = "get_api_doc_id" })
+local result, err = client:GetApiDoc():load()
 ```
 
 ### Common Methods
@@ -215,9 +215,9 @@ local market_data = client:MarketData(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | ``$OBJECT`` | No |  |
-| `sp500` | ``$OBJECT`` | No |  |
-| `tw0050` | ``$OBJECT`` | No |  |
+| `nasdaq100` | `table` | No |  |
+| `sp500` | `table` | No |  |
+| `tw0050` | `table` | No |  |
 
 ### Operations
 
@@ -226,7 +226,7 @@ local market_data = client:MarketData(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:MarketData():load({ id = "market_data_id" })
+local result, err = client:MarketData():load()
 ```
 
 ### Common Methods
@@ -269,8 +269,8 @@ local poetry__oracle = client:PoetryOracle(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | ``$OBJECT`` | No |  |
-| `poem` | ``$OBJECT`` | No |  |
+| `oracle` | `table` | No |  |
+| `poem` | `table` | No |  |
 
 ### Operations
 
@@ -279,7 +279,7 @@ local poetry__oracle = client:PoetryOracle(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:PoetryOracle():load({ id = "poetry__oracle_id" })
+local result, err = client:PoetryOracle():load()
 ```
 
 ### Common Methods
@@ -322,7 +322,7 @@ local tool = client:Tool(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | ``$STRING`` | No |  |
+| `random_password` | `string` | No |  |
 
 ### Operations
 
@@ -331,7 +331,7 @@ local tool = client:Tool(nil)
 Load a single entity matching the given criteria.
 
 ```lua
-local result, err = client:Tool():load({ id = "tool_id" })
+local result, err = client:Tool():load()
 ```
 
 ### Common Methods
@@ -374,9 +374,9 @@ local word = client:Word(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `definition` | ``$STRING`` | No |  |
-| `word` | ``$STRING`` | No |  |
+| `category` | `string` | No |  |
+| `definition` | `string` | No |  |
+| `word` | `string` | No |  |
 
 ### Operations
 
@@ -428,7 +428,7 @@ local words_learning = client:WordsLearning(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$ARRAY`` | No |  |
+| `category` | `table` | No |  |
 
 ### Operations
 

@@ -4,6 +4,11 @@
 
 The TypeScript SDK for the Answerbook API — a type-safe, entity-oriented client with full async/await support.
 
+The API is exposed as capitalised, semantic **Entities** — e.g.
+`client.BookOfAnswer()` — each with a small set of operations (`list`, `load`)
+instead of raw URL paths and query parameters. This keeps the surface
+predictable and low-friction for both humans and AI agents.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -38,6 +43,35 @@ try {
   console.log(bookofanswer)
 } catch (err) {
   console.error('load failed:', err)
+}
+```
+
+
+## Error handling
+
+Entity operations reject on failure, so wrap them in `try` / `catch`:
+
+```ts
+try {
+  const bookofanswer = await client.BookOfAnswer().load({ id: "example_id" })
+  console.log(bookofanswer)
+} catch (err) {
+  console.error('load failed:', err)
+}
+```
+
+The low-level `direct()` method does **not** throw — it returns the
+value or an `Error`, so check the result before using it:
+
+```ts
+const result = await client.direct({
+  path: '/api/resource/{id}',
+  method: 'GET',
+  params: { id: 'example_id' },
+})
+
+if (result instanceof Error) {
+  throw result
 }
 ```
 
@@ -105,12 +139,12 @@ Entity instances remember their last match and data:
 ```ts
 const entity = client.BookOfAnswer()
 
-// First call sets internal match
+// First call runs the operation and stores its result
 await entity.load({ id: 'example' })
 
-// Subsequent calls reuse the stored match
+// Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id) // 'example'
+console.log(data.id)
 ```
 
 ### Add custom middleware
@@ -206,11 +240,8 @@ All entities share the same interface.
 | --- | --- | --- |
 | `load` | `load(reqmatch?, ctrl?): Promise<Entity>` | Load a single entity by match criteria. |
 | `list` | `list(reqmatch?, ctrl?): Promise<Entity[]>` | List entities matching the criteria. |
-| `create` | `create(reqdata?, ctrl?): Promise<Entity>` | Create a new entity. |
-| `update` | `update(reqdata?, ctrl?): Promise<Entity>` | Update an existing entity. |
-| `remove` | `remove(reqmatch?, ctrl?): Promise<void>` | Remove an entity. |
-| `data` | `data(data?): any` | Get or set entity data. |
-| `match` | `match(match?): any` | Get or set entity match criteria. |
+| `data` | `data(data?: Partial<Entity>): Entity` | Get or set entity data. |
+| `match` | `match(match?: Partial<Entity>): Partial<Entity>` | Get or set entity match criteria. |
 | `make` | `make(): Entity` | Create a new instance with the same options. |
 | `client` | `client(): AnswerbookSDK` | Return the parent SDK client. |
 | `entopts` | `entopts(): object` | Return a copy of the entity options. |
@@ -220,10 +251,9 @@ All entities share the same interface.
 Entity operations resolve to the entity data directly — there is no
 result envelope:
 
-- `load`, `create` and `update` resolve to a single entity object.
+- `load` resolves to a single entity object.
 - `list` resolves to an **array** of entity objects (iterate it directly;
   there is no `.data` and no `.ok`).
-- `remove` resolves to `void`.
 
 On a failed request these methods **throw**, so wrap calls in
 `try`/`catch` to handle errors. Only `direct()` returns the result
@@ -355,10 +385,10 @@ Create an instance: `const book_of_answer = client.BookOfAnswer()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `answer` | ``$STRING`` |  |
-| `answer_i18n` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `meta` | ``$OBJECT`` |  |
+| `answer` | `string` |  |
+| `answer_i18n` | `Record<string, any>` |  |
+| `id` | `string` |  |
+| `meta` | `Record<string, any>` |  |
 
 #### Example: Load
 
@@ -380,7 +410,7 @@ Create an instance: `const get_api_doc = client.GetApiDoc()`
 #### Example: Load
 
 ```ts
-const get_api_doc = await client.GetApiDoc().load({ id: 'get_api_doc_id' })
+const get_api_doc = await client.GetApiDoc().load()
 ```
 
 
@@ -398,14 +428,14 @@ Create an instance: `const market_data = client.MarketData()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `nasdaq100` | ``$OBJECT`` |  |
-| `sp500` | ``$OBJECT`` |  |
-| `tw0050` | ``$OBJECT`` |  |
+| `nasdaq100` | `Record<string, any>` |  |
+| `sp500` | `Record<string, any>` |  |
+| `tw0050` | `Record<string, any>` |  |
 
 #### Example: Load
 
 ```ts
-const market_data = await client.MarketData().load({ id: 'market_data_id' })
+const market_data = await client.MarketData().load()
 ```
 
 
@@ -423,13 +453,13 @@ Create an instance: `const poetry__oracle = client.PoetryOracle()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `oracle` | ``$OBJECT`` |  |
-| `poem` | ``$OBJECT`` |  |
+| `oracle` | `Record<string, any>` |  |
+| `poem` | `Record<string, any>` |  |
 
 #### Example: Load
 
 ```ts
-const poetry__oracle = await client.PoetryOracle().load({ id: 'poetry__oracle_id' })
+const poetry__oracle = await client.PoetryOracle().load()
 ```
 
 
@@ -447,12 +477,12 @@ Create an instance: `const tool = client.Tool()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `random_password` | ``$STRING`` |  |
+| `random_password` | `string` |  |
 
 #### Example: Load
 
 ```ts
-const tool = await client.Tool().load({ id: 'tool_id' })
+const tool = await client.Tool().load()
 ```
 
 
@@ -470,9 +500,9 @@ Create an instance: `const word = client.Word()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `definition` | ``$STRING`` |  |
-| `word` | ``$STRING`` |  |
+| `category` | `string` |  |
+| `definition` | `string` |  |
+| `word` | `string` |  |
 
 #### Example: Load
 
@@ -495,7 +525,7 @@ Create an instance: `const words_learning = client.WordsLearning()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$ARRAY`` |  |
+| `category` | `any[]` |  |
 
 #### Example: List
 
@@ -504,12 +534,16 @@ const words_learnings = await client.WordsLearning().list()
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -526,11 +560,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller.
-
-An unexpected exception triggers the `PreUnexpected` hook before
-propagating.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -574,7 +606,7 @@ calls on the same instance can rely on this state.
 const bookofanswer = client.BookOfAnswer()
 await bookofanswer.load({ id: "example_id" })
 
-// bookofanswer.data() now returns the loaded bookofanswer data
+// bookofanswer.data() now returns the bookofanswer data from the last `load`
 // bookofanswer.match() returns { id: "example_id" }
 ```
 

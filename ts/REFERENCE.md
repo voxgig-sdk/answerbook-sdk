@@ -188,10 +188,10 @@ const book_of_answer = client.BookOfAnswer()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `answer` | ``$STRING`` | No |  |
-| `answer_i18n` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
+| `answer` | `string` | No |  |
+| `answer_i18n` | `Record<string, any>` | No |  |
+| `id` | `string` | No |  |
+| `meta` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -244,7 +244,7 @@ const get_api_doc = client.GetApiDoc()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.GetApiDoc().load({ id: 'get_api_doc_id' })
+const result = await client.GetApiDoc().load()
 ```
 
 ### Common Methods
@@ -285,9 +285,9 @@ const market_data = client.MarketData()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | ``$OBJECT`` | No |  |
-| `sp500` | ``$OBJECT`` | No |  |
-| `tw0050` | ``$OBJECT`` | No |  |
+| `nasdaq100` | `Record<string, any>` | No |  |
+| `sp500` | `Record<string, any>` | No |  |
+| `tw0050` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -296,7 +296,7 @@ const market_data = client.MarketData()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.MarketData().load({ id: 'market_data_id' })
+const result = await client.MarketData().load()
 ```
 
 ### Common Methods
@@ -337,8 +337,8 @@ const poetry__oracle = client.PoetryOracle()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | ``$OBJECT`` | No |  |
-| `poem` | ``$OBJECT`` | No |  |
+| `oracle` | `Record<string, any>` | No |  |
+| `poem` | `Record<string, any>` | No |  |
 
 ### Operations
 
@@ -347,7 +347,7 @@ const poetry__oracle = client.PoetryOracle()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.PoetryOracle().load({ id: 'poetry__oracle_id' })
+const result = await client.PoetryOracle().load()
 ```
 
 ### Common Methods
@@ -388,7 +388,7 @@ const tool = client.Tool()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | ``$STRING`` | No |  |
+| `random_password` | `string` | No |  |
 
 ### Operations
 
@@ -397,7 +397,7 @@ const tool = client.Tool()
 Load a single entity matching the given criteria.
 
 ```ts
-const result = await client.Tool().load({ id: 'tool_id' })
+const result = await client.Tool().load()
 ```
 
 ### Common Methods
@@ -438,9 +438,9 @@ const word = client.Word()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `definition` | ``$STRING`` | No |  |
-| `word` | ``$STRING`` | No |  |
+| `category` | `string` | No |  |
+| `definition` | `string` | No |  |
+| `word` | `string` | No |  |
 
 ### Operations
 
@@ -490,7 +490,7 @@ const words_learning = client.WordsLearning()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$ARRAY`` | No |  |
+| `category` | `any[]` | No |  |
 
 ### Operations
 

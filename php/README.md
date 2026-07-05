@@ -4,6 +4,8 @@
 
 The PHP SDK for the Answerbook API — an entity-oriented client using PHP conventions.
 
+The SDK exposes the API as capitalised, semantic **Entities** — for example `$client->BookOfAnswer()` — with named operations (`list`/`load`) instead of raw URL paths and query strings. Working with resources and verbs keeps call sites self-describing and reduces cognitive load.
+
 > Other languages, the CLI, and MCP server live alongside this one — see
 > the [top-level README](../README.md).
 
@@ -42,6 +44,37 @@ try {
 ```
 
 
+## Error handling
+
+Entity operations throw a `\Throwable` on failure, so wrap them in
+`try` / `catch`:
+
+```php
+try {
+    $bookofanswer = $client->BookOfAnswer()->load(["id" => "example_id"]);
+} catch (\Throwable $err) {
+    echo "Error: " . $err->getMessage();
+}
+```
+
+`direct()` does **not** throw — it returns the result array. Branch on
+`ok`; on failure `status` holds the HTTP status (for error responses) and
+`err` holds a transport error, so read both defensively:
+
+```php
+$result = $client->direct([
+    "path" => "/api/resource/{id}",
+    "method" => "GET",
+    "params" => ["id" => "example_id"],
+]);
+
+if (! $result["ok"]) {
+    $err = $result["err"] ?? null;
+    echo "request failed: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
+}
+```
+
+
 ## How-to guides
 
 ### Make a direct HTTP request
@@ -61,7 +94,10 @@ if ($result["ok"]) {
     echo $result["status"];  // 200
     print_r($result["data"]);  // response body
 } else {
-    echo "Error: " . $result["err"]->getMessage();
+    // On an HTTP error status there is no err (only a transport failure sets
+    // it), so fall back to the status code.
+    $err = $result["err"] ?? null;
+    echo "Error: " . ($err ? $err->getMessage() : "HTTP " . $result["status"]);
 }
 ```
 
@@ -90,7 +126,7 @@ $client = AnswerbookSDK::test([
     "entity" => ["bookofanswer" => ["test01" => ["id" => "test01"]]],
 ]);
 
-// load() returns the bare mock record (throws on error).
+// Entity ops return the bare mock record (throws on error).
 $bookofanswer = $client->BookOfAnswer()->load(["id" => "test01"]);
 print_r($bookofanswer);
 ```
@@ -186,10 +222,7 @@ All entities share the same interface.
 | Method | Signature | Description |
 | --- | --- | --- |
 | `load` | `($reqmatch, $ctrl): array` | Load a single entity by match criteria. |
-| `list` | `($reqmatch, $ctrl): array` | List entities matching the criteria. |
-| `create` | `($reqdata, $ctrl): array` | Create a new entity. |
-| `update` | `($reqdata, $ctrl): array` | Update an existing entity. |
-| `remove` | `($reqmatch, $ctrl): array` | Remove an entity. |
+| `list` | `(?array $reqmatch = null, $ctrl): array` | List entities matching the criteria (call with no argument to list all). |
 | `data_get` | `(): array` | Get entity data. |
 | `data_set` | `($data): void` | Set entity data. |
 | `match_get` | `(): array` | Get entity match criteria. |
@@ -313,10 +346,10 @@ Create an instance: `$book_of_answer = $client->BookOfAnswer();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `answer` | ``$STRING`` |  |
-| `answer_i18n` | ``$OBJECT`` |  |
-| `id` | ``$STRING`` |  |
-| `meta` | ``$OBJECT`` |  |
+| `answer` | `string` |  |
+| `answer_i18n` | `array` |  |
+| `id` | `string` |  |
+| `meta` | `array` |  |
 
 #### Example: Load
 
@@ -340,7 +373,7 @@ Create an instance: `$get_api_doc = $client->GetApiDoc();`
 
 ```php
 // load() returns the bare GetApiDoc record (throws on error).
-$get_api_doc = $client->GetApiDoc()->load(["id" => "get_api_doc_id"]);
+$get_api_doc = $client->GetApiDoc()->load();
 ```
 
 
@@ -358,15 +391,15 @@ Create an instance: `$market_data = $client->MarketData();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `nasdaq100` | ``$OBJECT`` |  |
-| `sp500` | ``$OBJECT`` |  |
-| `tw0050` | ``$OBJECT`` |  |
+| `nasdaq100` | `array` |  |
+| `sp500` | `array` |  |
+| `tw0050` | `array` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare MarketData record (throws on error).
-$market_data = $client->MarketData()->load(["id" => "market_data_id"]);
+$market_data = $client->MarketData()->load();
 ```
 
 
@@ -384,14 +417,14 @@ Create an instance: `$poetry__oracle = $client->PoetryOracle();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `oracle` | ``$OBJECT`` |  |
-| `poem` | ``$OBJECT`` |  |
+| `oracle` | `array` |  |
+| `poem` | `array` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare PoetryOracle record (throws on error).
-$poetry__oracle = $client->PoetryOracle()->load(["id" => "poetry__oracle_id"]);
+$poetry__oracle = $client->PoetryOracle()->load();
 ```
 
 
@@ -409,13 +442,13 @@ Create an instance: `$tool = $client->Tool();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `random_password` | ``$STRING`` |  |
+| `random_password` | `string` |  |
 
 #### Example: Load
 
 ```php
 // load() returns the bare Tool record (throws on error).
-$tool = $client->Tool()->load(["id" => "tool_id"]);
+$tool = $client->Tool()->load();
 ```
 
 
@@ -433,9 +466,9 @@ Create an instance: `$word = $client->Word();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$STRING`` |  |
-| `definition` | ``$STRING`` |  |
-| `word` | ``$STRING`` |  |
+| `category` | `string` |  |
+| `definition` | `string` |  |
+| `word` | `string` |  |
 
 #### Example: Load
 
@@ -459,7 +492,7 @@ Create an instance: `$words_learning = $client->WordsLearning();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | ``$ARRAY`` |  |
+| `category` | `array` |  |
 
 #### Example: List
 
@@ -469,12 +502,16 @@ $words_learnings = $client->WordsLearning()->list();
 ```
 
 
-## Explanation
+## Advanced
+
+> The sections above cover everyday use. The material below explains the
+> SDK's internals — useful when extending it with custom features, but not
+> needed for normal use.
 
 ### The operation pipeline
 
-Every entity operation (load, list, create, update, remove) follows a
-six-stage pipeline. Each stage fires a feature hook before executing:
+Every entity operation follows a six-stage pipeline. Each stage fires a
+feature hook before executing:
 
 ```
 PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
@@ -491,8 +528,9 @@ PrePoint → PreSpec → PreRequest → PreResponse → PreResult → PreDone
 - **PreDone**: Final stage before returning to the caller. Entity
   state (match, data) is updated here.
 
-If any stage returns an error, the pipeline short-circuits and the
-error is returned to the caller as the second element in the return array.
+If any stage errors, the pipeline short-circuits and the error surfaces
+to the caller — see [Error handling](#error-handling) for how that looks
+in this language.
 
 ### Features and hooks
 
@@ -543,8 +581,8 @@ stores the returned data and match criteria internally.
 $bookofanswer = $client->BookOfAnswer();
 $bookofanswer->load(["id" => "example_id"]);
 
-// $bookofanswer->dataGet() now returns the loaded bookofanswer data
-// $bookofanswer->matchGet() returns the last match criteria
+// $bookofanswer->data_get() now returns the bookofanswer data from the last load
+// $bookofanswer->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

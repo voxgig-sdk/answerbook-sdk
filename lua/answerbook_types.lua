@@ -13,6 +13,10 @@
 ---@field meta? table
 
 ---@class BookOfAnswerLoadMatch
+---@field answer? string
+---@field answer_i18n? table
+---@field id string
+---@field meta? table
 
 ---@class GetApiDoc
 
@@ -24,17 +28,23 @@
 ---@field tw0050? table
 
 ---@class MarketDataLoadMatch
+---@field nasdaq100? table
+---@field sp500? table
+---@field tw0050? table
 
 ---@class PoetryOracle
 ---@field oracle? table
 ---@field poem? table
 
 ---@class PoetryOracleLoadMatch
+---@field oracle? table
+---@field poem? table
 
 ---@class Tool
 ---@field random_password? string
 
 ---@class ToolLoadMatch
+---@field random_password? string
 
 ---@class Word
 ---@field category? string
@@ -50,6 +60,7 @@
 ---@field category? table
 
 ---@class WordsLearningListMatch
+---@field category? table
 
 local M = {}
 

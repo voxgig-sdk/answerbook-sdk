@@ -21,12 +21,12 @@ class BookOfAnswer
     public ?array $meta = null;
 }
 
-/** Match filter for BookOfAnswer#load (any subset of BookOfAnswer fields). */
+/** Request payload for BookOfAnswer#load. */
 class BookOfAnswerLoadMatch
 {
     public ?string $answer = null;
     public ?array $answer_i18n = null;
-    public ?string $id = null;
+    public string $id;
     public ?array $meta = null;
 }
 
@@ -35,7 +35,7 @@ class GetApiDoc
 {
 }
 
-/** Match filter for GetApiDoc#load (any subset of GetApiDoc fields). */
+/** Request payload for GetApiDoc#load. */
 class GetApiDocLoadMatch
 {
 }
@@ -48,7 +48,7 @@ class MarketData
     public ?array $tw0050 = null;
 }
 
-/** Match filter for MarketData#load (any subset of MarketData fields). */
+/** Request payload for MarketData#load. */
 class MarketDataLoadMatch
 {
     public ?array $nasdaq100 = null;
@@ -63,7 +63,7 @@ class PoetryOracle
     public ?array $poem = null;
 }
 
-/** Match filter for PoetryOracle#load (any subset of PoetryOracle fields). */
+/** Request payload for PoetryOracle#load. */
 class PoetryOracleLoadMatch
 {
     public ?array $oracle = null;
@@ -76,7 +76,7 @@ class Tool
     public ?string $random_password = null;
 }
 
-/** Match filter for Tool#load (any subset of Tool fields). */
+/** Request payload for Tool#load. */
 class ToolLoadMatch
 {
     public ?string $random_password = null;
@@ -104,7 +104,7 @@ class WordsLearning
     public ?array $category = null;
 }
 
-/** Match filter for WordsLearning#list (any subset of WordsLearning fields). */
+/** Request payload for WordsLearning#list. */
 class WordsLearningListMatch
 {
     public ?array $category = null;

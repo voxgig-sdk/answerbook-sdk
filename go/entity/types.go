@@ -16,12 +16,11 @@ type BookOfAnswer struct {
 	Meta *map[string]any `json:"meta,omitempty"`
 }
 
-// BookOfAnswerLoadMatch mirrors the book_of_answer fields as an all-optional match
-// filter (Go analog of Partial<BookOfAnswer>).
+// BookOfAnswerLoadMatch is the typed request payload for BookOfAnswer.LoadTyped.
 type BookOfAnswerLoadMatch struct {
 	Answer *string `json:"answer,omitempty"`
 	AnswerI18n *map[string]any `json:"answer_i18n,omitempty"`
-	Id *string `json:"id,omitempty"`
+	Id string `json:"id"`
 	Meta *map[string]any `json:"meta,omitempty"`
 }
 
@@ -29,8 +28,7 @@ type BookOfAnswerLoadMatch struct {
 type GetApiDoc struct {
 }
 
-// GetApiDocLoadMatch mirrors the get_api_doc fields as an all-optional match
-// filter (Go analog of Partial<GetApiDoc>).
+// GetApiDocLoadMatch is the typed request payload for GetApiDoc.LoadTyped.
 type GetApiDocLoadMatch struct {
 }
 
@@ -41,8 +39,7 @@ type MarketData struct {
 	Tw0050 *map[string]any `json:"tw0050,omitempty"`
 }
 
-// MarketDataLoadMatch mirrors the market_data fields as an all-optional match
-// filter (Go analog of Partial<MarketData>).
+// MarketDataLoadMatch is the typed request payload for MarketData.LoadTyped.
 type MarketDataLoadMatch struct {
 	Nasdaq100 *map[string]any `json:"nasdaq100,omitempty"`
 	Sp500 *map[string]any `json:"sp500,omitempty"`
@@ -55,8 +52,7 @@ type PoetryOracle struct {
 	Poem *map[string]any `json:"poem,omitempty"`
 }
 
-// PoetryOracleLoadMatch mirrors the poetry__oracle fields as an all-optional match
-// filter (Go analog of Partial<PoetryOracle>).
+// PoetryOracleLoadMatch is the typed request payload for PoetryOracle.LoadTyped.
 type PoetryOracleLoadMatch struct {
 	Oracle *map[string]any `json:"oracle,omitempty"`
 	Poem *map[string]any `json:"poem,omitempty"`
@@ -67,8 +63,7 @@ type Tool struct {
 	RandomPassword *string `json:"random_password,omitempty"`
 }
 
-// ToolLoadMatch mirrors the tool fields as an all-optional match
-// filter (Go analog of Partial<Tool>).
+// ToolLoadMatch is the typed request payload for Tool.LoadTyped.
 type ToolLoadMatch struct {
 	RandomPassword *string `json:"random_password,omitempty"`
 }
@@ -92,8 +87,7 @@ type WordsLearning struct {
 	Category *[]any `json:"category,omitempty"`
 }
 
-// WordsLearningListMatch mirrors the words_learning fields as an all-optional match
-// filter (Go analog of Partial<WordsLearning>).
+// WordsLearningListMatch is the typed request payload for WordsLearning.ListTyped.
 type WordsLearningListMatch struct {
 	Category *[]any `json:"category,omitempty"`
 }

@@ -221,43 +221,43 @@ class AnswerbookSDK:
 
 
     def BookOfAnswer(self, data=None) -> "BookOfAnswerEntity":
-        """Entity factory: client.BookOfAnswer().list({}) / client.BookOfAnswer().load({"id": ...})."""
+        """Entity factory: client.BookOfAnswer().list() / client.BookOfAnswer().load({"id": ...})."""
         from entity.book_of_answer_entity import BookOfAnswerEntity
         return BookOfAnswerEntity(self, data)
 
 
     def GetApiDoc(self, data=None) -> "GetApiDocEntity":
-        """Entity factory: client.GetApiDoc().list({}) / client.GetApiDoc().load({"id": ...})."""
+        """Entity factory: client.GetApiDoc().list() / client.GetApiDoc().load({"id": ...})."""
         from entity.get_api_doc_entity import GetApiDocEntity
         return GetApiDocEntity(self, data)
 
 
     def MarketData(self, data=None) -> "MarketDataEntity":
-        """Entity factory: client.MarketData().list({}) / client.MarketData().load({"id": ...})."""
+        """Entity factory: client.MarketData().list() / client.MarketData().load({"id": ...})."""
         from entity.market_data_entity import MarketDataEntity
         return MarketDataEntity(self, data)
 
 
     def PoetryOracle(self, data=None) -> "PoetryOracleEntity":
-        """Entity factory: client.PoetryOracle().list({}) / client.PoetryOracle().load({"id": ...})."""
+        """Entity factory: client.PoetryOracle().list() / client.PoetryOracle().load({"id": ...})."""
         from entity.poetry__oracle_entity import PoetryOracleEntity
         return PoetryOracleEntity(self, data)
 
 
     def Tool(self, data=None) -> "ToolEntity":
-        """Entity factory: client.Tool().list({}) / client.Tool().load({"id": ...})."""
+        """Entity factory: client.Tool().list() / client.Tool().load({"id": ...})."""
         from entity.tool_entity import ToolEntity
         return ToolEntity(self, data)
 
 
     def Word(self, data=None) -> "WordEntity":
-        """Entity factory: client.Word().list({}) / client.Word().load({"id": ...})."""
+        """Entity factory: client.Word().list() / client.Word().load({"id": ...})."""
         from entity.word_entity import WordEntity
         return WordEntity(self, data)
 
 
     def WordsLearning(self, data=None) -> "WordsLearningEntity":
-        """Entity factory: client.WordsLearning().list({}) / client.WordsLearning().load({"id": ...})."""
+        """Entity factory: client.WordsLearning().list() / client.WordsLearning().load({"id": ...})."""
         from entity.words_learning_entity import WordsLearningEntity
         return WordsLearningEntity(self, data)
 

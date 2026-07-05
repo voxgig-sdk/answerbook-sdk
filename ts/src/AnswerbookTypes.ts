@@ -12,12 +12,18 @@ export interface BookOfAnswer {
   meta?: Record<string, any>
 }
 
-export type BookOfAnswerLoadMatch = Partial<BookOfAnswer>
+export interface BookOfAnswerLoadMatch {
+  answer?: string
+  answer_i18n?: Record<string, any>
+  id: string
+  meta?: Record<string, any>
+}
 
 export interface GetApiDoc {
 }
 
-export type GetApiDocLoadMatch = Partial<GetApiDoc>
+export interface GetApiDocLoadMatch {
+}
 
 export interface MarketData {
   nasdaq100?: Record<string, any>
@@ -25,20 +31,29 @@ export interface MarketData {
   tw0050?: Record<string, any>
 }
 
-export type MarketDataLoadMatch = Partial<MarketData>
+export interface MarketDataLoadMatch {
+  nasdaq100?: Record<string, any>
+  sp500?: Record<string, any>
+  tw0050?: Record<string, any>
+}
 
 export interface PoetryOracle {
   oracle?: Record<string, any>
   poem?: Record<string, any>
 }
 
-export type PoetryOracleLoadMatch = Partial<PoetryOracle>
+export interface PoetryOracleLoadMatch {
+  oracle?: Record<string, any>
+  poem?: Record<string, any>
+}
 
 export interface Tool {
   random_password?: string
 }
 
-export type ToolLoadMatch = Partial<Tool>
+export interface ToolLoadMatch {
+  random_password?: string
+}
 
 export interface Word {
   category?: string
@@ -56,5 +71,7 @@ export interface WordsLearning {
   category?: any[]
 }
 
-export type WordsLearningListMatch = Partial<WordsLearning>
+export interface WordsLearningListMatch {
+  category?: any[]
+}
 

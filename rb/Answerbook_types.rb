@@ -29,7 +29,7 @@ BookOfAnswer = Struct.new(
   keyword_init: true
 )
 
-# Match filter for BookOfAnswer#load (any subset of BookOfAnswer fields).
+# Request payload for BookOfAnswer#load.
 #
 # @!attribute [rw] answer
 #   @return [String, nil]
@@ -38,7 +38,7 @@ BookOfAnswer = Struct.new(
 #   @return [Hash, nil]
 #
 # @!attribute [rw] id
-#   @return [String, nil]
+#   @return [String]
 #
 # @!attribute [rw] meta
 #   @return [Hash, nil]
@@ -54,7 +54,7 @@ BookOfAnswerLoadMatch = Struct.new(
 class GetApiDoc
 end
 
-# Match filter for GetApiDoc#load (any subset of GetApiDoc fields).
+# Request payload for GetApiDoc#load.
 class GetApiDocLoadMatch
 end
 
@@ -75,7 +75,7 @@ MarketData = Struct.new(
   keyword_init: true
 )
 
-# Match filter for MarketData#load (any subset of MarketData fields).
+# Request payload for MarketData#load.
 #
 # @!attribute [rw] nasdaq100
 #   @return [Hash, nil]
@@ -105,7 +105,7 @@ PoetryOracle = Struct.new(
   keyword_init: true
 )
 
-# Match filter for PoetryOracle#load (any subset of PoetryOracle fields).
+# Request payload for PoetryOracle#load.
 #
 # @!attribute [rw] oracle
 #   @return [Hash, nil]
@@ -127,7 +127,7 @@ Tool = Struct.new(
   keyword_init: true
 )
 
-# Match filter for Tool#load (any subset of Tool fields).
+# Request payload for Tool#load.
 #
 # @!attribute [rw] random_password
 #   @return [String, nil]
@@ -179,7 +179,7 @@ WordsLearning = Struct.new(
   keyword_init: true
 )
 
-# Match filter for WordsLearning#list (any subset of WordsLearning fields).
+# Request payload for WordsLearning#list.
 #
 # @!attribute [rw] category
 #   @return [Array, nil]

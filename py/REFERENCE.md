@@ -111,10 +111,10 @@ book_of_answer = client.BookOfAnswer()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `answer` | ``$STRING`` | No |  |
-| `answer_i18n` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
+| `answer` | `str` | No |  |
+| `answer_i18n` | `dict` | No |  |
+| `id` | `str` | No |  |
+| `meta` | `dict` | No |  |
 
 ### Operations
 
@@ -168,7 +168,7 @@ get_api_doc = client.GetApiDoc()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.GetApiDoc().load({"id": "get_api_doc_id"})
+result = client.GetApiDoc().load()
 ```
 
 ### Common Methods
@@ -210,9 +210,9 @@ market_data = client.MarketData()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | ``$OBJECT`` | No |  |
-| `sp500` | ``$OBJECT`` | No |  |
-| `tw0050` | ``$OBJECT`` | No |  |
+| `nasdaq100` | `dict` | No |  |
+| `sp500` | `dict` | No |  |
+| `tw0050` | `dict` | No |  |
 
 ### Operations
 
@@ -221,7 +221,7 @@ market_data = client.MarketData()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.MarketData().load({"id": "market_data_id"})
+result = client.MarketData().load()
 ```
 
 ### Common Methods
@@ -263,8 +263,8 @@ poetry__oracle = client.PoetryOracle()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | ``$OBJECT`` | No |  |
-| `poem` | ``$OBJECT`` | No |  |
+| `oracle` | `dict` | No |  |
+| `poem` | `dict` | No |  |
 
 ### Operations
 
@@ -273,7 +273,7 @@ poetry__oracle = client.PoetryOracle()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.PoetryOracle().load({"id": "poetry__oracle_id"})
+result = client.PoetryOracle().load()
 ```
 
 ### Common Methods
@@ -315,7 +315,7 @@ tool = client.Tool()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | ``$STRING`` | No |  |
+| `random_password` | `str` | No |  |
 
 ### Operations
 
@@ -324,7 +324,7 @@ tool = client.Tool()
 Load a single entity matching the given criteria. Returns the entity data and raises on error.
 
 ```python
-result = client.Tool().load({"id": "tool_id"})
+result = client.Tool().load()
 ```
 
 ### Common Methods
@@ -366,9 +366,9 @@ word = client.Word()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `definition` | ``$STRING`` | No |  |
-| `word` | ``$STRING`` | No |  |
+| `category` | `str` | No |  |
+| `definition` | `str` | No |  |
+| `word` | `str` | No |  |
 
 ### Operations
 
@@ -419,16 +419,16 @@ words_learning = client.WordsLearning()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$ARRAY`` | No |  |
+| `category` | `list` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list`
 
-List entities matching the given criteria. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
 
 ```python
-results = client.WordsLearning().list({})
+results = client.WordsLearning().list()
 for words_learning in results:
     print(words_learning)
 ```

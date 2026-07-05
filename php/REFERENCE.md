@@ -69,11 +69,11 @@ Create a new `WordEntity` instance. Pass `null` for no initial data.
 
 Create a new `WordsLearningEntity` instance. Pass `null` for no initial data.
 
-#### `optionsMap(): array`
+#### `options_map(): array`
 
 Return a deep copy of the current SDK options.
 
-#### `getUtility(): ProjectNameUtility`
+#### `get_utility(): AnswerbookUtility`
 
 Return a copy of the SDK utility object.
 
@@ -116,10 +116,10 @@ $book_of_answer = $client->BookOfAnswer();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `answer` | ``$STRING`` | No |  |
-| `answer_i18n` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
+| `answer` | `string` | No |  |
+| `answer_i18n` | `array` | No |  |
+| `id` | `string` | No |  |
+| `meta` | `array` | No |  |
 
 ### Operations
 
@@ -133,19 +133,19 @@ $result = $client->BookOfAnswer()->load(["id" => "book_of_answer_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -154,7 +154,7 @@ Set the entity match criteria.
 Create a new `BookOfAnswerEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -174,24 +174,24 @@ $get_api_doc = $client->GetApiDoc();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->GetApiDoc()->load(["id" => "get_api_doc_id"]);
+$result = $client->GetApiDoc()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -200,7 +200,7 @@ Set the entity match criteria.
 Create a new `GetApiDocEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -217,9 +217,9 @@ $market_data = $client->MarketData();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | ``$OBJECT`` | No |  |
-| `sp500` | ``$OBJECT`` | No |  |
-| `tw0050` | ``$OBJECT`` | No |  |
+| `nasdaq100` | `array` | No |  |
+| `sp500` | `array` | No |  |
+| `tw0050` | `array` | No |  |
 
 ### Operations
 
@@ -228,24 +228,24 @@ $market_data = $client->MarketData();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->MarketData()->load(["id" => "market_data_id"]);
+$result = $client->MarketData()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -254,7 +254,7 @@ Set the entity match criteria.
 Create a new `MarketDataEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -271,8 +271,8 @@ $poetry__oracle = $client->PoetryOracle();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | ``$OBJECT`` | No |  |
-| `poem` | ``$OBJECT`` | No |  |
+| `oracle` | `array` | No |  |
+| `poem` | `array` | No |  |
 
 ### Operations
 
@@ -281,24 +281,24 @@ $poetry__oracle = $client->PoetryOracle();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->PoetryOracle()->load(["id" => "poetry__oracle_id"]);
+$result = $client->PoetryOracle()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -307,7 +307,7 @@ Set the entity match criteria.
 Create a new `PoetryOracleEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -324,7 +324,7 @@ $tool = $client->Tool();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | ``$STRING`` | No |  |
+| `random_password` | `string` | No |  |
 
 ### Operations
 
@@ -333,24 +333,24 @@ $tool = $client->Tool();
 Load a single entity matching the given criteria. Throws on error.
 
 ```php
-$result = $client->Tool()->load(["id" => "tool_id"]);
+$result = $client->Tool()->load();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -359,7 +359,7 @@ Set the entity match criteria.
 Create a new `ToolEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -376,9 +376,9 @@ $word = $client->Word();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `definition` | ``$STRING`` | No |  |
-| `word` | ``$STRING`` | No |  |
+| `category` | `string` | No |  |
+| `definition` | `string` | No |  |
+| `word` | `string` | No |  |
 
 ### Operations
 
@@ -392,19 +392,19 @@ $result = $client->Word()->load(["id" => "word_id"]);
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -413,7 +413,7 @@ Set the entity match criteria.
 Create a new `WordEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 
@@ -430,33 +430,33 @@ $words_learning = $client->WordsLearning();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$ARRAY`` | No |  |
+| `category` | `array` | No |  |
 
 ### Operations
 
-#### `list(array $reqmatch, ?array $ctrl = null): mixed`
+#### `list(?array $reqmatch = null, ?array $ctrl = null): mixed`
 
-List entities matching the given criteria. Returns an array. Throws on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Throws on error.
 
 ```php
-$results = $client->WordsLearning()->list([]);
+$results = $client->WordsLearning()->list();
 ```
 
 ### Common Methods
 
-#### `dataGet(): array`
+#### `data_get(): array`
 
 Get the entity data. Returns a copy of the current data.
 
-#### `dataSet($data): void`
+#### `data_set($data): void`
 
 Set the entity data.
 
-#### `matchGet(): array`
+#### `match_get(): array`
 
 Get the entity match criteria.
 
-#### `matchSet($match): void`
+#### `match_set($match): void`
 
 Set the entity match criteria.
 
@@ -465,7 +465,7 @@ Set the entity match criteria.
 Create a new `WordsLearningEntity` instance with the same client and
 options.
 
-#### `getName(): string`
+#### `get_name(): string`
 
 Return the entity name.
 

@@ -121,10 +121,10 @@ book_of_answer := client.BookOfAnswer(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `answer` | ``$STRING`` | No |  |
-| `answer_i18n` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
+| `answer` | `string` | No |  |
+| `answer_i18n` | `map[string]any` | No |  |
+| `id` | `string` | No |  |
+| `meta` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -173,7 +173,7 @@ get_api_doc := client.GetApiDoc(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.GetApiDoc(nil).Load(map[string]any{"id": "get_api_doc_id"}, nil)
+result, err := client.GetApiDoc(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -210,9 +210,9 @@ market_data := client.MarketData(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | ``$OBJECT`` | No |  |
-| `sp500` | ``$OBJECT`` | No |  |
-| `tw0050` | ``$OBJECT`` | No |  |
+| `nasdaq100` | `map[string]any` | No |  |
+| `sp500` | `map[string]any` | No |  |
+| `tw0050` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -221,7 +221,7 @@ market_data := client.MarketData(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.MarketData(nil).Load(map[string]any{"id": "market_data_id"}, nil)
+result, err := client.MarketData(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -258,8 +258,8 @@ poetry__oracle := client.PoetryOracle(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | ``$OBJECT`` | No |  |
-| `poem` | ``$OBJECT`` | No |  |
+| `oracle` | `map[string]any` | No |  |
+| `poem` | `map[string]any` | No |  |
 
 ### Operations
 
@@ -268,7 +268,7 @@ poetry__oracle := client.PoetryOracle(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.PoetryOracle(nil).Load(map[string]any{"id": "poetry__oracle_id"}, nil)
+result, err := client.PoetryOracle(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -305,7 +305,7 @@ tool := client.Tool(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | ``$STRING`` | No |  |
+| `random_password` | `string` | No |  |
 
 ### Operations
 
@@ -314,7 +314,7 @@ tool := client.Tool(nil)
 Load a single entity matching the given criteria.
 
 ```go
-result, err := client.Tool(nil).Load(map[string]any{"id": "tool_id"}, nil)
+result, err := client.Tool(nil).Load(nil, nil)
 ```
 
 ### Common Methods
@@ -351,9 +351,9 @@ word := client.Word(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `definition` | ``$STRING`` | No |  |
-| `word` | ``$STRING`` | No |  |
+| `category` | `string` | No |  |
+| `definition` | `string` | No |  |
+| `word` | `string` | No |  |
 
 ### Operations
 
@@ -399,7 +399,7 @@ words_learning := client.WordsLearning(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$ARRAY`` | No |  |
+| `category` | `[]any` | No |  |
 
 ### Operations
 

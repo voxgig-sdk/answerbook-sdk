@@ -8,7 +8,7 @@ Complete API reference for the Answerbook Ruby SDK.
 ### Constructor
 
 ```ruby
-require_relative 'answerbook_sdk'
+require_relative 'Answerbook_sdk'
 
 client = AnswerbookSDK.new(options)
 ```
@@ -117,10 +117,10 @@ book_of_answer = client.BookOfAnswer
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `answer` | ``$STRING`` | No |  |
-| `answer_i18n` | ``$OBJECT`` | No |  |
-| `id` | ``$STRING`` | No |  |
-| `meta` | ``$OBJECT`` | No |  |
+| `answer` | `String` | No |  |
+| `answer_i18n` | `Hash` | No |  |
+| `id` | `String` | No |  |
+| `meta` | `Hash` | No |  |
 
 ### Operations
 
@@ -175,7 +175,7 @@ get_api_doc = client.GetApiDoc
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.GetApiDoc.load({ "id" => "get_api_doc_id" })
+result = client.GetApiDoc.load()
 ```
 
 ### Common Methods
@@ -218,9 +218,9 @@ market_data = client.MarketData
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | ``$OBJECT`` | No |  |
-| `sp500` | ``$OBJECT`` | No |  |
-| `tw0050` | ``$OBJECT`` | No |  |
+| `nasdaq100` | `Hash` | No |  |
+| `sp500` | `Hash` | No |  |
+| `tw0050` | `Hash` | No |  |
 
 ### Operations
 
@@ -229,7 +229,7 @@ market_data = client.MarketData
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.MarketData.load({ "id" => "market_data_id" })
+result = client.MarketData.load()
 ```
 
 ### Common Methods
@@ -272,8 +272,8 @@ poetry__oracle = client.PoetryOracle
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | ``$OBJECT`` | No |  |
-| `poem` | ``$OBJECT`` | No |  |
+| `oracle` | `Hash` | No |  |
+| `poem` | `Hash` | No |  |
 
 ### Operations
 
@@ -282,7 +282,7 @@ poetry__oracle = client.PoetryOracle
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.PoetryOracle.load({ "id" => "poetry__oracle_id" })
+result = client.PoetryOracle.load()
 ```
 
 ### Common Methods
@@ -325,7 +325,7 @@ tool = client.Tool
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | ``$STRING`` | No |  |
+| `random_password` | `String` | No |  |
 
 ### Operations
 
@@ -334,7 +334,7 @@ tool = client.Tool
 Load a single entity matching the given criteria. Raises on error.
 
 ```ruby
-result = client.Tool.load({ "id" => "tool_id" })
+result = client.Tool.load()
 ```
 
 ### Common Methods
@@ -377,9 +377,9 @@ word = client.Word
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$STRING`` | No |  |
-| `definition` | ``$STRING`` | No |  |
-| `word` | ``$STRING`` | No |  |
+| `category` | `String` | No |  |
+| `definition` | `String` | No |  |
+| `word` | `String` | No |  |
 
 ### Operations
 
@@ -431,16 +431,16 @@ words_learning = client.WordsLearning
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | ``$ARRAY`` | No |  |
+| `category` | `Array` | No |  |
 
 ### Operations
 
-#### `list(reqmatch, ctrl = nil) -> Array`
+#### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria. Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
 
 ```ruby
-results = client.WordsLearning.list(nil)
+results = client.WordsLearning.list
 ```
 
 ### Common Methods
