@@ -62,9 +62,9 @@ export interface Word {
 }
 
 export interface WordLoadMatch {
-  category: string
-  word: string
-  id: string
+  category?: string
+  word?: string
+  id?: string
 }
 
 export interface WordsLearning {

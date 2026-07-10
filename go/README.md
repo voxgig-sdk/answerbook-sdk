@@ -50,12 +50,12 @@ import (
 func main() {
     client := sdk.New()
 
-    // Load a single bookofanswer — the value is the loaded record.
-    bookofanswer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "example"}, nil)
+    // Load a single bookOfAnswer — the value is the loaded record.
+    bookOfAnswer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil {
         panic(err)
     }
-    fmt.Println(bookofanswer)
+    fmt.Println(bookOfAnswer)
 }
 ```
 
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-bookofanswer, err := client.BookOfAnswer(nil).Load(
+bookOfAnswer, err := client.BookOfAnswer(nil).Load(
     map[string]any{"id": "test01"}, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(bookofanswer) // the returned mock data
+fmt.Println(bookOfAnswer) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -253,9 +253,9 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    bookofanswer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "example_id"}, nil)
+    bookOfAnswer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "example_id"}, nil)
     if err != nil { /* handle */ }
-    // bookofanswer is the returned record
+    // bookOfAnswer is the returned record
 
 Only `Direct()` returns a response envelope — a `map[string]any` with
 `"ok"`, `"status"`, `"headers"`, and `"data"` keys.
@@ -346,7 +346,7 @@ API path: `/words/categories`
 
 ### BookOfAnswer
 
-Create an instance: `book_of_answer := client.BookOfAnswer(nil)`
+Create an instance: `bookOfAnswer := client.BookOfAnswer(nil)`
 
 #### Operations
 
@@ -366,17 +366,17 @@ Create an instance: `book_of_answer := client.BookOfAnswer(nil)`
 #### Example: Load
 
 ```go
-book_of_answer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "book_of_answer_id"}, nil)
+bookOfAnswer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "book_of_answer_id"}, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(book_of_answer) // the loaded record
+fmt.Println(bookOfAnswer) // the loaded record
 ```
 
 
 ### GetApiDoc
 
-Create an instance: `get_api_doc := client.GetApiDoc(nil)`
+Create an instance: `getApiDoc := client.GetApiDoc(nil)`
 
 #### Operations
 
@@ -387,17 +387,17 @@ Create an instance: `get_api_doc := client.GetApiDoc(nil)`
 #### Example: Load
 
 ```go
-get_api_doc, err := client.GetApiDoc(nil).Load(nil, nil)
+getApiDoc, err := client.GetApiDoc(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(get_api_doc) // the loaded record
+fmt.Println(getApiDoc) // the loaded record
 ```
 
 
 ### MarketData
 
-Create an instance: `market_data := client.MarketData(nil)`
+Create an instance: `marketData := client.MarketData(nil)`
 
 #### Operations
 
@@ -416,17 +416,17 @@ Create an instance: `market_data := client.MarketData(nil)`
 #### Example: Load
 
 ```go
-market_data, err := client.MarketData(nil).Load(nil, nil)
+marketData, err := client.MarketData(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(market_data) // the loaded record
+fmt.Println(marketData) // the loaded record
 ```
 
 
 ### PoetryOracle
 
-Create an instance: `poetry__oracle := client.PoetryOracle(nil)`
+Create an instance: `poetryOracle := client.PoetryOracle(nil)`
 
 #### Operations
 
@@ -444,11 +444,11 @@ Create an instance: `poetry__oracle := client.PoetryOracle(nil)`
 #### Example: Load
 
 ```go
-poetry__oracle, err := client.PoetryOracle(nil).Load(nil, nil)
+poetryOracle, err := client.PoetryOracle(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(poetry__oracle) // the loaded record
+fmt.Println(poetryOracle) // the loaded record
 ```
 
 
@@ -510,7 +510,7 @@ fmt.Println(word) // the loaded record
 
 ### WordsLearning
 
-Create an instance: `words_learning := client.WordsLearning(nil)`
+Create an instance: `wordsLearning := client.WordsLearning(nil)`
 
 #### Operations
 
@@ -527,11 +527,11 @@ Create an instance: `words_learning := client.WordsLearning(nil)`
 #### Example: List
 
 ```go
-words_learnings, err := client.WordsLearning(nil).List(nil, nil)
+wordsLearnings, err := client.WordsLearning(nil).List(nil, nil)
 if err != nil {
     panic(err)
 }
-fmt.Println(words_learnings) // the array of records
+fmt.Println(wordsLearnings) // the array of records
 ```
 
 

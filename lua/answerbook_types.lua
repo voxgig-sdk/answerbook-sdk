@@ -52,9 +52,9 @@
 ---@field word? string
 
 ---@class WordLoadMatch
----@field category string
----@field word string
----@field id string
+---@field category? string
+---@field word? string
+---@field id? string
 
 ---@class WordsLearning
 ---@field category? table

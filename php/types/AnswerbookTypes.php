@@ -93,9 +93,9 @@ class Word
 /** Request payload for Word#load. */
 class WordLoadMatch
 {
-    public string $category;
-    public string $word;
-    public string $id;
+    public ?string $category = null;
+    public ?string $word = null;
+    public ?string $id = null;
 }
 
 /** WordsLearning entity data model. */

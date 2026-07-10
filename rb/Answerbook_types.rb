@@ -156,13 +156,13 @@ Word = Struct.new(
 # Request payload for Word#load.
 #
 # @!attribute [rw] category
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] word
-#   @return [String]
+#   @return [String, nil]
 #
 # @!attribute [rw] id
-#   @return [String]
+#   @return [String, nil]
 WordLoadMatch = Struct.new(
   :category,
   :word,

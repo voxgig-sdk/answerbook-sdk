@@ -77,9 +77,9 @@ type Word struct {
 
 // WordLoadMatch is the typed request payload for Word.LoadTyped.
 type WordLoadMatch struct {
-	Category string `json:"category"`
-	Word string `json:"word"`
-	Id string `json:"id"`
+	Category *string `json:"category,omitempty"`
+	Word *string `json:"word,omitempty"`
+	Id *string `json:"id,omitempty"`
 }
 
 // WordsLearning is the typed data model for the words_learning entity.

@@ -6,9 +6,6 @@
     },
     "kit": {
       "config": {
-        "auth": {
-          "prefix": "Bearer"
-        },
         "docs_order": [
           "ts",
           "py",
@@ -882,14 +879,17 @@
           "url": "https://github.com/tbdavid2019/answerbook-api"
         },
         "description": "The Answerbook API provides access to a collection of random answers and features, such as a random password generator and Tang poetry retrieval. It can be deployed on Cloudflare Workers, making it adaptable for various applications.",
+        "meta_source": "https://www.freepublicapis.com",
         "servers": [
           {
             "description": "Production server",
             "url": "https://answerbook.david888.com"
           }
         ],
+        "summary": "The Answerbook API provides access to a collection of random answers and features, such as a random password generator and Tang poetry retrieval.",
         "title": "Answerbook API",
-        "version": "1.0.1"
+        "version": "1.0.1",
+        "website": "https://github.com/tbdavid2019/answerbook-api"
       },
       "option": {},
       "target": {
@@ -942,6 +942,9 @@
           },
           "name": "go-cli",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },
@@ -992,6 +995,9 @@
           },
           "name": "go-mcp",
           "phase": {
+            "agentguide": {
+              "active": false
+            },
             "entity": {
               "active": false
             },

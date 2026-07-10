@@ -114,7 +114,8 @@ same parameters as `Direct()`.
 ## BookOfAnswerEntity
 
 ```go
-book_of_answer := client.BookOfAnswer(nil)
+bookOfAnswer := client.BookOfAnswer(nil)
+fmt.Println(bookOfAnswer.GetName()) // "book_of_answer"
 ```
 
 ### Fields
@@ -134,6 +135,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "book_of_answer_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -163,7 +168,8 @@ Return the entity name.
 ## GetApiDocEntity
 
 ```go
-get_api_doc := client.GetApiDoc(nil)
+getApiDoc := client.GetApiDoc(nil)
+fmt.Println(getApiDoc.GetName()) // "get_api_doc"
 ```
 
 ### Operations
@@ -174,6 +180,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.GetApiDoc(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -203,7 +213,8 @@ Return the entity name.
 ## MarketDataEntity
 
 ```go
-market_data := client.MarketData(nil)
+marketData := client.MarketData(nil)
+fmt.Println(marketData.GetName()) // "market_data"
 ```
 
 ### Fields
@@ -222,6 +233,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.MarketData(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -251,7 +266,8 @@ Return the entity name.
 ## PoetryOracleEntity
 
 ```go
-poetry__oracle := client.PoetryOracle(nil)
+poetryOracle := client.PoetryOracle(nil)
+fmt.Println(poetryOracle.GetName()) // "poetry__oracle"
 ```
 
 ### Fields
@@ -269,6 +285,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.PoetryOracle(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -299,6 +319,7 @@ Return the entity name.
 
 ```go
 tool := client.Tool(nil)
+fmt.Println(tool.GetName()) // "tool"
 ```
 
 ### Fields
@@ -315,6 +336,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Tool(nil).Load(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -345,6 +370,7 @@ Return the entity name.
 
 ```go
 word := client.Word(nil)
+fmt.Println(word.GetName()) // "word"
 ```
 
 ### Fields
@@ -363,6 +389,10 @@ Load a single entity matching the given criteria.
 
 ```go
 result, err := client.Word(nil).Load(map[string]any{"id": "word_id"}, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(result)
 ```
 
 ### Common Methods
@@ -392,7 +422,8 @@ Return the entity name.
 ## WordsLearningEntity
 
 ```go
-words_learning := client.WordsLearning(nil)
+wordsLearning := client.WordsLearning(nil)
+fmt.Println(wordsLearning.GetName()) // "words_learning"
 ```
 
 ### Fields
@@ -409,6 +440,10 @@ List entities matching the given criteria. Returns an array.
 
 ```go
 results, err := client.WordsLearning(nil).List(nil, nil)
+if err != nil {
+    panic(err)
+}
+fmt.Println(results)
 ```
 
 ### Common Methods

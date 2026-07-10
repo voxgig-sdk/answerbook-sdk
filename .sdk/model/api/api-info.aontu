@@ -15,9 +15,9 @@ main: {
           url: "https://answerbook.david888.com"
         }
       ]
+      summary: "The Answerbook API provides access to a collection of random answers and features, such as a random password generator and Tang poetry retrieval."
       title: "Answerbook API"
       version: "1.0.1"
+      website: "https://github.com/tbdavid2019/answerbook-api"
     }
   }
-}
-
