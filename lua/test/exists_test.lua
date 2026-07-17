@@ -1,4 +1,4 @@
--- ProjectName SDK exists test
+-- Answerbook SDK exists test
 
 local sdk = require("answerbook_sdk")
 
