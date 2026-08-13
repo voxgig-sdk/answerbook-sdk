@@ -43,43 +43,51 @@ class GetApiDocLoadMatch
 /** MarketData entity data model. */
 class MarketData
 {
-    public ?array $nasdaq100 = null;
-    public ?array $sp500 = null;
-    public ?array $tw0050 = null;
+    public ?string $change = null;
+    public ?string $percentChange = null;
+    public ?string $price = null;
 }
 
 /** Request payload for MarketData#load. */
 class MarketDataLoadMatch
 {
-    public ?array $nasdaq100 = null;
-    public ?array $sp500 = null;
-    public ?array $tw0050 = null;
+    public ?string $change = null;
+    public ?string $percentChange = null;
+    public ?string $price = null;
 }
 
 /** PoetryOracle entity data model. */
 class PoetryOracle
 {
-    public ?array $oracle = null;
-    public ?array $poem = null;
+    public ?string $author = null;
+    public ?string $content = null;
+    public ?string $interpretation = null;
+    public ?string $poem = null;
+    public ?string $title = null;
+    public ?string $type = null;
 }
 
 /** Request payload for PoetryOracle#load. */
 class PoetryOracleLoadMatch
 {
-    public ?array $oracle = null;
-    public ?array $poem = null;
+    public ?string $author = null;
+    public ?string $content = null;
+    public ?string $interpretation = null;
+    public ?string $poem = null;
+    public ?string $title = null;
+    public ?string $type = null;
 }
 
 /** Tool entity data model. */
 class Tool
 {
-    public ?string $random_password = null;
+    public ?string $RandomPassword = null;
 }
 
 /** Request payload for Tool#load. */
 class ToolLoadMatch
 {
-    public ?string $random_password = null;
+    public ?string $RandomPassword = null;
 }
 
 /** Word entity data model. */
@@ -101,12 +109,12 @@ class WordLoadMatch
 /** WordsLearning entity data model. */
 class WordsLearning
 {
-    public ?array $category = null;
+    public ?array $categories = null;
 }
 
 /** Request payload for WordsLearning#list. */
 class WordsLearningListMatch
 {
-    public ?array $category = null;
+    public ?array $categories = null;
 }
 

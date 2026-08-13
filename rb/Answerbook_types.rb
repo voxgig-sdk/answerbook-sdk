@@ -60,79 +60,111 @@ end
 
 # MarketData entity data model.
 #
-# @!attribute [rw] nasdaq100
-#   @return [Hash, nil]
+# @!attribute [rw] change
+#   @return [String, nil]
 #
-# @!attribute [rw] sp500
-#   @return [Hash, nil]
+# @!attribute [rw] percentChange
+#   @return [String, nil]
 #
-# @!attribute [rw] tw0050
-#   @return [Hash, nil]
+# @!attribute [rw] price
+#   @return [String, nil]
 MarketData = Struct.new(
-  :nasdaq100,
-  :sp500,
-  :tw0050,
+  :change,
+  :percentChange,
+  :price,
   keyword_init: true
 )
 
 # Request payload for MarketData#load.
 #
-# @!attribute [rw] nasdaq100
-#   @return [Hash, nil]
+# @!attribute [rw] change
+#   @return [String, nil]
 #
-# @!attribute [rw] sp500
-#   @return [Hash, nil]
+# @!attribute [rw] percentChange
+#   @return [String, nil]
 #
-# @!attribute [rw] tw0050
-#   @return [Hash, nil]
+# @!attribute [rw] price
+#   @return [String, nil]
 MarketDataLoadMatch = Struct.new(
-  :nasdaq100,
-  :sp500,
-  :tw0050,
+  :change,
+  :percentChange,
+  :price,
   keyword_init: true
 )
 
 # PoetryOracle entity data model.
 #
-# @!attribute [rw] oracle
-#   @return [Hash, nil]
+# @!attribute [rw] author
+#   @return [String, nil]
+#
+# @!attribute [rw] content
+#   @return [String, nil]
+#
+# @!attribute [rw] interpretation
+#   @return [String, nil]
 #
 # @!attribute [rw] poem
-#   @return [Hash, nil]
+#   @return [String, nil]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] type
+#   @return [String, nil]
 PoetryOracle = Struct.new(
-  :oracle,
+  :author,
+  :content,
+  :interpretation,
   :poem,
+  :title,
+  :type,
   keyword_init: true
 )
 
 # Request payload for PoetryOracle#load.
 #
-# @!attribute [rw] oracle
-#   @return [Hash, nil]
+# @!attribute [rw] author
+#   @return [String, nil]
+#
+# @!attribute [rw] content
+#   @return [String, nil]
+#
+# @!attribute [rw] interpretation
+#   @return [String, nil]
 #
 # @!attribute [rw] poem
-#   @return [Hash, nil]
+#   @return [String, nil]
+#
+# @!attribute [rw] title
+#   @return [String, nil]
+#
+# @!attribute [rw] type
+#   @return [String, nil]
 PoetryOracleLoadMatch = Struct.new(
-  :oracle,
+  :author,
+  :content,
+  :interpretation,
   :poem,
+  :title,
+  :type,
   keyword_init: true
 )
 
 # Tool entity data model.
 #
-# @!attribute [rw] random_password
+# @!attribute [rw] RandomPassword
 #   @return [String, nil]
 Tool = Struct.new(
-  :random_password,
+  :RandomPassword,
   keyword_init: true
 )
 
 # Request payload for Tool#load.
 #
-# @!attribute [rw] random_password
+# @!attribute [rw] RandomPassword
 #   @return [String, nil]
 ToolLoadMatch = Struct.new(
-  :random_password,
+  :RandomPassword,
   keyword_init: true
 )
 
@@ -172,19 +204,19 @@ WordLoadMatch = Struct.new(
 
 # WordsLearning entity data model.
 #
-# @!attribute [rw] category
+# @!attribute [rw] categories
 #   @return [Array, nil]
 WordsLearning = Struct.new(
-  :category,
+  :categories,
   keyword_init: true
 )
 
 # Request payload for WordsLearning#list.
 #
-# @!attribute [rw] category
+# @!attribute [rw] categories
 #   @return [Array, nil]
 WordsLearningListMatch = Struct.new(
-  :category,
+  :categories,
   keyword_init: true
 )
 

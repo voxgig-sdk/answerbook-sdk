@@ -16,11 +16,11 @@
 import pytest
 
 from projectname_sdk import AnswerbookSDK
-from core.error import AnswerbookError
-from core.result import AnswerbookResult
-from core.response import AnswerbookResponse
-from core.spec import AnswerbookSpec
-from feature.base_feature import AnswerbookBaseFeature
+from projectname_sdk.core.error import AnswerbookError
+from projectname_sdk.core.result import AnswerbookResult
+from projectname_sdk.core.response import AnswerbookResponse
+from projectname_sdk.core.spec import AnswerbookSpec
+from projectname_sdk.feature.base_feature import AnswerbookBaseFeature
 
 
 def _client():

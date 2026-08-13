@@ -34,7 +34,7 @@ client = AnswerbookSDK.new
 
 ```ruby
 begin
-  # load returns the bare BookOfAnswer record (raises on error).
+  # load returns the ENTITY — call data_get for the BookOfAnswer record (raises on error).
   bookofanswer = client.BookOfAnswer.load({ "id" => "example_id" })
   puts bookofanswer
 rescue => err
@@ -49,7 +49,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  bookofanswer = client.BookOfAnswer.load({ "id" => "example_id" })
+  marketdata = client.MarketData.load()
 rescue => err
   warn "load failed: #{err}"
 end
@@ -112,17 +112,15 @@ end
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```ruby
-client = AnswerbookSDK.test({
-  "entity" => { "bookofanswer" => { "test01" => { "id" => "test01" } } },
-})
+client = AnswerbookSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-bookofanswer = client.BookOfAnswer.load({ "id" => "test01" })
-puts bookofanswer
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+marketdata = client.MarketData.load()
+puts marketdata
 ```
 
 ### Use a custom fetch function
@@ -266,9 +264,9 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `nasdaq100` |  |
-| `sp500` |  |
-| `tw0050` |  |
+| `change` |  |
+| `percentChange` |  |
+| `price` |  |
 
 Operations: Load.
 
@@ -278,8 +276,12 @@ API path: `/SP500`
 
 | Field | Description |
 | --- | --- |
-| `oracle` |  |
+| `author` |  |
+| `content` |  |
+| `interpretation` |  |
 | `poem` |  |
+| `title` |  |
+| `type` |  |
 
 Operations: Load.
 
@@ -289,7 +291,7 @@ API path: `/TangPoetry`
 
 | Field | Description |
 | --- | --- |
-| `random_password` |  |
+| `RandomPassword` |  |
 
 Operations: Load.
 
@@ -311,7 +313,7 @@ API path: `/words/{category}/{word}`
 
 | Field | Description |
 | --- | --- |
-| `category` |  |
+| `categories` |  |
 
 Operations: List.
 
@@ -344,7 +346,7 @@ Create an instance: `book_of_answer = client.BookOfAnswer`
 #### Example: Load
 
 ```ruby
-# load returns the bare BookOfAnswer record (raises on error).
+# load returns the ENTITY — call data_get for the BookOfAnswer record (raises on error).
 book_of_answer = client.BookOfAnswer.load({ "id" => "book_of_answer_id" })
 ```
 
@@ -362,7 +364,7 @@ Create an instance: `get_api_doc = client.GetApiDoc`
 #### Example: Load
 
 ```ruby
-# load returns the bare GetApiDoc record (raises on error).
+# load returns the ENTITY — call data_get for the GetApiDoc record (raises on error).
 get_api_doc = client.GetApiDoc.load()
 ```
 
@@ -381,14 +383,14 @@ Create an instance: `market_data = client.MarketData`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `nasdaq100` | `Hash` |  |
-| `sp500` | `Hash` |  |
-| `tw0050` | `Hash` |  |
+| `change` | `String` |  |
+| `percentChange` | `String` |  |
+| `price` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare MarketData record (raises on error).
+# load returns the ENTITY — call data_get for the MarketData record (raises on error).
 market_data = client.MarketData.load()
 ```
 
@@ -407,13 +409,17 @@ Create an instance: `poetry__oracle = client.PoetryOracle`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `oracle` | `Hash` |  |
-| `poem` | `Hash` |  |
+| `author` | `String` |  |
+| `content` | `String` |  |
+| `interpretation` | `String` |  |
+| `poem` | `String` |  |
+| `title` | `String` |  |
+| `type` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare PoetryOracle record (raises on error).
+# load returns the ENTITY — call data_get for the PoetryOracle record (raises on error).
 poetry__oracle = client.PoetryOracle.load()
 ```
 
@@ -432,12 +438,12 @@ Create an instance: `tool = client.Tool`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `random_password` | `String` |  |
+| `RandomPassword` | `String` |  |
 
 #### Example: Load
 
 ```ruby
-# load returns the bare Tool record (raises on error).
+# load returns the ENTITY — call data_get for the Tool record (raises on error).
 tool = client.Tool.load()
 ```
 
@@ -463,7 +469,7 @@ Create an instance: `word = client.Word`
 #### Example: Load
 
 ```ruby
-# load returns the bare Word record (raises on error).
+# load returns the ENTITY — call data_get for the Word record (raises on error).
 word = client.Word.load({ "id" => "word_id" })
 ```
 
@@ -482,7 +488,7 @@ Create an instance: `words_learning = client.WordsLearning`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | `Array` |  |
+| `categories` | `Array` |  |
 
 #### Example: List
 
@@ -568,11 +574,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-bookofanswer = client.BookOfAnswer
-bookofanswer.load({ "id" => "example_id" })
+marketdata = client.MarketData
+marketdata.load()
 
-# bookofanswer.data_get now returns the bookofanswer data from the last load
-# bookofanswer.match_get returns the last match criteria
+# marketdata.data_get now returns the marketdata data from the last load
+# marketdata.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

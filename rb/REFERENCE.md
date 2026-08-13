@@ -218,9 +218,9 @@ market_data = client.MarketData
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | `Hash` | No |  |
-| `sp500` | `Hash` | No |  |
-| `tw0050` | `Hash` | No |  |
+| `change` | `String` | No |  |
+| `percentChange` | `String` | No |  |
+| `price` | `String` | No |  |
 
 ### Operations
 
@@ -272,8 +272,12 @@ poetry__oracle = client.PoetryOracle
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | `Hash` | No |  |
-| `poem` | `Hash` | No |  |
+| `author` | `String` | No |  |
+| `content` | `String` | No |  |
+| `interpretation` | `String` | No |  |
+| `poem` | `String` | No |  |
+| `title` | `String` | No |  |
+| `type` | `String` | No |  |
 
 ### Operations
 
@@ -325,7 +329,7 @@ tool = client.Tool
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | `String` | No |  |
+| `RandomPassword` | `String` | No |  |
 
 ### Operations
 
@@ -431,7 +435,7 @@ words_learning = client.WordsLearning
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `Array` | No |  |
+| `categories` | `Array` | No |  |
 
 ### Operations
 

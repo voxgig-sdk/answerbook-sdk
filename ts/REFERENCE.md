@@ -285,9 +285,9 @@ const market_data = client.MarketData()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | `Record<string, any>` | No |  |
-| `sp500` | `Record<string, any>` | No |  |
-| `tw0050` | `Record<string, any>` | No |  |
+| `change` | `string` | No |  |
+| `percentChange` | `string` | No |  |
+| `price` | `string` | No |  |
 
 ### Operations
 
@@ -337,8 +337,12 @@ const poetry__oracle = client.PoetryOracle()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | `Record<string, any>` | No |  |
-| `poem` | `Record<string, any>` | No |  |
+| `author` | `string` | No |  |
+| `content` | `string` | No |  |
+| `interpretation` | `string` | No |  |
+| `poem` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -388,7 +392,7 @@ const tool = client.Tool()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | `string` | No |  |
+| `RandomPassword` | `string` | No |  |
 
 ### Operations
 
@@ -490,7 +494,7 @@ const words_learning = client.WordsLearning()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `any[]` | No |  |
+| `categories` | `any[]` | No |  |
 
 ### Operations
 

@@ -6,19 +6,19 @@ main: kit: entity: market_data: {
 
   fields: [
     {
-      name: "nasdaq100"
+      name: "change"
       req: false
-      type: "`$OBJECT`"
+      type: "`$STRING`"
     }
     {
-      name: "sp500"
+      name: "percentChange"
       req: false
-      type: "`$OBJECT`"
+      type: "`$STRING`"
     }
     {
-      name: "tw0050"
+      name: "price"
       req: false
-      type: "`$OBJECT`"
+      type: "`$STRING`"
     }
   ]
 
@@ -35,7 +35,7 @@ main: kit: entity: market_data: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.SP500`"
           }
         }
         {
@@ -46,7 +46,7 @@ main: kit: entity: market_data: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.TW0050`"
           }
         }
         {
@@ -57,7 +57,7 @@ main: kit: entity: market_data: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.nasdaq100`"
           }
         }
       ]

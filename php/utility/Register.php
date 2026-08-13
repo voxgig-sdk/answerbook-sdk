@@ -23,6 +23,7 @@ require_once __DIR__ . '/MakeUrl.php';
 require_once __DIR__ . '/Param.php';
 require_once __DIR__ . '/PrepareAuth.php';
 require_once __DIR__ . '/PrepareBody.php';
+require_once __DIR__ . '/Graphql.php';
 require_once __DIR__ . '/PrepareHeaders.php';
 require_once __DIR__ . '/PrepareMethod.php';
 require_once __DIR__ . '/PrepareParams.php';
@@ -59,6 +60,8 @@ AnswerbookUtility::setRegistrar(function (AnswerbookUtility $u): void {
     $u->prepare_params = [AnswerbookPrepareParams::class, 'call'];
     $u->prepare_path = [AnswerbookPreparePath::class, 'call'];
     $u->prepare_query = [AnswerbookPrepareQuery::class, 'call'];
+    $u->graphql_body = [AnswerbookGraphql::class, 'body'];
+    $u->graphql_errors = [AnswerbookGraphql::class, 'errors'];
     $u->result_basic = [AnswerbookResultBasic::class, 'call'];
     $u->result_body = [AnswerbookResultBody::class, 'call'];
     $u->result_headers = [AnswerbookResultHeaders::class, 'call'];

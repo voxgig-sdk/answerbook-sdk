@@ -215,9 +215,9 @@ local market_data = client:MarketData(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | `table` | No |  |
-| `sp500` | `table` | No |  |
-| `tw0050` | `table` | No |  |
+| `change` | `string` | No |  |
+| `percentChange` | `string` | No |  |
+| `price` | `string` | No |  |
 
 ### Operations
 
@@ -269,8 +269,12 @@ local poetry__oracle = client:PoetryOracle(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | `table` | No |  |
-| `poem` | `table` | No |  |
+| `author` | `string` | No |  |
+| `content` | `string` | No |  |
+| `interpretation` | `string` | No |  |
+| `poem` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -322,7 +326,7 @@ local tool = client:Tool(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | `string` | No |  |
+| `RandomPassword` | `string` | No |  |
 
 ### Operations
 
@@ -428,7 +432,7 @@ local words_learning = client:WordsLearning(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `table` | No |  |
+| `categories` | `table` | No |  |
 
 ### Operations
 

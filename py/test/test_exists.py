@@ -1,4 +1,4 @@
-# ProjectName SDK exists test
+# Answerbook SDK exists test
 
 import pytest
 from answerbook_sdk import AnswerbookSDK

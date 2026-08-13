@@ -66,12 +66,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-bookofanswer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "example_id"}, nil)
+marketdata, err := client.MarketData(nil).Load(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = bookofanswer
+_ = marketdata
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -135,13 +135,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-bookOfAnswer, err := client.BookOfAnswer(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+marketData, err := client.MarketData(nil).Load(
+    nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(bookOfAnswer) // the returned mock data
+fmt.Println(marketData) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -288,9 +288,9 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `"nasdaq100"` |  |
-| `"sp500"` |  |
-| `"tw0050"` |  |
+| `"change"` |  |
+| `"percentChange"` |  |
+| `"price"` |  |
 
 Operations: Load.
 
@@ -300,8 +300,12 @@ API path: `/SP500`
 
 | Field | Description |
 | --- | --- |
-| `"oracle"` |  |
+| `"author"` |  |
+| `"content"` |  |
+| `"interpretation"` |  |
 | `"poem"` |  |
+| `"title"` |  |
+| `"type"` |  |
 
 Operations: Load.
 
@@ -311,7 +315,7 @@ API path: `/TangPoetry`
 
 | Field | Description |
 | --- | --- |
-| `"random_password"` |  |
+| `"RandomPassword"` |  |
 
 Operations: Load.
 
@@ -333,7 +337,7 @@ API path: `/words/{category}/{word}`
 
 | Field | Description |
 | --- | --- |
-| `"category"` |  |
+| `"categories"` |  |
 
 Operations: List.
 
@@ -409,9 +413,9 @@ Create an instance: `marketData := client.MarketData(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `nasdaq100` | `map[string]any` |  |
-| `sp500` | `map[string]any` |  |
-| `tw0050` | `map[string]any` |  |
+| `change` | `string` |  |
+| `percentChange` | `string` |  |
+| `price` | `string` |  |
 
 #### Example: Load
 
@@ -438,8 +442,12 @@ Create an instance: `poetryOracle := client.PoetryOracle(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `oracle` | `map[string]any` |  |
-| `poem` | `map[string]any` |  |
+| `author` | `string` |  |
+| `content` | `string` |  |
+| `interpretation` | `string` |  |
+| `poem` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -466,7 +474,7 @@ Create an instance: `tool := client.Tool(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `random_password` | `string` |  |
+| `RandomPassword` | `string` |  |
 
 #### Example: Load
 
@@ -522,7 +530,7 @@ Create an instance: `wordsLearning := client.WordsLearning(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | `[]any` |  |
+| `categories` | `[]any` |  |
 
 #### Example: List
 
@@ -608,11 +616,11 @@ Entity instances are stateful. After a successful `Load`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-bookofanswer := client.BookOfAnswer(nil)
-bookofanswer.Load(map[string]any{"id": "example_id"}, nil)
+marketdata := client.MarketData(nil)
+marketdata.Load(nil, nil)
 
-// bookofanswer.Data() now returns the bookofanswer data from the last load
-// bookofanswer.Match() returns the last match criteria
+// marketdata.Data() now returns the marketdata data from the last load
+// marketdata.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

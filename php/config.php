@@ -125,6 +125,7 @@ class AnswerbookConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/answersWithMeta',
                   'parts' => [
@@ -161,6 +162,7 @@ class AnswerbookConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/answers',
                   'parts' => [
@@ -191,6 +193,7 @@ class AnswerbookConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/answersOriginal',
                   'parts' => [
@@ -226,6 +229,7 @@ class AnswerbookConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/',
                   'parts' => [],
@@ -248,23 +252,23 @@ class AnswerbookConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'nasdaq100',
+              'name' => 'change',
               'req' => false,
-              'type' => '`$OBJECT`',
+              'type' => '`$STRING`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'sp500',
+              'name' => 'percentChange',
               'req' => false,
-              'type' => '`$OBJECT`',
+              'type' => '`$STRING`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'tw0050',
+              'name' => 'price',
               'req' => false,
-              'type' => '`$OBJECT`',
+              'type' => '`$STRING`',
               'index$' => 2,
             ],
           ],
@@ -277,6 +281,7 @@ class AnswerbookConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/SP500',
                   'parts' => [
@@ -285,13 +290,14 @@ class AnswerbookConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.SP500`',
                   ],
                   'index$' => 0,
                 ],
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/TW0050',
                   'parts' => [
@@ -300,13 +306,14 @@ class AnswerbookConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.TW0050`',
                   ],
                   'index$' => 1,
                 ],
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/nasdaq100',
                   'parts' => [
@@ -315,7 +322,7 @@ class AnswerbookConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.nasdaq100`',
                   ],
                   'index$' => 2,
                 ],
@@ -331,17 +338,45 @@ class AnswerbookConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'oracle',
+              'name' => 'author',
               'req' => false,
-              'type' => '`$OBJECT`',
+              'type' => '`$STRING`',
               'index$' => 0,
+            ],
+            [
+              'active' => true,
+              'name' => 'content',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 1,
+            ],
+            [
+              'active' => true,
+              'name' => 'interpretation',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 2,
             ],
             [
               'active' => true,
               'name' => 'poem',
               'req' => false,
-              'type' => '`$OBJECT`',
-              'index$' => 1,
+              'type' => '`$STRING`',
+              'index$' => 3,
+            ],
+            [
+              'active' => true,
+              'name' => 'title',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 4,
+            ],
+            [
+              'active' => true,
+              'name' => 'type',
+              'req' => false,
+              'type' => '`$STRING`',
+              'index$' => 5,
             ],
           ],
           'name' => 'poetry__oracle',
@@ -353,6 +388,7 @@ class AnswerbookConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/TangPoetry',
                   'parts' => [
@@ -361,13 +397,14 @@ class AnswerbookConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.poem`',
                   ],
                   'index$' => 0,
                 ],
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/TempleOracleJP',
                   'parts' => [
@@ -376,7 +413,7 @@ class AnswerbookConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.oracle`',
                   ],
                   'index$' => 1,
                 ],
@@ -392,7 +429,7 @@ class AnswerbookConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'random_password',
+              'name' => 'RandomPassword',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -407,6 +444,7 @@ class AnswerbookConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/RandomPassword',
                   'parts' => [
@@ -481,6 +519,7 @@ class AnswerbookConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/words/{category}/{word}',
                   'parts' => [
@@ -515,6 +554,7 @@ class AnswerbookConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/words/{category}',
                   'parts' => [
@@ -553,7 +593,7 @@ class AnswerbookConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'category',
+              'name' => 'categories',
               'req' => false,
               'type' => '`$ARRAY`',
               'index$' => 0,
@@ -568,6 +608,7 @@ class AnswerbookConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/words/categories',
                   'parts' => [
@@ -577,7 +618,7 @@ class AnswerbookConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.categories`',
                   ],
                   'index$' => 0,
                 ],

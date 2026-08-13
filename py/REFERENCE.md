@@ -210,9 +210,9 @@ market_data = client.MarketData()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | `dict` | No |  |
-| `sp500` | `dict` | No |  |
-| `tw0050` | `dict` | No |  |
+| `change` | `str` | No |  |
+| `percentChange` | `str` | No |  |
+| `price` | `str` | No |  |
 
 ### Operations
 
@@ -263,8 +263,12 @@ poetry__oracle = client.PoetryOracle()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | `dict` | No |  |
-| `poem` | `dict` | No |  |
+| `author` | `str` | No |  |
+| `content` | `str` | No |  |
+| `interpretation` | `str` | No |  |
+| `poem` | `str` | No |  |
+| `title` | `str` | No |  |
+| `type` | `str` | No |  |
 
 ### Operations
 
@@ -315,7 +319,7 @@ tool = client.Tool()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | `str` | No |  |
+| `RandomPassword` | `str` | No |  |
 
 ### Operations
 
@@ -419,7 +423,7 @@ words_learning = client.WordsLearning()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `list` | No |  |
+| `categories` | `list` | No |  |
 
 ### Operations
 

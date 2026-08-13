@@ -23,28 +23,36 @@
 ---@class GetApiDocLoadMatch
 
 ---@class MarketData
----@field nasdaq100? table
----@field sp500? table
----@field tw0050? table
+---@field change? string
+---@field percentChange? string
+---@field price? string
 
 ---@class MarketDataLoadMatch
----@field nasdaq100? table
----@field sp500? table
----@field tw0050? table
+---@field change? string
+---@field percentChange? string
+---@field price? string
 
 ---@class PoetryOracle
----@field oracle? table
----@field poem? table
+---@field author? string
+---@field content? string
+---@field interpretation? string
+---@field poem? string
+---@field title? string
+---@field type? string
 
 ---@class PoetryOracleLoadMatch
----@field oracle? table
----@field poem? table
+---@field author? string
+---@field content? string
+---@field interpretation? string
+---@field poem? string
+---@field title? string
+---@field type? string
 
 ---@class Tool
----@field random_password? string
+---@field RandomPassword? string
 
 ---@class ToolLoadMatch
----@field random_password? string
+---@field RandomPassword? string
 
 ---@class Word
 ---@field category? string
@@ -57,10 +65,10 @@
 ---@field id? string
 
 ---@class WordsLearning
----@field category? table
+---@field categories? table
 
 ---@class WordsLearningListMatch
----@field category? table
+---@field categories? table
 
 local M = {}
 

@@ -6,14 +6,34 @@ main: kit: entity: poetry__oracle: {
 
   fields: [
     {
-      name: "oracle"
+      name: "author"
       req: false
-      type: "`$OBJECT`"
+      type: "`$STRING`"
+    }
+    {
+      name: "content"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "interpretation"
+      req: false
+      type: "`$STRING`"
     }
     {
       name: "poem"
       req: false
-      type: "`$OBJECT`"
+      type: "`$STRING`"
+    }
+    {
+      name: "title"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "type"
+      req: false
+      type: "`$STRING`"
     }
   ]
 
@@ -30,7 +50,7 @@ main: kit: entity: poetry__oracle: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.poem`"
           }
         }
         {
@@ -41,7 +61,7 @@ main: kit: entity: poetry__oracle: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.oracle`"
           }
         }
       ]

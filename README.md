@@ -23,7 +23,7 @@ support (`list`, `load`):
 
 ```ts
 const client = new AnswerbookSDK()
-const bookofanswer = await client.BookOfAnswer().load()
+const bookofanswer = await client.BookOfAnswer().load({ id: "example_id" })
 ```
 
 Thinking in entities keeps the mental model small — for people and AI agents alike —
@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = AnswerbookSDK.test()
-const bookofanswer = await client.BookOfAnswer().load({ id: 'test01' })
-// bookofanswer is a bare BookOfAnswer populated with mock data
-console.log(bookofanswer)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = AnswerbookSDK.test({
+  entity: {
+    market_data: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const marketdata = await client.MarketData().load()
+// marketdata is the MarketData entity, populated with mock data
+// — call marketdata.data() for the record itself
+console.log(marketdata)
 ```
 
 ### Python
 
 ```python
 client = AnswerbookSDK.test()
-bookofanswer = client.BookOfAnswer().load({"id": "test01"})
-print(bookofanswer)
+marketdata = client.MarketData().load()
+print(marketdata)
 ```
 
 ### PHP
@@ -57,17 +66,17 @@ print(bookofanswer)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = AnswerbookSDK::test([
-    "entity" => ["bookofanswer" => ["test01" => ["id" => "test01"]]],
+    "entity" => ["marketdata" => ["test01" => []]],
 ]);
-$bookofanswer = $client->BookOfAnswer()->load(["id" => "test01"]);
+$marketdata = $client->MarketData()->load();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.BookOfAnswer(nil).Load(
-    map[string]any{"id": "test01"}, nil,
+result, err := client.MarketData(nil).Load(
+    nil, nil,
 )
 ```
 
@@ -76,16 +85,16 @@ result, err := client.BookOfAnswer(nil).Load(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = AnswerbookSDK.test({
-  "entity" => { "bookofanswer" => { "test01" => { "id" => "test01" } } },
+  "entity" => { "marketdata" => { "test01" => {} } },
 })
-bookofanswer = client.BookOfAnswer.load({ "id" => "test01" })
+marketdata = client.MarketData.load()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local result, err = client:BookOfAnswer():load({ id = "test01" })
+local result, err = client:MarketData():load()
 ```
 
 ## Packages
@@ -188,7 +197,7 @@ require_once 'answerbook_sdk.php';
 $client = new AnswerbookSDK();
 
 
-// Load a specific bookofanswer (returns the bare record; throws on error)
+// Load a specific bookofanswer (returns the ENTITY; call data_get() for the record; throws on error)
 $bookofanswer = $client->BookOfAnswer()->load(["id" => "example_id"]);
 print_r($bookofanswer);
 ```
@@ -216,7 +225,7 @@ require_relative "Answerbook_sdk"
 client = AnswerbookSDK.new
 
 
-# Load a specific bookofanswer (returns the bare record; raises on error)
+# Load a specific bookofanswer (returns the ENTITY; call data_get for the record)
 bookofanswer = client.BookOfAnswer.load({ "id" => "example_id" })
 puts bookofanswer
 ```
@@ -350,6 +359,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://github.com/tbdavid2019/answerbook-api](https://github.com/tbdavid2019/answerbook-api)
 

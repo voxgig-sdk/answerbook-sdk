@@ -6,9 +6,9 @@ import time
 
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from answerbook_sdk.utility.voxgig_struct import voxgig_struct as vs
 from answerbook_sdk import AnswerbookSDK
-from core import helpers
+from answerbook_sdk.core import helpers
 
 _TEST_DIR = os.path.dirname(os.path.abspath(__file__))
 from test import runner
@@ -36,7 +36,7 @@ class TestPoetryOracleEntity:
         # without an *_ENTID env override, those IDs hit the live API and 4xx.
         if setup.get("synthetic_only"):
             pytest.skip("live entity test uses synthetic IDs from fixture — "
-                        "set ANSWERBOOK_TEST_POETRY__ORACLE_ENTID JSON to run live")
+                        "set ANSWERBOOK_TEST_POETRY_ORACLE_ENTID JSON to run live")
         client = setup["client"]
 
         # Bootstrap entity data from existing test data.
@@ -83,17 +83,17 @@ def _poetry__oracle_basic_setup(extra):
     # mode is on without a real override, the basic test runs against synthetic
     # IDs from the fixture and 4xx's. We surface this so the test can skip.
     _entid_env_raw = os.environ.get(
-        "ANSWERBOOK_TEST_POETRY__ORACLE_ENTID")
+        "ANSWERBOOK_TEST_POETRY_ORACLE_ENTID")
     _idmap_overridden = _entid_env_raw is not None and _entid_env_raw.strip().startswith("{")
 
     env = runner.env_override({
-        "ANSWERBOOK_TEST_POETRY__ORACLE_ENTID": idmap,
+        "ANSWERBOOK_TEST_POETRY_ORACLE_ENTID": idmap,
         "ANSWERBOOK_TEST_LIVE": "FALSE",
         "ANSWERBOOK_TEST_EXPLAIN": "FALSE",
     })
 
     idmap_resolved = helpers.to_map(
-        env.get("ANSWERBOOK_TEST_POETRY__ORACLE_ENTID"))
+        env.get("ANSWERBOOK_TEST_POETRY_ORACLE_ENTID"))
     if idmap_resolved is None:
         idmap_resolved = helpers.to_map(idmap)
 

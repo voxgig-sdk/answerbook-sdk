@@ -63,7 +63,7 @@ describe('WordsLearningEntity', async () => {
     const words_learning_ref01_ent = client.WordsLearning()
     const words_learning_ref01_match: any = {}
 
-    const words_learning_ref01_list = await words_learning_ref01_ent.list(words_learning_ref01_match)
+    const words_learning_ref01_list = (await words_learning_ref01_ent.list(words_learning_ref01_match)).map((e: any) => e.data())
 
 
   })

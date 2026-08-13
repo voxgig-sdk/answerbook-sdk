@@ -53,8 +53,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const bookofanswer = await client.BookOfAnswer().load({ id: "example_id" })
-  console.log(bookofanswer)
+  const marketdata = await client.MarketData().load()
+  console.log(marketdata)
 } catch (err) {
   console.error('load failed:', err)
 }
@@ -120,9 +120,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = AnswerbookSDK.test()
 
-const bookofanswer = await client.BookOfAnswer().load({ id: 'test01' })
-// bookofanswer is a bare entity populated with mock response data
-console.log(bookofanswer)
+const marketdata = await client.MarketData().load()
+// marketdata is the entity, populated with mock response data
+// — call marketdata.data() for the record itself
+console.log(marketdata)
 ```
 
 You can also use the instance method:
@@ -137,14 +138,14 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.BookOfAnswer()
+const entity = client.MarketData()
 
 // First call runs the operation and stores its result
-await entity.load({ id: 'example' })
+await entity.load()
 
 // Subsequent calls reuse the stored state
 const data = entity.data()
-console.log(data.id)
+console.log(data)
 ```
 
 ### Add custom middleware
@@ -315,9 +316,9 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `nasdaq100` |  |
-| `sp500` |  |
-| `tw0050` |  |
+| `change` |  |
+| `percentChange` |  |
+| `price` |  |
 
 Operations: load.
 
@@ -327,8 +328,12 @@ API path: `/SP500`
 
 | Field | Description |
 | --- | --- |
-| `oracle` |  |
+| `author` |  |
+| `content` |  |
+| `interpretation` |  |
 | `poem` |  |
+| `title` |  |
+| `type` |  |
 
 Operations: load.
 
@@ -338,7 +343,7 @@ API path: `/TangPoetry`
 
 | Field | Description |
 | --- | --- |
-| `random_password` |  |
+| `RandomPassword` |  |
 
 Operations: load.
 
@@ -360,7 +365,7 @@ API path: `/words/{category}/{word}`
 
 | Field | Description |
 | --- | --- |
-| `category` |  |
+| `categories` |  |
 
 Operations: list.
 
@@ -428,9 +433,9 @@ Create an instance: `const market_data = client.MarketData()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `nasdaq100` | `Record<string, any>` |  |
-| `sp500` | `Record<string, any>` |  |
-| `tw0050` | `Record<string, any>` |  |
+| `change` | `string` |  |
+| `percentChange` | `string` |  |
+| `price` | `string` |  |
 
 #### Example: Load
 
@@ -453,8 +458,12 @@ Create an instance: `const poetry__oracle = client.PoetryOracle()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `oracle` | `Record<string, any>` |  |
-| `poem` | `Record<string, any>` |  |
+| `author` | `string` |  |
+| `content` | `string` |  |
+| `interpretation` | `string` |  |
+| `poem` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -477,7 +486,7 @@ Create an instance: `const tool = client.Tool()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `random_password` | `string` |  |
+| `RandomPassword` | `string` |  |
 
 #### Example: Load
 
@@ -525,7 +534,7 @@ Create an instance: `const words_learning = client.WordsLearning()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | `any[]` |  |
+| `categories` | `any[]` |  |
 
 #### Example: List
 
@@ -603,11 +612,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const bookofanswer = client.BookOfAnswer()
-await bookofanswer.load({ id: "example_id" })
+const marketdata = client.MarketData()
+await marketdata.load()
 
-// bookofanswer.data() now returns the bookofanswer data from the last `load`
-// bookofanswer.match() returns { id: "example_id" }
+// marketdata.data() now returns the marketdata data from the last `load`
+// marketdata.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

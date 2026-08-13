@@ -119,6 +119,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/answersWithMeta",
                 ["parts"] = {
@@ -155,6 +156,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/answers",
                 ["parts"] = {
@@ -185,6 +187,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/answersOriginal",
                 ["parts"] = {
@@ -220,6 +223,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/",
                 ["parts"] = {},
@@ -242,23 +246,23 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "nasdaq100",
+            ["name"] = "change",
             ["req"] = false,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$STRING`",
             ["index$"] = 0,
           },
           {
             ["active"] = true,
-            ["name"] = "sp500",
+            ["name"] = "percentChange",
             ["req"] = false,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$STRING`",
             ["index$"] = 1,
           },
           {
             ["active"] = true,
-            ["name"] = "tw0050",
+            ["name"] = "price",
             ["req"] = false,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$STRING`",
             ["index$"] = 2,
           },
         },
@@ -271,6 +275,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/SP500",
                 ["parts"] = {
@@ -279,13 +284,14 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.SP500`",
                 },
                 ["index$"] = 0,
               },
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/TW0050",
                 ["parts"] = {
@@ -294,13 +300,14 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.TW0050`",
                 },
                 ["index$"] = 1,
               },
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/nasdaq100",
                 ["parts"] = {
@@ -309,7 +316,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.nasdaq100`",
                 },
                 ["index$"] = 2,
               },
@@ -325,17 +332,45 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "oracle",
+            ["name"] = "author",
             ["req"] = false,
-            ["type"] = "`$OBJECT`",
+            ["type"] = "`$STRING`",
             ["index$"] = 0,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "content",
+            ["req"] = false,
+            ["type"] = "`$STRING`",
+            ["index$"] = 1,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "interpretation",
+            ["req"] = false,
+            ["type"] = "`$STRING`",
+            ["index$"] = 2,
           },
           {
             ["active"] = true,
             ["name"] = "poem",
             ["req"] = false,
-            ["type"] = "`$OBJECT`",
-            ["index$"] = 1,
+            ["type"] = "`$STRING`",
+            ["index$"] = 3,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "title",
+            ["req"] = false,
+            ["type"] = "`$STRING`",
+            ["index$"] = 4,
+          },
+          {
+            ["active"] = true,
+            ["name"] = "type",
+            ["req"] = false,
+            ["type"] = "`$STRING`",
+            ["index$"] = 5,
           },
         },
         ["name"] = "poetry__oracle",
@@ -347,6 +382,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/TangPoetry",
                 ["parts"] = {
@@ -355,13 +391,14 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.poem`",
                 },
                 ["index$"] = 0,
               },
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/TempleOracleJP",
                 ["parts"] = {
@@ -370,7 +407,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.oracle`",
                 },
                 ["index$"] = 1,
               },
@@ -386,7 +423,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "random_password",
+            ["name"] = "RandomPassword",
             ["req"] = false,
             ["type"] = "`$STRING`",
             ["index$"] = 0,
@@ -401,6 +438,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/RandomPassword",
                 ["parts"] = {
@@ -475,6 +513,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/words/{category}/{word}",
                 ["parts"] = {
@@ -509,6 +548,7 @@ local function make_config()
                     },
                   },
                 },
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/words/{category}",
                 ["parts"] = {
@@ -547,7 +587,7 @@ local function make_config()
         ["fields"] = {
           {
             ["active"] = true,
-            ["name"] = "category",
+            ["name"] = "categories",
             ["req"] = false,
             ["type"] = "`$ARRAY`",
             ["index$"] = 0,
@@ -562,6 +602,7 @@ local function make_config()
               {
                 ["active"] = true,
                 ["args"] = {},
+                ["kind"] = "http",
                 ["method"] = "GET",
                 ["orig"] = "/words/categories",
                 ["parts"] = {
@@ -571,7 +612,7 @@ local function make_config()
                 ["select"] = {},
                 ["transform"] = {
                   ["req"] = "`reqdata`",
-                  ["res"] = "`body`",
+                  ["res"] = "`body.categories`",
                 },
                 ["index$"] = 0,
               },

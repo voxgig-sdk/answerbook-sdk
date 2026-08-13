@@ -63,7 +63,7 @@ describe('BookOfAnswerEntity', async () => {
     const book_of_answer_ref01_ent = client.BookOfAnswer()
     const book_of_answer_ref01_match_dt0: any = {}
     book_of_answer_ref01_match_dt0.id = book_of_answer_ref01_data.id
-    const book_of_answer_ref01_data_dt0 = await book_of_answer_ref01_ent.load(book_of_answer_ref01_match_dt0)
+    const book_of_answer_ref01_data_dt0 = (await book_of_answer_ref01_ent.load(book_of_answer_ref01_match_dt0)).data()
     assert(book_of_answer_ref01_data_dt0.id === book_of_answer_ref01_data.id)
 
 

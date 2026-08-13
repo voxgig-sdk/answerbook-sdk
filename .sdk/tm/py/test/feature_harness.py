@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import AnswerbookControl
-from core.error import AnswerbookError
-from core.result import AnswerbookResult
-from core.spec import AnswerbookSpec
+from projectname_sdk.config import make_config
+from projectname_sdk.features import _make_feature
+from projectname_sdk.core.control import AnswerbookControl
+from projectname_sdk.core.error import AnswerbookError
+from projectname_sdk.core.result import AnswerbookResult
+from projectname_sdk.core.spec import AnswerbookSpec
 
 
 # True when this SDK was generated with the named feature.

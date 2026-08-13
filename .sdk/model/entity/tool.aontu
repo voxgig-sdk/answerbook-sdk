@@ -6,7 +6,7 @@ main: kit: entity: tool: {
 
   fields: [
     {
-      name: "random_password"
+      name: "RandomPassword"
       req: false
       type: "`$STRING`"
     }

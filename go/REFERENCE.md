@@ -221,9 +221,9 @@ fmt.Println(marketData.GetName()) // "market_data"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | `map[string]any` | No |  |
-| `sp500` | `map[string]any` | No |  |
-| `tw0050` | `map[string]any` | No |  |
+| `change` | `string` | No |  |
+| `percentChange` | `string` | No |  |
+| `price` | `string` | No |  |
 
 ### Operations
 
@@ -274,8 +274,12 @@ fmt.Println(poetryOracle.GetName()) // "poetry__oracle"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | `map[string]any` | No |  |
-| `poem` | `map[string]any` | No |  |
+| `author` | `string` | No |  |
+| `content` | `string` | No |  |
+| `interpretation` | `string` | No |  |
+| `poem` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -326,7 +330,7 @@ fmt.Println(tool.GetName()) // "tool"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | `string` | No |  |
+| `RandomPassword` | `string` | No |  |
 
 ### Operations
 
@@ -430,7 +434,7 @@ fmt.Println(wordsLearning.GetName()) // "words_learning"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `[]any` | No |  |
+| `categories` | `[]any` | No |  |
 
 ### Operations
 

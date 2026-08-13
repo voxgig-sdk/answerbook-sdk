@@ -37,7 +37,7 @@ class WordsLearningEntity extends AnswerbookEntityBase<WordsLearning> {
 
 
 
-  async list(this: any, reqmatch?: WordsLearningListMatch, ctrl?: Control): Promise<WordsLearning[]> {
+  async list(this: any, reqmatch?: WordsLearningListMatch, ctrl?: Control): Promise<WordsLearningEntity[]> {
 
     const utility = this._utility
 

@@ -2,20 +2,20 @@
   "existing": {
     "words_learning": {
       "WORDS_LEARNING00": {
-        "category": []
+        "categories": []
       },
       "WORDS_LEARNING01": {
-        "category": []
+        "categories": []
       },
       "WORDS_LEARNING02": {
-        "category": []
+        "categories": []
       }
     }
   },
   "new": {
     "words_learning": {
       "words_learning_ref01": {
-        "category": []
+        "categories": []
       }
     }
   }

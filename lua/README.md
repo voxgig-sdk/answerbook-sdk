@@ -48,7 +48,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local bookofanswer, err = client:BookOfAnswer():load({ id = "example_id" })
+local marketdata, err = client:MarketData():load()
 if err then error(err) end
 ```
 
@@ -106,7 +106,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:BookOfAnswer():load({ id = "test01" })
+local result, err = client:MarketData():load()
 -- result is the returned data; err is set on failure
 ```
 
@@ -255,9 +255,9 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `nasdaq100` |  |
-| `sp500` |  |
-| `tw0050` |  |
+| `change` |  |
+| `percentChange` |  |
+| `price` |  |
 
 Operations: Load.
 
@@ -267,8 +267,12 @@ API path: `/SP500`
 
 | Field | Description |
 | --- | --- |
-| `oracle` |  |
+| `author` |  |
+| `content` |  |
+| `interpretation` |  |
 | `poem` |  |
+| `title` |  |
+| `type` |  |
 
 Operations: Load.
 
@@ -278,7 +282,7 @@ API path: `/TangPoetry`
 
 | Field | Description |
 | --- | --- |
-| `random_password` |  |
+| `RandomPassword` |  |
 
 Operations: Load.
 
@@ -300,7 +304,7 @@ API path: `/words/{category}/{word}`
 
 | Field | Description |
 | --- | --- |
-| `category` |  |
+| `categories` |  |
 
 Operations: List.
 
@@ -368,9 +372,9 @@ Create an instance: `local market_data = client:MarketData(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `nasdaq100` | `table` |  |
-| `sp500` | `table` |  |
-| `tw0050` | `table` |  |
+| `change` | `string` |  |
+| `percentChange` | `string` |  |
+| `price` | `string` |  |
 
 #### Example: Load
 
@@ -393,8 +397,12 @@ Create an instance: `local poetry__oracle = client:PoetryOracle(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `oracle` | `table` |  |
-| `poem` | `table` |  |
+| `author` | `string` |  |
+| `content` | `string` |  |
+| `interpretation` | `string` |  |
+| `poem` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
@@ -417,7 +425,7 @@ Create an instance: `local tool = client:Tool(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `random_password` | `string` |  |
+| `RandomPassword` | `string` |  |
 
 #### Example: Load
 
@@ -465,7 +473,7 @@ Create an instance: `local words_learning = client:WordsLearning(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | `table` |  |
+| `categories` | `table` |  |
 
 #### Example: List
 
@@ -550,11 +558,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local bookofanswer = client:BookOfAnswer()
-bookofanswer:load({ id = "example_id" })
+local marketdata = client:MarketData()
+marketdata:load()
 
--- bookofanswer:data_get() now returns the bookofanswer data from the last load
--- bookofanswer:match_get() returns the last match criteria
+-- marketdata:data_get() now returns the marketdata data from the last load
+-- marketdata:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

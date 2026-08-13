@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ AnswerbookUtility.registrar = ->(u) {
   u.prepare_params = AnswerbookUtilities::PrepareParams
   u.prepare_path = AnswerbookUtilities::PreparePath
   u.prepare_query = AnswerbookUtilities::PrepareQuery
+  u.graphql_body = AnswerbookUtilities::GraphqlBody
+  u.graphql_errors = AnswerbookUtilities::GraphqlErrors
   u.result_basic = AnswerbookUtilities::ResultBasic
   u.result_body = AnswerbookUtilities::ResultBody
   u.result_headers = AnswerbookUtilities::ResultHeaders

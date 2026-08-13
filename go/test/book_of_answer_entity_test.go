@@ -68,7 +68,7 @@ func TestBookOfAnswerEntity(t *testing.T) {
 		if err != nil {
 			t.Fatalf("load failed: %v", err)
 		}
-		bookOfAnswerRef01DataDt0LoadResult := core.ToMapAny(bookOfAnswerRef01DataDt0Loaded)
+		bookOfAnswerRef01DataDt0LoadResult := core.ToMapAny(entityData(bookOfAnswerRef01DataDt0Loaded))
 		if bookOfAnswerRef01DataDt0LoadResult == nil {
 			t.Fatal("expected load result to be a map")
 		}

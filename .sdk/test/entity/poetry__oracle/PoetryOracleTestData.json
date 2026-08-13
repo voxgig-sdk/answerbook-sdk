@@ -2,18 +2,30 @@
   "existing": {
     "poetry__oracle": {
       "POETRY__ORACLE00": {
-        "oracle": {},
-        "poem": {},
+        "author": "s3c",
+        "content": "s3d",
+        "interpretation": "s3e",
+        "poem": "s3f",
+        "title": "s40",
+        "type": "s41",
         "id": "POETRY__ORACLE00"
       },
       "POETRY__ORACLE01": {
-        "oracle": {},
-        "poem": {},
+        "author": "s78",
+        "content": "s79",
+        "interpretation": "s7a",
+        "poem": "s7b",
+        "title": "s7c",
+        "type": "s7d",
         "id": "POETRY__ORACLE01"
       },
       "POETRY__ORACLE02": {
-        "oracle": {},
-        "poem": {},
+        "author": "sb4",
+        "content": "sb5",
+        "interpretation": "sb6",
+        "poem": "sb7",
+        "title": "sb8",
+        "type": "sb9",
         "id": "POETRY__ORACLE02"
       }
     }
@@ -21,8 +33,12 @@
   "new": {
     "poetry__oracle": {
       "poetry__oracle_ref01": {
-        "oracle": {},
-        "poem": {}
+        "author": "sf0",
+        "content": "sf1",
+        "interpretation": "sf2",
+        "poem": "sf3",
+        "title": "sf4",
+        "type": "sf5"
       }
     }
   }

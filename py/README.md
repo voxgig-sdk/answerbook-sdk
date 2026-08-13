@@ -38,7 +38,7 @@ client = AnswerbookSDK()
 
 ### 3. Load a bookofanswer
 
-`load()` returns the bare record (a `dict`) and raises on error.
+`load()` returns the ENTITY — call data_get() for the record — and raises on error.
 
 ```python
 try:
@@ -55,8 +55,8 @@ Entity operations raise on failure, so wrap them in `try` / `except`:
 
 ```python
 try:
-    bookofanswer = client.BookOfAnswer().load({"id": "example_id"})
-    print(bookofanswer)
+    marketdata = client.MarketData().load()
+    print(marketdata)
 except Exception as err:
     print(f"load failed: {err}")
 ```
@@ -122,9 +122,10 @@ Create a mock client for unit testing — no server required:
 ```python
 client = AnswerbookSDK.test()
 
-# Entity ops return the bare record and raise on error.
-bookofanswer = client.BookOfAnswer().load({"id": "test01"})
-# bookofanswer contains the mock response record
+# Entity ops return the ENTITY and raises on error;
+# call data_get() for the record.
+marketdata = client.MarketData().load()
+# marketdata contains the mock response record
 ```
 
 ### Use a custom fetch function
@@ -225,7 +226,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (a `dict` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (a `dict` for single-entity
 ops, a `list` for `list`) and raise on error. Wrap calls in
 `try`/`except` to handle failures.
 
@@ -269,9 +270,9 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `nasdaq100` |  |
-| `sp500` |  |
-| `tw0050` |  |
+| `change` |  |
+| `percentChange` |  |
+| `price` |  |
 
 Operations: Load.
 
@@ -281,8 +282,12 @@ API path: `/SP500`
 
 | Field | Description |
 | --- | --- |
-| `oracle` |  |
+| `author` |  |
+| `content` |  |
+| `interpretation` |  |
 | `poem` |  |
+| `title` |  |
+| `type` |  |
 
 Operations: Load.
 
@@ -292,7 +297,7 @@ API path: `/TangPoetry`
 
 | Field | Description |
 | --- | --- |
-| `random_password` |  |
+| `RandomPassword` |  |
 
 Operations: Load.
 
@@ -314,7 +319,7 @@ API path: `/words/{category}/{word}`
 
 | Field | Description |
 | --- | --- |
-| `category` |  |
+| `categories` |  |
 
 Operations: List.
 
@@ -382,9 +387,9 @@ Create an instance: `market_data = client.MarketData()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `nasdaq100` | `dict` |  |
-| `sp500` | `dict` |  |
-| `tw0050` | `dict` |  |
+| `change` | `str` |  |
+| `percentChange` | `str` |  |
+| `price` | `str` |  |
 
 #### Example: Load
 
@@ -407,8 +412,12 @@ Create an instance: `poetry__oracle = client.PoetryOracle()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `oracle` | `dict` |  |
-| `poem` | `dict` |  |
+| `author` | `str` |  |
+| `content` | `str` |  |
+| `interpretation` | `str` |  |
+| `poem` | `str` |  |
+| `title` | `str` |  |
+| `type` | `str` |  |
 
 #### Example: Load
 
@@ -431,7 +440,7 @@ Create an instance: `tool = client.Tool()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `random_password` | `str` |  |
+| `RandomPassword` | `str` |  |
 
 #### Example: Load
 
@@ -479,7 +488,7 @@ Create an instance: `words_learning = client.WordsLearning()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | `list` |  |
+| `categories` | `list` |  |
 
 #### Example: List
 
@@ -563,11 +572,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```python
-bookofanswer = client.BookOfAnswer()
-bookofanswer.load({"id": "example_id"})
+marketdata = client.MarketData()
+marketdata.load()
 
-# bookofanswer.data_get() now returns the bookofanswer data from the last load
-# bookofanswer.match_get() returns the last match criteria
+# marketdata.data_get() now returns the marketdata data from the last load
+# marketdata.match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

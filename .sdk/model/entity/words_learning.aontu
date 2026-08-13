@@ -6,7 +6,7 @@ main: kit: entity: words_learning: {
 
   fields: [
     {
-      name: "category"
+      name: "categories"
       req: false
       type: "`$ARRAY`"
     }
@@ -26,7 +26,7 @@ main: kit: entity: words_learning: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.categories`"
           }
         }
       ]

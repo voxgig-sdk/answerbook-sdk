@@ -35,7 +35,7 @@ $client = new AnswerbookSDK();
 
 ```php
 try {
-    // load() returns the bare BookOfAnswer record (throws on error).
+    // load() returns the ENTITY — call data_get() for the BookOfAnswer record (throws on error).
     $bookofanswer = $client->BookOfAnswer()->load(["id" => "example_id"]);
     print_r($bookofanswer);
 } catch (\Throwable $err) {
@@ -51,7 +51,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $bookofanswer = $client->BookOfAnswer()->load(["id" => "example_id"]);
+    $marketdata = $client->MarketData()->load();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -118,17 +118,15 @@ print_r($fetchdef["headers"]);
 
 ### Use test mode
 
-Create a mock client for unit testing — no server required. Seed fixture
-data via the `entity` option so offline calls resolve without a live server:
+Create a mock client for unit testing — no server required:
 
 ```php
-$client = AnswerbookSDK::test([
-    "entity" => ["bookofanswer" => ["test01" => ["id" => "test01"]]],
-]);
+$client = AnswerbookSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$bookofanswer = $client->BookOfAnswer()->load(["id" => "test01"]);
-print_r($bookofanswer);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$marketdata = $client->MarketData()->load();
+print_r($marketdata);
 ```
 
 ### Use a custom fetch function
@@ -232,7 +230,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -276,9 +274,9 @@ API path: `/`
 
 | Field | Description |
 | --- | --- |
-| `nasdaq100` |  |
-| `sp500` |  |
-| `tw0050` |  |
+| `change` |  |
+| `percentChange` |  |
+| `price` |  |
 
 Operations: Load.
 
@@ -288,8 +286,12 @@ API path: `/SP500`
 
 | Field | Description |
 | --- | --- |
-| `oracle` |  |
+| `author` |  |
+| `content` |  |
+| `interpretation` |  |
 | `poem` |  |
+| `title` |  |
+| `type` |  |
 
 Operations: Load.
 
@@ -299,7 +301,7 @@ API path: `/TangPoetry`
 
 | Field | Description |
 | --- | --- |
-| `random_password` |  |
+| `RandomPassword` |  |
 
 Operations: Load.
 
@@ -321,7 +323,7 @@ API path: `/words/{category}/{word}`
 
 | Field | Description |
 | --- | --- |
-| `category` |  |
+| `categories` |  |
 
 Operations: List.
 
@@ -354,7 +356,7 @@ Create an instance: `$book_of_answer = $client->BookOfAnswer();`
 #### Example: Load
 
 ```php
-// load() returns the bare BookOfAnswer record (throws on error).
+// load() returns the ENTITY — call data_get() for the BookOfAnswer record (throws on error).
 $book_of_answer = $client->BookOfAnswer()->load(["id" => "book_of_answer_id"]);
 ```
 
@@ -372,7 +374,7 @@ Create an instance: `$get_api_doc = $client->GetApiDoc();`
 #### Example: Load
 
 ```php
-// load() returns the bare GetApiDoc record (throws on error).
+// load() returns the ENTITY — call data_get() for the GetApiDoc record (throws on error).
 $get_api_doc = $client->GetApiDoc()->load();
 ```
 
@@ -391,14 +393,14 @@ Create an instance: `$market_data = $client->MarketData();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `nasdaq100` | `array` |  |
-| `sp500` | `array` |  |
-| `tw0050` | `array` |  |
+| `change` | `string` |  |
+| `percentChange` | `string` |  |
+| `price` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare MarketData record (throws on error).
+// load() returns the ENTITY — call data_get() for the MarketData record (throws on error).
 $market_data = $client->MarketData()->load();
 ```
 
@@ -417,13 +419,17 @@ Create an instance: `$poetry__oracle = $client->PoetryOracle();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `oracle` | `array` |  |
-| `poem` | `array` |  |
+| `author` | `string` |  |
+| `content` | `string` |  |
+| `interpretation` | `string` |  |
+| `poem` | `string` |  |
+| `title` | `string` |  |
+| `type` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare PoetryOracle record (throws on error).
+// load() returns the ENTITY — call data_get() for the PoetryOracle record (throws on error).
 $poetry__oracle = $client->PoetryOracle()->load();
 ```
 
@@ -442,12 +448,12 @@ Create an instance: `$tool = $client->Tool();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `random_password` | `string` |  |
+| `RandomPassword` | `string` |  |
 
 #### Example: Load
 
 ```php
-// load() returns the bare Tool record (throws on error).
+// load() returns the ENTITY — call data_get() for the Tool record (throws on error).
 $tool = $client->Tool()->load();
 ```
 
@@ -473,7 +479,7 @@ Create an instance: `$word = $client->Word();`
 #### Example: Load
 
 ```php
-// load() returns the bare Word record (throws on error).
+// load() returns the ENTITY — call data_get() for the Word record (throws on error).
 $word = $client->Word()->load(["id" => "word_id"]);
 ```
 
@@ -492,7 +498,7 @@ Create an instance: `$words_learning = $client->WordsLearning();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `category` | `array` |  |
+| `categories` | `array` |  |
 
 #### Example: List
 
@@ -578,11 +584,11 @@ Entity instances are stateful. After a successful `load`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$bookofanswer = $client->BookOfAnswer();
-$bookofanswer->load(["id" => "example_id"]);
+$marketdata = $client->MarketData();
+$marketdata->load();
 
-// $bookofanswer->data_get() now returns the bookofanswer data from the last load
-// $bookofanswer->match_get() returns the last match criteria
+// $marketdata->data_get() now returns the marketdata data from the last load
+// $marketdata->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

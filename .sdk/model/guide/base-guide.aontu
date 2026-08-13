@@ -26,21 +26,26 @@ guide: {
   entity: market_data: {
     path: "/SP500": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.SP500`")|top
     }
     path: "/TW0050": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.TW0050`")|top
     }
     path: "/nasdaq100": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.nasdaq100`")|top
     }
   }
 
   entity: poetry__oracle: {
     path: "/TangPoetry": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.poem`")|top
     }
     path: "/TempleOracleJP": {
       op: load: method: *GET
+      op: load: transform: res: *("`body.oracle`")|top
     }
   }
 
@@ -63,6 +68,7 @@ guide: {
   entity: words_learning: {
     path: "/words/categories": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.categories`")|top
     }
   }
 

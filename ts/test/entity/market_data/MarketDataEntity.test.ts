@@ -62,7 +62,7 @@ describe('MarketDataEntity', async () => {
     // LOAD
     const market_data_ref01_ent = client.MarketData()
     const market_data_ref01_match_dt0: any = {}
-    const market_data_ref01_data_dt0 = await market_data_ref01_ent.load(market_data_ref01_match_dt0)
+    const market_data_ref01_data_dt0 = (await market_data_ref01_ent.load(market_data_ref01_match_dt0)).data()
     assert(null != market_data_ref01_data_dt0)
 
 

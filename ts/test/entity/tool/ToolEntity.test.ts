@@ -62,7 +62,7 @@ describe('ToolEntity', async () => {
     // LOAD
     const tool_ref01_ent = client.Tool()
     const tool_ref01_match_dt0: any = {}
-    const tool_ref01_data_dt0 = await tool_ref01_ent.load(tool_ref01_match_dt0)
+    const tool_ref01_data_dt0 = (await tool_ref01_ent.load(tool_ref01_match_dt0)).data()
     assert(null != tool_ref01_data_dt0)
 
 

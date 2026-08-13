@@ -62,7 +62,7 @@ describe('GetApiDocEntity', async () => {
     // LOAD
     const get_api_doc_ref01_ent = client.GetApiDoc()
     const get_api_doc_ref01_match_dt0: any = {}
-    const get_api_doc_ref01_data_dt0 = await get_api_doc_ref01_ent.load(get_api_doc_ref01_match_dt0)
+    const get_api_doc_ref01_data_dt0 = (await get_api_doc_ref01_ent.load(get_api_doc_ref01_match_dt0)).data()
     assert(null != get_api_doc_ref01_data_dt0)
 
 

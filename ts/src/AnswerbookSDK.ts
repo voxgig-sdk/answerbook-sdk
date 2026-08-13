@@ -152,8 +152,29 @@ class AnswerbookSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('AnswerbookSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -214,52 +235,120 @@ class AnswerbookSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('AnswerbookSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('AnswerbookSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.BookOfAnswer().list()` / `client.BookOfAnswer().load({ id })`.
-  BookOfAnswer(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BookOfAnswer(entopts?: Record<string, any>) {
     const self = this
-    return new BookOfAnswerEntity(self,data)
+    return new BookOfAnswerEntity(self, entopts)
   }
 
 
   // Entity access: `client.GetApiDoc().list()` / `client.GetApiDoc().load({ id })`.
-  GetApiDoc(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  GetApiDoc(entopts?: Record<string, any>) {
     const self = this
-    return new GetApiDocEntity(self,data)
+    return new GetApiDocEntity(self, entopts)
   }
 
 
   // Entity access: `client.MarketData().list()` / `client.MarketData().load({ id })`.
-  MarketData(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  MarketData(entopts?: Record<string, any>) {
     const self = this
-    return new MarketDataEntity(self,data)
+    return new MarketDataEntity(self, entopts)
   }
 
 
   // Entity access: `client.PoetryOracle().list()` / `client.PoetryOracle().load({ id })`.
-  PoetryOracle(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PoetryOracle(entopts?: Record<string, any>) {
     const self = this
-    return new PoetryOracleEntity(self,data)
+    return new PoetryOracleEntity(self, entopts)
   }
 
 
   // Entity access: `client.Tool().list()` / `client.Tool().load({ id })`.
-  Tool(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Tool(entopts?: Record<string, any>) {
     const self = this
-    return new ToolEntity(self,data)
+    return new ToolEntity(self, entopts)
   }
 
 
   // Entity access: `client.Word().list()` / `client.Word().load({ id })`.
-  Word(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Word(entopts?: Record<string, any>) {
     const self = this
-    return new WordEntity(self,data)
+    return new WordEntity(self, entopts)
   }
 
 
   // Entity access: `client.WordsLearning().list()` / `client.WordsLearning().load({ id })`.
-  WordsLearning(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  WordsLearning(entopts?: Record<string, any>) {
     const self = this
-    return new WordsLearningEntity(self,data)
+    return new WordsLearningEntity(self, entopts)
   }
 
 

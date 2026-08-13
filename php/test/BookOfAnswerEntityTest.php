@@ -52,7 +52,7 @@ class BookOfAnswerEntityTest extends TestCase
             "id" => $book_of_answer_ref01_data["id"],
         ];
         $book_of_answer_ref01_data_dt0_loaded = $book_of_answer_ref01_ent->load($book_of_answer_ref01_match_dt0, null);
-        $book_of_answer_ref01_data_dt0_load_result = Helpers::to_map($book_of_answer_ref01_data_dt0_loaded);
+        $book_of_answer_ref01_data_dt0_load_result = Helpers::to_map(is_object($book_of_answer_ref01_data_dt0_loaded) && method_exists($book_of_answer_ref01_data_dt0_loaded, 'data_get') ? $book_of_answer_ref01_data_dt0_loaded->data_get() : $book_of_answer_ref01_data_dt0_loaded);
         $this->assertNotNull($book_of_answer_ref01_data_dt0_load_result);
         $this->assertEquals($book_of_answer_ref01_data_dt0_load_result["id"], $book_of_answer_ref01_data["id"]);
 

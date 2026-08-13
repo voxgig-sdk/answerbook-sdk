@@ -26,33 +26,41 @@ export interface GetApiDocLoadMatch {
 }
 
 export interface MarketData {
-  nasdaq100?: Record<string, any>
-  sp500?: Record<string, any>
-  tw0050?: Record<string, any>
+  change?: string
+  percentChange?: string
+  price?: string
 }
 
 export interface MarketDataLoadMatch {
-  nasdaq100?: Record<string, any>
-  sp500?: Record<string, any>
-  tw0050?: Record<string, any>
+  change?: string
+  percentChange?: string
+  price?: string
 }
 
 export interface PoetryOracle {
-  oracle?: Record<string, any>
-  poem?: Record<string, any>
+  author?: string
+  content?: string
+  interpretation?: string
+  poem?: string
+  title?: string
+  type?: string
 }
 
 export interface PoetryOracleLoadMatch {
-  oracle?: Record<string, any>
-  poem?: Record<string, any>
+  author?: string
+  content?: string
+  interpretation?: string
+  poem?: string
+  title?: string
+  type?: string
 }
 
 export interface Tool {
-  random_password?: string
+  RandomPassword?: string
 }
 
 export interface ToolLoadMatch {
-  random_password?: string
+  RandomPassword?: string
 }
 
 export interface Word {
@@ -68,10 +76,10 @@ export interface WordLoadMatch {
 }
 
 export interface WordsLearning {
-  category?: any[]
+  categories?: any[]
 }
 
 export interface WordsLearningListMatch {
-  category?: any[]
+  categories?: any[]
 }
 

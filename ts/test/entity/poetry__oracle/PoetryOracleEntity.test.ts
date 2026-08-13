@@ -62,7 +62,7 @@ describe('PoetryOracleEntity', async () => {
     // LOAD
     const poetry__oracle_ref01_ent = client.PoetryOracle()
     const poetry__oracle_ref01_match_dt0: any = {}
-    const poetry__oracle_ref01_data_dt0 = await poetry__oracle_ref01_ent.load(poetry__oracle_ref01_match_dt0)
+    const poetry__oracle_ref01_data_dt0 = (await poetry__oracle_ref01_ent.load(poetry__oracle_ref01_match_dt0)).data()
     assert(null != poetry__oracle_ref01_data_dt0)
 
 

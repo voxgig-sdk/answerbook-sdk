@@ -217,9 +217,9 @@ $market_data = $client->MarketData();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `nasdaq100` | `array` | No |  |
-| `sp500` | `array` | No |  |
-| `tw0050` | `array` | No |  |
+| `change` | `string` | No |  |
+| `percentChange` | `string` | No |  |
+| `price` | `string` | No |  |
 
 ### Operations
 
@@ -271,8 +271,12 @@ $poetry__oracle = $client->PoetryOracle();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `oracle` | `array` | No |  |
-| `poem` | `array` | No |  |
+| `author` | `string` | No |  |
+| `content` | `string` | No |  |
+| `interpretation` | `string` | No |  |
+| `poem` | `string` | No |  |
+| `title` | `string` | No |  |
+| `type` | `string` | No |  |
 
 ### Operations
 
@@ -324,7 +328,7 @@ $tool = $client->Tool();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `random_password` | `string` | No |  |
+| `RandomPassword` | `string` | No |  |
 
 ### Operations
 
@@ -430,7 +434,7 @@ $words_learning = $client->WordsLearning();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `category` | `array` | No |  |
+| `categories` | `array` | No |  |
 
 ### Operations
 
