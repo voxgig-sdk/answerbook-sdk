@@ -28,7 +28,7 @@ class AnswerbookSDK
     utility = AnswerbookUtility.new
     @_utility = utility
 
-    config = AnswerbookConfig.make_config
+    config = AnswerbookConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

@@ -101,9 +101,7 @@ class Word
 /** Request payload for Word#load. */
 class WordLoadMatch
 {
-    public ?string $category = null;
-    public ?string $word = null;
-    public ?string $id = null;
+    public string $id;
 }
 
 /** WordsLearning entity data model. */

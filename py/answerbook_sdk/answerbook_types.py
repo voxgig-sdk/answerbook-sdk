@@ -85,9 +85,7 @@ class Word(TypedDict, total=False):
     word: str
 
 
-class WordLoadMatch(TypedDict, total=False):
-    category: str
-    word: str
+class WordLoadMatch(TypedDict):
     id: str
 
 

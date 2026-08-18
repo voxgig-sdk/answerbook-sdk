@@ -40,7 +40,7 @@ class AnswerbookSDK
         $utility = new AnswerbookUtility();
         $this->_utility = $utility;
 
-        $config = AnswerbookConfig::make_config();
+        $config = AnswerbookConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

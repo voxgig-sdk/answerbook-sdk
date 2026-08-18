@@ -70,9 +70,7 @@ export interface Word {
 }
 
 export interface WordLoadMatch {
-  category?: string
-  word?: string
-  id?: string
+  id: string
 }
 
 export interface WordsLearning {
