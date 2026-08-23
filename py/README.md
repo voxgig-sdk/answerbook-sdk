@@ -248,7 +248,7 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `answer` |  |
+| `answer` | The answer text (bilingual or single language) |
 | `answer_i18n` |  |
 | `id` |  |
 | `meta` |  |
@@ -287,7 +287,7 @@ API path: `/SP500`
 | `interpretation` |  |
 | `poem` |  |
 | `title` |  |
-| `type` |  |
+| `type` | Fortune type (Great Fortune, etc.) |
 
 Operations: Load.
 
@@ -344,7 +344,7 @@ Create an instance: `book_of_answer = client.BookOfAnswer()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `answer` | `str` |  |
+| `answer` | `str` | The answer text (bilingual or single language) |
 | `answer_i18n` | `dict` |  |
 | `id` | `str` |  |
 | `meta` | `dict` |  |
@@ -417,7 +417,7 @@ Create an instance: `poetry__oracle = client.PoetryOracle()`
 | `interpretation` | `str` |  |
 | `poem` | `str` |  |
 | `title` | `str` |  |
-| `type` | `str` |  |
+| `type` | `str` | Fortune type (Great Fortune, etc.) |
 
 #### Example: Load
 

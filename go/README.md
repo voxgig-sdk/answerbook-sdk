@@ -6,7 +6,7 @@ The Golang SDK for the Answerbook API — an entity-oriented client using standa
 
 It exposes the API as capitalised, semantic **Entities** — e.g. `client.BookOfAnswer(nil)` — each with the same small set of operations (`List`, `Load`) instead of raw URL paths and query strings. You call meaning, not endpoints, which keeps the cognitive load low.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb`, `ts` — see
 > the [top-level README](../README.md).
 
 
@@ -266,7 +266,7 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"answer"` |  |
+| `"answer"` | The answer text (bilingual or single language) |
 | `"answer_i18n"` |  |
 | `"id"` |  |
 | `"meta"` |  |
@@ -305,7 +305,7 @@ API path: `/SP500`
 | `"interpretation"` |  |
 | `"poem"` |  |
 | `"title"` |  |
-| `"type"` |  |
+| `"type"` | Fortune type (Great Fortune, etc.) |
 
 Operations: Load.
 
@@ -362,7 +362,7 @@ Create an instance: `bookOfAnswer := client.BookOfAnswer(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `answer` | `string` |  |
+| `answer` | `string` | The answer text (bilingual or single language) |
 | `answer_i18n` | `map[string]any` |  |
 | `id` | `string` |  |
 | `meta` | `map[string]any` |  |
@@ -447,7 +447,7 @@ Create an instance: `poetryOracle := client.PoetryOracle(nil)`
 | `interpretation` | `string` |  |
 | `poem` | `string` |  |
 | `title` | `string` |  |
-| `type` | `string` |  |
+| `type` | `string` | Fortune type (Great Fortune, etc.) |
 
 #### Example: Load
 

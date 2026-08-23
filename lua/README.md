@@ -233,7 +233,7 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `answer` |  |
+| `answer` | The answer text (bilingual or single language) |
 | `answer_i18n` |  |
 | `id` |  |
 | `meta` |  |
@@ -272,7 +272,7 @@ API path: `/SP500`
 | `interpretation` |  |
 | `poem` |  |
 | `title` |  |
-| `type` |  |
+| `type` | Fortune type (Great Fortune, etc.) |
 
 Operations: Load.
 
@@ -329,7 +329,7 @@ Create an instance: `local book_of_answer = client:BookOfAnswer(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `answer` | `string` |  |
+| `answer` | `string` | The answer text (bilingual or single language) |
 | `answer_i18n` | `table` |  |
 | `id` | `string` |  |
 | `meta` | `table` |  |
@@ -402,7 +402,7 @@ Create an instance: `local poetry__oracle = client:PoetryOracle(nil)`
 | `interpretation` | `string` |  |
 | `poem` | `string` |  |
 | `title` | `string` |  |
-| `type` | `string` |  |
+| `type` | `string` | Fortune type (Great Fortune, etc.) |
 
 #### Example: Load
 

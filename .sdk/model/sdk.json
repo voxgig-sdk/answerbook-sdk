@@ -36,6 +36,7 @@
               "active": true,
               "name": "answer",
               "req": false,
+              "short": "The answer text (bilingual or single language)",
               "type": "`$STRING`"
             },
             {
@@ -365,6 +366,7 @@
               "active": true,
               "name": "type",
               "req": false,
+              "short": "Fortune type (Great Fortune, etc.)",
               "type": "`$STRING`"
             }
           ],

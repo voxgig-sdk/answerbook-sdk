@@ -8,6 +8,7 @@ main: kit: entity: book_of_answer: {
     {
       name: "answer"
       req: false
+      short: "The answer text (bilingual or single language)"
       type: "`$STRING`"
     }
     {

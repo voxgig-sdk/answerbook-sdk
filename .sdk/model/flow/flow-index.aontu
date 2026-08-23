@@ -1,9 +1,0 @@
-# Flows
-
-@"BasicBookOfAnswerFlow.aontu"
-@"BasicGetApiDocFlow.aontu"
-@"BasicMarketDataFlow.aontu"
-@"BasicPoetryOracleFlow.aontu"
-@"BasicToolFlow.aontu"
-@"BasicWordFlow.aontu"
-@"BasicWordsLearningFlow.aontu"

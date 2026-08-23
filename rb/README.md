@@ -242,7 +242,7 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `answer` |  |
+| `answer` | The answer text (bilingual or single language) |
 | `answer_i18n` |  |
 | `id` |  |
 | `meta` |  |
@@ -281,7 +281,7 @@ API path: `/SP500`
 | `interpretation` |  |
 | `poem` |  |
 | `title` |  |
-| `type` |  |
+| `type` | Fortune type (Great Fortune, etc.) |
 
 Operations: Load.
 
@@ -338,7 +338,7 @@ Create an instance: `book_of_answer = client.BookOfAnswer`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `answer` | `String` |  |
+| `answer` | `String` | The answer text (bilingual or single language) |
 | `answer_i18n` | `Hash` |  |
 | `id` | `String` |  |
 | `meta` | `Hash` |  |
@@ -414,7 +414,7 @@ Create an instance: `poetry__oracle = client.PoetryOracle`
 | `interpretation` | `String` |  |
 | `poem` | `String` |  |
 | `title` | `String` |  |
-| `type` | `String` |  |
+| `type` | `String` | Fortune type (Great Fortune, etc.) |
 
 #### Example: Load
 

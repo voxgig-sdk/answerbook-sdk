@@ -33,6 +33,9 @@ class AnswerbookConfig
         return [
             "main" => [
                 "name" => "Answerbook",
+                "slug" => "answerbook",
+                "version" => "0.0.1",
+                "target" => "php",
             ],
             "feature" => [
                 "test" => [
@@ -61,6 +64,7 @@ class AnswerbookConfig
           'fields' => [
             [
               'name' => 'answer',
+              'short' => 'The answer text (bilingual or single language)',
               'type' => '`$STRING`',
             ],
             [
@@ -327,6 +331,7 @@ class AnswerbookConfig
             ],
             [
               'name' => 'type',
+              'short' => 'Fortune type (Great Fortune, etc.)',
               'type' => '`$STRING`',
             ],
           ],

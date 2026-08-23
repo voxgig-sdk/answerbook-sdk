@@ -122,7 +122,7 @@ fmt.Println(bookOfAnswer.GetName()) // "book_of_answer"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `answer` | `string` | No |  |
+| `answer` | `string` | No | The answer text (bilingual or single language) |
 | `answer_i18n` | `map[string]any` | No |  |
 | `id` | `string` | No |  |
 | `meta` | `map[string]any` | No |  |
@@ -279,7 +279,7 @@ fmt.Println(poetryOracle.GetName()) // "poetry__oracle"
 | `interpretation` | `string` | No |  |
 | `poem` | `string` | No |  |
 | `title` | `string` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Fortune type (Great Fortune, etc.) |
 
 ### Operations
 

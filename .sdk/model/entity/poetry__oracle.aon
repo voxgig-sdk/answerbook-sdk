@@ -33,6 +33,7 @@ main: kit: entity: poetry__oracle: {
     {
       name: "type"
       req: false
+      short: "Fortune type (Great Fortune, etc.)"
       type: "`$STRING`"
     }
   ]

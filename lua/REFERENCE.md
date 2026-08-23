@@ -114,7 +114,7 @@ local book_of_answer = client:BookOfAnswer(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `answer` | `string` | No |  |
+| `answer` | `string` | No | The answer text (bilingual or single language) |
 | `answer_i18n` | `table` | No |  |
 | `id` | `string` | No |  |
 | `meta` | `table` | No |  |
@@ -274,7 +274,7 @@ local poetry__oracle = client:PoetryOracle(nil)
 | `interpretation` | `string` | No |  |
 | `poem` | `string` | No |  |
 | `title` | `string` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Fortune type (Great Fortune, etc.) |
 
 ### Operations
 

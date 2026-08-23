@@ -1,9 +1,0 @@
-# Entity Models
-
-@"book_of_answer.aontu"
-@"get_api_doc.aontu"
-@"market_data.aontu"
-@"poetry__oracle.aontu"
-@"tool.aontu"
-@"word.aontu"
-@"words_learning.aontu"

@@ -116,7 +116,7 @@ $book_of_answer = $client->BookOfAnswer();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `answer` | `string` | No |  |
+| `answer` | `string` | No | The answer text (bilingual or single language) |
 | `answer_i18n` | `array` | No |  |
 | `id` | `string` | No |  |
 | `meta` | `array` | No |  |
@@ -276,7 +276,7 @@ $poetry__oracle = $client->PoetryOracle();
 | `interpretation` | `string` | No |  |
 | `poem` | `string` | No |  |
 | `title` | `string` | No |  |
-| `type` | `string` | No |  |
+| `type` | `string` | No | Fortune type (Great Fortune, etc.) |
 
 ### Operations
 

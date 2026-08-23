@@ -1,0 +1,9 @@
+# Flows
+
+@"BasicBookOfAnswerFlow.aon"
+@"BasicGetApiDocFlow.aon"
+@"BasicMarketDataFlow.aon"
+@"BasicPoetryOracleFlow.aon"
+@"BasicToolFlow.aon"
+@"BasicWordFlow.aon"
+@"BasicWordsLearningFlow.aon"

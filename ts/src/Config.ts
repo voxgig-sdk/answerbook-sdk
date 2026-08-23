@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'Answerbook',
+        slug: "answerbook",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -74,6 +85,7 @@ class Config {
       "fields": [
         {
           "name": "answer",
+          "short": "The answer text (bilingual or single language)",
           "type": "`$STRING`"
         },
         {
@@ -340,6 +352,7 @@ class Config {
         },
         {
           "name": "type",
+          "short": "Fortune type (Great Fortune, etc.)",
           "type": "`$STRING`"
         }
       ],

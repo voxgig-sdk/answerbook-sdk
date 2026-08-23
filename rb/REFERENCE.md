@@ -117,7 +117,7 @@ book_of_answer = client.BookOfAnswer
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `answer` | `String` | No |  |
+| `answer` | `String` | No | The answer text (bilingual or single language) |
 | `answer_i18n` | `Hash` | No |  |
 | `id` | `String` | No |  |
 | `meta` | `Hash` | No |  |
@@ -277,7 +277,7 @@ poetry__oracle = client.PoetryOracle
 | `interpretation` | `String` | No |  |
 | `poem` | `String` | No |  |
 | `title` | `String` | No |  |
-| `type` | `String` | No |  |
+| `type` | `String` | No | Fortune type (Great Fortune, etc.) |
 
 ### Operations
 

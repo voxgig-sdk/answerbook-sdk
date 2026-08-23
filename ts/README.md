@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -294,7 +294,7 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `answer` |  |
+| `answer` | The answer text (bilingual or single language) |
 | `answer_i18n` |  |
 | `id` |  |
 | `meta` |  |
@@ -333,7 +333,7 @@ API path: `/SP500`
 | `interpretation` |  |
 | `poem` |  |
 | `title` |  |
-| `type` |  |
+| `type` | Fortune type (Great Fortune, etc.) |
 
 Operations: load.
 
@@ -390,7 +390,7 @@ Create an instance: `const book_of_answer = client.BookOfAnswer()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `answer` | `string` |  |
+| `answer` | `string` | The answer text (bilingual or single language) |
 | `answer_i18n` | `Record<string, any>` |  |
 | `id` | `string` |  |
 | `meta` | `Record<string, any>` |  |
@@ -463,7 +463,7 @@ Create an instance: `const poetry__oracle = client.PoetryOracle()`
 | `interpretation` | `string` |  |
 | `poem` | `string` |  |
 | `title` | `string` |  |
-| `type` | `string` |  |
+| `type` | `string` | Fortune type (Great Fortune, etc.) |
 
 #### Example: Load
 

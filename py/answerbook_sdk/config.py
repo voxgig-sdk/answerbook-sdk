@@ -28,6 +28,9 @@ def make_config():
     return {
         "main": {
             "name": "Answerbook",
+            "slug": "answerbook",
+            "version": "0.0.1",
+            "target": "py",
         },
         "feature": {
             "test": {
@@ -56,6 +59,7 @@ def make_config():
         "fields": [
           {
             "name": "answer",
+            "short": "The answer text (bilingual or single language)",
             "type": "`$STRING`",
           },
           {
@@ -322,6 +326,7 @@ def make_config():
           },
           {
             "name": "type",
+            "short": "Fortune type (Great Fortune, etc.)",
             "type": "`$STRING`",
           },
         ],
