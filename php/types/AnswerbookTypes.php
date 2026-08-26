@@ -95,6 +95,7 @@ class Word
 {
     public ?string $category = null;
     public ?string $definition = null;
+    public ?string $id = null;
     public ?string $word = null;
 }
 

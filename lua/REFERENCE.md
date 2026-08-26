@@ -380,6 +380,7 @@ local word = client:Word(nil)
 | --- | --- | --- | --- |
 | `category` | `string` | No |  |
 | `definition` | `string` | No |  |
+| `id` | `string` | No |  |
 | `word` | `string` | No |  |
 
 ### Operations

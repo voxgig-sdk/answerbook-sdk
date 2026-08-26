@@ -383,6 +383,7 @@ word = client.Word
 | --- | --- | --- | --- |
 | `category` | `String` | No |  |
 | `definition` | `String` | No |  |
+| `id` | `String` | No |  |
 | `word` | `String` | No |  |
 
 ### Operations

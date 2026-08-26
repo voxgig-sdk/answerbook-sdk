@@ -303,6 +303,7 @@ API path: `/RandomPassword`
 | --- | --- |
 | `category` |  |
 | `definition` |  |
+| `id` |  |
 | `word` |  |
 
 Operations: Load.
@@ -464,6 +465,7 @@ Create an instance: `word = client.Word`
 | --- | --- | --- |
 | `category` | `String` |  |
 | `definition` | `String` |  |
+| `id` | `String` |  |
 | `word` | `String` |  |
 
 #### Example: Load

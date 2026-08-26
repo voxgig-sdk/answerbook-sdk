@@ -372,6 +372,7 @@ word = client.Word()
 | --- | --- | --- | --- |
 | `category` | `str` | No |  |
 | `definition` | `str` | No |  |
+| `id` | `str` | No |  |
 | `word` | `str` | No |  |
 
 ### Operations

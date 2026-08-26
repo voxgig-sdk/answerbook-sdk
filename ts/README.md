@@ -355,6 +355,7 @@ API path: `/RandomPassword`
 | --- | --- |
 | `category` |  |
 | `definition` |  |
+| `id` |  |
 | `word` |  |
 
 Operations: load.
@@ -511,6 +512,7 @@ Create an instance: `const word = client.Word()`
 | --- | --- | --- |
 | `category` | `string` |  |
 | `definition` | `string` |  |
+| `id` | `string` |  |
 | `word` | `string` |  |
 
 #### Example: Load

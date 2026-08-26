@@ -82,6 +82,7 @@ class ToolLoadMatch(TypedDict, total=False):
 class Word(TypedDict, total=False):
     category: str
     definition: str
+    id: str
     word: str
 
 

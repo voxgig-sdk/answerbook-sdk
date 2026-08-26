@@ -28,6 +28,7 @@ module AnswerbookConfig
           "options" => {
             "active" => false,
           },
+          "transport" => "base",
         },
       },
       "options" => {
@@ -404,6 +405,10 @@ module AnswerbookConfig
             },
             {
               "name" => "definition",
+              "type" => "`$STRING`",
+            },
+            {
+              "name" => "id",
               "type" => "`$STRING`",
             },
             {

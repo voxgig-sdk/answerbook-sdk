@@ -383,6 +383,7 @@ fmt.Println(word.GetName()) // "word"
 | --- | --- | --- | --- |
 | `category` | `string` | No |  |
 | `definition` | `string` | No |  |
+| `id` | `string` | No |  |
 | `word` | `string` | No |  |
 
 ### Operations

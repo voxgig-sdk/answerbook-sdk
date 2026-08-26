@@ -57,6 +57,7 @@
 ---@class Word
 ---@field category? string
 ---@field definition? string
+---@field id? string
 ---@field word? string
 
 ---@class WordLoadMatch

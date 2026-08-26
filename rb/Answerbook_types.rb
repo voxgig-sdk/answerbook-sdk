@@ -176,11 +176,15 @@ ToolLoadMatch = Struct.new(
 # @!attribute [rw] definition
 #   @return [String, nil]
 #
+# @!attribute [rw] id
+#   @return [String, nil]
+#
 # @!attribute [rw] word
 #   @return [String, nil]
 Word = Struct.new(
   :category,
   :definition,
+  :id,
   :word,
   keyword_init: true
 )

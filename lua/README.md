@@ -294,6 +294,7 @@ API path: `/RandomPassword`
 | --- | --- |
 | `category` |  |
 | `definition` |  |
+| `id` |  |
 | `word` |  |
 
 Operations: Load.
@@ -450,6 +451,7 @@ Create an instance: `local word = client:Word(nil)`
 | --- | --- | --- |
 | `category` | `string` |  |
 | `definition` | `string` |  |
+| `id` | `string` |  |
 | `word` | `string` |  |
 
 #### Example: Load

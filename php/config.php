@@ -42,6 +42,7 @@ class AnswerbookConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
@@ -418,6 +419,10 @@ class AnswerbookConfig
             ],
             [
               'name' => 'definition',
+              'type' => '`$STRING`',
+            ],
+            [
+              'name' => 'id',
               'type' => '`$STRING`',
             ],
             [

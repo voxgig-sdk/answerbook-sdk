@@ -382,6 +382,7 @@ $word = $client->Word();
 | --- | --- | --- | --- |
 | `category` | `string` | No |  |
 | `definition` | `string` | No |  |
+| `id` | `string` | No |  |
 | `word` | `string` | No |  |
 
 ### Operations

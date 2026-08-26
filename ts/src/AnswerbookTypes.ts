@@ -66,6 +66,7 @@ export interface ToolLoadMatch {
 export interface Word {
   category?: string
   definition?: string
+  id?: string
   word?: string
 }
 

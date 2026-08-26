@@ -84,6 +84,7 @@ type ToolLoadMatch struct {
 type Word struct {
 	Category *string `json:"category,omitempty"`
 	Definition *string `json:"definition,omitempty"`
+	Id *string `json:"id,omitempty"`
 	Word *string `json:"word,omitempty"`
 }
 
