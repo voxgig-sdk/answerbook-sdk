@@ -13,10 +13,12 @@
 ---@field meta? table
 
 ---@class BookOfAnswerLoadMatch
----@field answer? string
----@field answer_i18n? table
----@field id string
----@field meta? table
+---@field lang? string
+---@field length? string
+---@field mood? string
+---@field style? string
+---@field theme? string
+---@field tone? string
 
 ---@class GetApiDoc
 

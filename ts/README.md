@@ -39,7 +39,7 @@ const client = new AnswerbookSDK()
 
 ```ts
 try {
-  const bookofanswer = await client.BookOfAnswer().load({ id: 'example_id' })
+  const bookofanswer = await client.BookOfAnswer().load()
   console.log(bookofanswer)
 } catch (err) {
   console.error('load failed:', err)
@@ -399,7 +399,7 @@ Create an instance: `const book_of_answer = client.BookOfAnswer()`
 #### Example: Load
 
 ```ts
-const book_of_answer = await client.BookOfAnswer().load({ id: 'book_of_answer_id' })
+const book_of_answer = await client.BookOfAnswer().load()
 ```
 
 
@@ -543,6 +543,29 @@ Create an instance: `const words_learning = client.WordsLearning()`
 ```ts
 const words_learnings = await client.WordsLearning().list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

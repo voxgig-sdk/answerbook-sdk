@@ -24,10 +24,12 @@ class BookOfAnswer
 /** Request payload for BookOfAnswer#load. */
 class BookOfAnswerLoadMatch
 {
-    public ?string $answer = null;
-    public ?array $answer_i18n = null;
-    public string $id;
-    public ?array $meta = null;
+    public ?string $lang = null;
+    public ?string $length = null;
+    public ?string $mood = null;
+    public ?string $style = null;
+    public ?string $theme = null;
+    public ?string $tone = null;
 }
 
 /** GetApiDoc entity data model. */

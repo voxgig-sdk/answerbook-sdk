@@ -51,7 +51,7 @@ func main() {
     client := sdk.New()
 
     // Load a single bookOfAnswer — the value is the loaded record.
-    bookOfAnswer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "example_id"}, nil)
+    bookOfAnswer, err := client.BookOfAnswer(nil).Load(nil, nil)
     if err != nil {
         panic(err)
     }
@@ -253,7 +253,7 @@ Check `err` first, then use the value directly (or the typed
 `...Typed` variants, which return the entity's model struct and a typed
 slice):
 
-    bookOfAnswer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "example_id"}, nil)
+    bookOfAnswer, err := client.BookOfAnswer(nil).Load(nil, nil)
     if err != nil { /* handle */ }
     // bookOfAnswer is the returned record
 
@@ -371,7 +371,7 @@ Create an instance: `bookOfAnswer := client.BookOfAnswer(nil)`
 #### Example: Load
 
 ```go
-bookOfAnswer, err := client.BookOfAnswer(nil).Load(map[string]any{"id": "book_of_answer_id"}, nil)
+bookOfAnswer, err := client.BookOfAnswer(nil).Load(nil, nil)
 if err != nil {
     panic(err)
 }
@@ -543,6 +543,29 @@ if err != nil {
 }
 fmt.Println(wordsLearnings) // the array of records
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

@@ -23,14 +23,13 @@ class BookOfAnswer(TypedDict, total=False):
     meta: dict
 
 
-class BookOfAnswerLoadMatchRequired(TypedDict):
-    id: str
-
-
-class BookOfAnswerLoadMatch(BookOfAnswerLoadMatchRequired, total=False):
-    answer: str
-    answer_i18n: dict
-    meta: dict
+class BookOfAnswerLoadMatch(TypedDict, total=False):
+    lang: str
+    length: str
+    mood: str
+    style: str
+    theme: str
+    tone: str
 
 
 class GetApiDoc(TypedDict):

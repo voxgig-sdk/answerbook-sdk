@@ -36,7 +36,7 @@ local client = sdk.new()
 ### 3. Load a bookofanswer
 
 ```lua
-local bookofanswer, err = client:BookOfAnswer():load({ id = "example_id" })
+local bookofanswer, err = client:BookOfAnswer():load()
 if err then error(err) end
 print(bookofanswer)
 ```
@@ -220,7 +220,7 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local book_of_answer, err = client:BookOfAnswer():load({ id = "example_id" })
+    local book_of_answer, err = client:BookOfAnswer():load()
     if err then error(err) end
     -- book_of_answer is the loaded record
 
@@ -338,7 +338,7 @@ Create an instance: `local book_of_answer = client:BookOfAnswer(nil)`
 #### Example: Load
 
 ```lua
-local book_of_answer, err = client:BookOfAnswer():load({ id = "book_of_answer_id" })
+local book_of_answer, err = client:BookOfAnswer():load()
 ```
 
 
@@ -482,6 +482,29 @@ Create an instance: `local words_learning = client:WordsLearning(nil)`
 ```lua
 local words_learnings, err = client:WordsLearning():list()
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

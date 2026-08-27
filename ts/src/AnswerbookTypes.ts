@@ -13,10 +13,12 @@ export interface BookOfAnswer {
 }
 
 export interface BookOfAnswerLoadMatch {
-  answer?: string
-  answer_i18n?: Record<string, any>
-  id: string
-  meta?: Record<string, any>
+  lang?: string
+  length?: string
+  mood?: string
+  style?: string
+  theme?: string
+  tone?: string
 }
 
 export interface GetApiDoc {

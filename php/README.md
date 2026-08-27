@@ -36,7 +36,7 @@ $client = new AnswerbookSDK();
 ```php
 try {
     // load() returns the ENTITY — call data_get() for the BookOfAnswer record (throws on error).
-    $bookofanswer = $client->BookOfAnswer()->load(["id" => "example_id"]);
+    $bookofanswer = $client->BookOfAnswer()->load();
     print_r($bookofanswer);
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -358,7 +358,7 @@ Create an instance: `$book_of_answer = $client->BookOfAnswer();`
 
 ```php
 // load() returns the ENTITY — call data_get() for the BookOfAnswer record (throws on error).
-$book_of_answer = $client->BookOfAnswer()->load(["id" => "book_of_answer_id"]);
+$book_of_answer = $client->BookOfAnswer()->load();
 ```
 
 
@@ -508,6 +508,29 @@ Create an instance: `$words_learning = $client->WordsLearning();`
 // list() returns an array of WordsLearning records (throws on error).
 $words_learnings = $client->WordsLearning()->list();
 ```
+
+## Features
+
+This SDK ships 1 optional features. Each is **inactive until you
+switch it on**, so an SDK you have not configured behaves exactly as if none of
+them existed — no retries, no cache, no logging, no measurable overhead.
+
+Activate a feature by name in the client options, alongside the options shown
+above:
+
+| Feature | What it does |
+|---|---|
+| [`test`](#test) | In-memory mock transport for testing without a live server |
+
+### test
+
+In-memory mock transport for testing without a live server.
+
+| Option | Default |
+|---|---|
+| `active` | `false` |
+
+Set `feature.test.active` to enable it, then override any of the options above.
 
 
 ## Advanced

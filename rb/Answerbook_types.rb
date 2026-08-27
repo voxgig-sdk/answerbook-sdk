@@ -31,22 +31,30 @@ BookOfAnswer = Struct.new(
 
 # Request payload for BookOfAnswer#load.
 #
-# @!attribute [rw] answer
+# @!attribute [rw] lang
 #   @return [String, nil]
 #
-# @!attribute [rw] answer_i18n
-#   @return [Hash, nil]
+# @!attribute [rw] length
+#   @return [String, nil]
 #
-# @!attribute [rw] id
-#   @return [String]
+# @!attribute [rw] mood
+#   @return [String, nil]
 #
-# @!attribute [rw] meta
-#   @return [Hash, nil]
+# @!attribute [rw] style
+#   @return [String, nil]
+#
+# @!attribute [rw] theme
+#   @return [String, nil]
+#
+# @!attribute [rw] tone
+#   @return [String, nil]
 BookOfAnswerLoadMatch = Struct.new(
-  :answer,
-  :answer_i18n,
-  :id,
-  :meta,
+  :lang,
+  :length,
+  :mood,
+  :style,
+  :theme,
+  :tone,
   keyword_init: true
 )
 

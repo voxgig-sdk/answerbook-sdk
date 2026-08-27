@@ -22,10 +22,12 @@ type BookOfAnswer struct {
 
 // BookOfAnswerLoadMatch is the typed request payload for BookOfAnswer.LoadTyped.
 type BookOfAnswerLoadMatch struct {
-	Answer *string `json:"answer,omitempty"`
-	AnswerI18n *map[string]any `json:"answer_i18n,omitempty"`
-	Id string `json:"id"`
-	Meta *map[string]any `json:"meta,omitempty"`
+	Lang *string `json:"lang,omitempty"`
+	Length *string `json:"length,omitempty"`
+	Mood *string `json:"mood,omitempty"`
+	Style *string `json:"style,omitempty"`
+	Theme *string `json:"theme,omitempty"`
+	Tone *string `json:"tone,omitempty"`
 }
 
 // GetApiDoc is the typed data model for the get_api_doc entity.
