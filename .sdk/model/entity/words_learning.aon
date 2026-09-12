@@ -20,9 +20,13 @@ main: kit: entity: words_learning: {
         {
           method: "GET"
           orig: "/words/categories"
-          parts: [
-            "words"
-            "categories"
+          segments: [
+            {
+              lit: "words"
+            }
+            {
+              lit: "categories"
+            }
           ]
           transform: {
             req: "`reqdata`"

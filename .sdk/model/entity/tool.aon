@@ -20,8 +20,10 @@ main: kit: entity: tool: {
         {
           method: "GET"
           orig: "/RandomPassword"
-          parts: [
-            "RandomPassword"
+          segments: [
+            {
+              lit: "RandomPassword"
+            }
           ]
           transform: {
             req: "`reqdata`"

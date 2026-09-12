@@ -46,8 +46,10 @@ main: kit: entity: poetry__oracle: {
         {
           method: "GET"
           orig: "/TangPoetry"
-          parts: [
-            "TangPoetry"
+          segments: [
+            {
+              lit: "TangPoetry"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -57,8 +59,10 @@ main: kit: entity: poetry__oracle: {
         {
           method: "GET"
           orig: "/TempleOracleJP"
-          parts: [
-            "TempleOracleJP"
+          segments: [
+            {
+              lit: "TempleOracleJP"
+            }
           ]
           transform: {
             req: "`reqdata`"

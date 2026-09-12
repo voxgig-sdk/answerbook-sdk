@@ -30,8 +30,10 @@ main: kit: entity: market_data: {
         {
           method: "GET"
           orig: "/SP500"
-          parts: [
-            "SP500"
+          segments: [
+            {
+              lit: "SP500"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -41,8 +43,10 @@ main: kit: entity: market_data: {
         {
           method: "GET"
           orig: "/TW0050"
-          parts: [
-            "TW0050"
+          segments: [
+            {
+              lit: "TW0050"
+            }
           ]
           transform: {
             req: "`reqdata`"
@@ -52,8 +56,10 @@ main: kit: entity: market_data: {
         {
           method: "GET"
           orig: "/nasdaq100"
-          parts: [
-            "nasdaq100"
+          segments: [
+            {
+              lit: "nasdaq100"
+            }
           ]
           transform: {
             req: "`reqdata`"

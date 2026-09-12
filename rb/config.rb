@@ -67,6 +67,10 @@ module AnswerbookConfig
               "type" => "`$OBJECT`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "book_of_answer",
           "op" => {
             "load" => {
@@ -117,8 +121,10 @@ module AnswerbookConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/answersWithMeta",
-                  "parts" => [
-                    "answersWithMeta",
+                  "segments" => [
+                    {
+                      "lit" => "answersWithMeta",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -134,6 +140,9 @@ module AnswerbookConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "answersWithMeta",
+                  ],
                 },
                 {
                   "args" => {
@@ -150,8 +159,10 @@ module AnswerbookConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/answers",
-                  "parts" => [
-                    "answers",
+                  "segments" => [
+                    {
+                      "lit" => "answers",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -162,6 +173,9 @@ module AnswerbookConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "answers",
+                  ],
                 },
                 {
                   "args" => {
@@ -177,8 +191,10 @@ module AnswerbookConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/answersOriginal",
-                  "parts" => [
-                    "answersOriginal",
+                  "segments" => [
+                    {
+                      "lit" => "answersOriginal",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -189,6 +205,9 @@ module AnswerbookConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "answersOriginal",
+                  ],
                 },
               ],
             },
@@ -210,12 +229,13 @@ module AnswerbookConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/",
-                  "parts" => [],
+                  "segments" => [],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [],
                 },
               ],
             },
@@ -250,42 +270,57 @@ module AnswerbookConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/SP500",
-                  "parts" => [
-                    "SP500",
+                  "segments" => [
+                    {
+                      "lit" => "SP500",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.SP500`",
                   },
+                  "parts" => [
+                    "SP500",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/TW0050",
-                  "parts" => [
-                    "TW0050",
+                  "segments" => [
+                    {
+                      "lit" => "TW0050",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.TW0050`",
                   },
+                  "parts" => [
+                    "TW0050",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/nasdaq100",
-                  "parts" => [
-                    "nasdaq100",
+                  "segments" => [
+                    {
+                      "lit" => "nasdaq100",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.nasdaq100`",
                   },
+                  "parts" => [
+                    "nasdaq100",
+                  ],
                 },
               ],
             },
@@ -333,28 +368,38 @@ module AnswerbookConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/TangPoetry",
-                  "parts" => [
-                    "TangPoetry",
+                  "segments" => [
+                    {
+                      "lit" => "TangPoetry",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.poem`",
                   },
+                  "parts" => [
+                    "TangPoetry",
+                  ],
                 },
                 {
                   "args" => {},
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/TempleOracleJP",
-                  "parts" => [
-                    "TempleOracleJP",
+                  "segments" => [
+                    {
+                      "lit" => "TempleOracleJP",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.oracle`",
                   },
+                  "parts" => [
+                    "TempleOracleJP",
+                  ],
                 },
               ],
             },
@@ -381,14 +426,19 @@ module AnswerbookConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/RandomPassword",
-                  "parts" => [
-                    "RandomPassword",
+                  "segments" => [
+                    {
+                      "lit" => "RandomPassword",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "RandomPassword",
+                  ],
                 },
               ],
             },
@@ -416,6 +466,10 @@ module AnswerbookConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "word",
           "op" => {
             "load" => {
@@ -444,10 +498,16 @@ module AnswerbookConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/words/{category}/{word}",
-                  "parts" => [
-                    "words",
-                    "{category}",
-                    "{word}",
+                  "segments" => [
+                    {
+                      "lit" => "words",
+                    },
+                    {
+                      "var" => "category",
+                    },
+                    {
+                      "var" => "word",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -459,6 +519,11 @@ module AnswerbookConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "words",
+                    "{category}",
+                    "{word}",
+                  ],
                 },
                 {
                   "args" => {
@@ -475,15 +540,19 @@ module AnswerbookConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/words/{category}",
-                  "parts" => [
-                    "words",
-                    "{id}",
-                  ],
                   "rename" => {
                     "param" => {
                       "category" => "id",
                     },
                   },
+                  "segments" => [
+                    {
+                      "lit" => "words",
+                    },
+                    {
+                      "var" => "id",
+                    },
+                  ],
                   "select" => {
                     "exist" => [
                       "id",
@@ -493,6 +562,10 @@ module AnswerbookConfig
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "words",
+                    "{id}",
+                  ],
                 },
               ],
             },
@@ -523,15 +596,23 @@ module AnswerbookConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/words/categories",
-                  "parts" => [
-                    "words",
-                    "categories",
+                  "segments" => [
+                    {
+                      "lit" => "words",
+                    },
+                    {
+                      "lit" => "categories",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.categories`",
                   },
+                  "parts" => [
+                    "words",
+                    "categories",
+                  ],
                 },
               ],
             },

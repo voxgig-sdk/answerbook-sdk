@@ -87,8 +87,10 @@ main: kit: entity: book_of_answer: {
           }
           method: "GET"
           orig: "/answersWithMeta"
-          parts: [
-            "answersWithMeta"
+          segments: [
+            {
+              lit: "answersWithMeta"
+            }
           ]
           select: {
             exist: [
@@ -120,8 +122,10 @@ main: kit: entity: book_of_answer: {
           }
           method: "GET"
           orig: "/answers"
-          parts: [
-            "answers"
+          segments: [
+            {
+              lit: "answers"
+            }
           ]
           select: {
             exist: [
@@ -147,8 +151,10 @@ main: kit: entity: book_of_answer: {
           }
           method: "GET"
           orig: "/answersOriginal"
-          parts: [
-            "answersOriginal"
+          segments: [
+            {
+              lit: "answersOriginal"
+            }
           ]
           select: {
             exist: [
