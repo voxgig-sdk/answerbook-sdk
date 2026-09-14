@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { AnswerbookSDK } from '@voxgig-sdk/answerbook'
+import { AnswerbookSDK } from '@voxgig-sdk/answerbook-sdk'
 
 const client = new AnswerbookSDK()
 ```
@@ -627,7 +627,7 @@ answerbook/
 Import the SDK from the package root:
 
 ```ts
-import { AnswerbookSDK } from '@voxgig-sdk/answerbook'
+import { AnswerbookSDK } from '@voxgig-sdk/answerbook-sdk'
 ```
 
 ### Entity state

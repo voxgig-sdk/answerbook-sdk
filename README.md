@@ -105,7 +105,7 @@ local result, err = client:MarketData():load()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/answerbook` | publish pending — [install from git tag](https://github.com/voxgig-sdk/answerbook-sdk/releases) |
+| TypeScript | `@voxgig-sdk/answerbook-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/answerbook-sdk/releases) |
 | Python | `voxgig-sdk-answerbook` | publish pending — [install from git tag](https://github.com/voxgig-sdk/answerbook-sdk/releases) |
 | PHP | `voxgig-sdk/answerbook` | publish pending — [install from git tag](https://github.com/voxgig-sdk/answerbook-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/answerbook-sdk/go` | `go get github.com/voxgig-sdk/answerbook-sdk/go@latest` |
@@ -119,7 +119,7 @@ local result, err = client:MarketData():load()
 ### TypeScript
 
 ```ts
-import { AnswerbookSDK } from '@voxgig-sdk/answerbook'
+import { AnswerbookSDK } from '@voxgig-sdk/answerbook-sdk'
 
 const client = new AnswerbookSDK()
 
